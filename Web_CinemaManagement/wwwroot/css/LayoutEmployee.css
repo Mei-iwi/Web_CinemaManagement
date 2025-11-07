@@ -1,0 +1,30 @@
+﻿nav {
+    background-color: #111111;
+}
+
+.footer-nhanvien {
+    background-color: #111; /* nền đen đậm */
+    font-size: 14px;
+}
+
+    .footer-nhanvien a {
+        text-decoration: none;
+    }
+
+        .footer-nhanvien a:hover {
+            color: #ffc107;
+        }
+
+
+.footer-quanly {
+    background-color: #000; /* nền đen */
+    font-size: 14px;
+}
+
+    .footer-quanly a {
+        text-decoration: none;
+    }
+
+        .footer-quanly a:hover {
+            color: #ffc107;
+        }

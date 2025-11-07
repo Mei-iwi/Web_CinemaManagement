@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/wwwroot/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/css/LayoutCustomer.css" rel="stylesheet" />
+    <link href="~/wwwroot/css/LayoutEmployee.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    @{
+
+        var currentUser = Session["User"];
+    }
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark  text-light">
+            <img class="navbar-brand img-fluid mr-lg-5" width="120" height="100" src="@Url.Content("~/wwwroot/Images/logo.png")">
+
+            <form class="form-inline my-2 my-lg-0 w-50 minimum">
+                <p>TÔN TRỌNG TRẢI NGHIỆM KHÁCH HÀNG</p>
+            </form>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @if (currentUser == null)
+                {
+
+
+                    <ul class="navbar-nav mr-auto ">
+                        <li>
+                            @Html.ActionLink("Trang chủ", "", "", new { @class = "nav-link text-light" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Bán vé / Đặt vé", "", "", new { @class = "nav-link text-light" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quản lý suất chiếu", "", "", new { @class = "nav-link text-light" })
+
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Tra cứu khách hàng/ thành viên", "", "", new { @class = "nav-link text-light" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Thống kế doanh thu theo ca", "", "", new { @class = "nav-link text-light" })
+                        </li>
+
+                    </ul>
+                }
+                else
+                {
+                    @Html.ActionLink("Đăng nhập tại đây để tiếp tục", "Login", "Authentication", null, new { @class = "nav-link text-light" })
+                }
+
+
+                <div style="cursor:pointer">
+
+                    @if (currentUser == null)
+                    {
+
+
+                        <div class="nav-item dropdown">
+                            <table>
+                                <tr>
+                                    <td rowspan="2">
+                                        <img src="@Url.Content("~/wwwroot/Images/user.png")" alt="Alternate Text" />
+                                    </td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> Mai Nhật Cường</td>
+
+                                </tr>
+                                <tr>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/positon.png")" alt="Alternate Text" /> Chức vụ: Nhân viên</td>
+                                </tr>
+
+                            </table>
+                            <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="#">Thay đổi mật khẩu</a>
+                                <a class="dropdown-item" href="#">Đăng xuất</a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Liên hệ, sự cố</a>
+                                <a class="dropdown-item" href="#">Chăm sóc khách hàng</a>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+    <footer class="footer-nhanvien text-light py-4">
+        <div class="container text-center">
+            <p>📍 <strong>Rạp Phim HUIT Cinema</strong></p>
+            <p>Hotline hỗ trợ kỹ thuật: <a href="tel:19001234" class="text-warning">1900 1234</a></p>
+            <p>Giờ làm việc: 08:00 - 22:00 | Chính sách nhân viên được cập nhật nội bộ</p>
+            <hr class="bg-light">
+            <p class="mb-0">&copy; 2025 HUIT Cinema. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+    <script src="~/wwwroot/Bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

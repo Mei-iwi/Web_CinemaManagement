@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/wwwroot/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/css/LayoutCustomer.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    @{
+
+        var currentUser = Session["User"];
+    }
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark  text-light">
+            <img class="navbar-brand img-fluid mr-lg-5" width="120" height="100" src="@Url.Content("~/wwwroot/Images/logo.png")">
+
+            <form class="form-inline my-2 my-lg-0 w-50 minimum">
+                @Html.TextBox("Search", null, new { @class = "form-control w-75", placeholder = "Bạn yêu thích phim gì?" })
+                <button class="btn btn-outline-light my-2 my-sm-0 search" type="submit"><img src="@Url.Content("~/wwwroot/Images/Search.png")" alt="Alternate Text" /></button>
+            </form>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto ">
+                    <li>
+                        <a href=""><img width="140" src="@Url.Content("~/wwwroot/Images/Buynow.png")" alt="Alternate Text" /></a>
+                    </li>
+                    <li class="nav-item active dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            PHIM MỚI
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">PHIN LƯỢT XEM CAO NHẤT</a>
+                            <a class="dropdown-item" href="#">PHIM CÓ DOANH THU CAO NHẤT</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">PHIM MỚI NHẤT</a>
+                        </div>
+
+                    </li>
+                    <li class="nav-item active dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            SẢN PHẨM
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">PHIM HÀNH ĐỘNG</a>
+                            <a class="dropdown-item" href="#">PHIM TÌNH CẢM LÃNG MẠN</a>
+                            <a class="dropdown-item" href="#">PHIM KINH DỊ</a>
+                            <a class="dropdown-item" href="#">PHIM HOẠT HÌNH</a>
+
+                        </div>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            GÓC ĐIỆN ẢNH
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">TIN TỨC ĐIỆN ẢNH</a>
+                            <a class="dropdown-item" href="#">DIỄN VIÊN & ĐẠO DIỄN</a>
+                            <a class="dropdown-item" href="#">BÍ KÍP XEM PHIM</a>
+                            <a class="dropdown-item" href="#">REVIEW PHIM</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            RẠP/ GIÁ VÉ
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">DANH SÁCH RẠP</a>
+                            <a class="dropdown-item" href="#">GIÁ VÉ</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">KHUYẾN MÃI</a>
+                            <a class="dropdown-item" href="#">kHUYỂN MÃI DANH RIÊNG</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0 w-50 maximum">
+                    @Html.TextBox("Search", null, new { @class = "form-control w-75", placeholder = "Bạn yêu thích phim gì?" })
+                    <button class="btn btn-outline-light my-2 my-sm-0 search" type="submit"><img src="@Url.Content("~/wwwroot/Images/Search.png")" alt="Alternate Text" /></button>
+                </form>
+                <div style="cursor:pointer">
+
+                    @if (currentUser != null)
+                    {
+
+
+                        <div class="nav-item dropdown">
+                            <table>
+                                <tr>
+                                    <td rowspan="2">
+                                        <img src="@Url.Content("~/wwwroot/Images/user.png")" alt="Alternate Text" />
+                                    </td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> Mai Nhật Cường</td>
+
+                                </tr>
+                                <tr>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/star.png")" alt="Alternate Text" />Cập độ 0</td>
+                                </tr>
+
+                            </table>
+                            <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="#">Thay đổi mật khẩu</a>
+                                <a class="dropdown-item" href="#">Đăng xuất</a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Liên hệ, sự cố</a>
+                                <a class="dropdown-item" href="#">Chăm sóc khách hàng</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="authentication"> @Html.ActionLink("Đăng nhập", "Login", "Authentication", null, new { @class = "nav-link text-light" }) / @Html.ActionLink("Đăng ký", "Register", "Authentication", null, new { @class = "nav-link text-light" }) </div>
+
+                    }
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+        @RenderBody()
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h4>World of Movies</h4>
+                <p>140 Lê Trọng Tấn - Tây Thạnh - Tân Phú</p>
+                <p>Hotline: 1900 1234 | Email: mei@worlfilm.vn</p>
+            </div>
+
+            <div class="footer-links">
+                <h5>Liên kết nhanh</h5>
+                <ul>
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/showtimes">Lịch chiếu</a></li>
+                    <li><a href="/promotions">Khuyến mãi</a></li>
+                    <li><a href="/contact">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-support">
+                <h5>Hỗ trợ khách hàng</h5>
+                <ul>
+                    <li><a href="/guide">Hướng dẫn đặt vé</a></li>
+                    <li><a href="/policy">Chính sách bảo mật</a></li>
+                    <li><a href="/terms">Điều khoản sử dụng</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 World of Movies. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="~/wwwroot/Bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>
