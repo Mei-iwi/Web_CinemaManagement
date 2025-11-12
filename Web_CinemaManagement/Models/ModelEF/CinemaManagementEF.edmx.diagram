@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aee88c1e5262453f89087c048b678175" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.CAUHOI" Width="1.5" PointX="3" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.CT_GHE_PHONG" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.DANGKY" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.DANGPHIM" Width="1.5" PointX="1.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.DANHMUC_KHIEUNAY" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.DICHVU" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.GHE" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.HANGTHANHVIEN" Width="1.5" PointX="1.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.LOAIVE" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.NOIDUNG_PHANHOI" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.PHIM" Width="1.5" PointX="1.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.PHONGCHIEU" Width="1.5" PointX="1.5" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.SUATCHIEU" Width="1.5" PointX="3.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.sysdiagram" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.THELOAIPHIM" Width="1.5" PointX="1.5" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.VE" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_RAP_PHIMModel.YEUCAUHOTRO" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_CAUHOI_MADM" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK__CT_GHE_PH__MAGHE__6F4A8121" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK__CT_GHE_PH__MAPHO__703EA55A" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_DANGKY_DICHVU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_DANGKY_VE" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_PHIM_DANGPHIM" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_YCHT_MADM" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_VE_GHE" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_KHACHAHNG_HANGTHANHVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_NDPH_MAKH" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_VE_KHACHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_YCHT_MAKH" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_VE_LOAIVE" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_NDPH_MANV" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_VE_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_YCHT_MANV" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_NDPH_MAYEUCAU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_PHIM_THELOAIPHIM" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_SUATCHIEU_PHIM" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_SUATCHIEU_PHONGCHIEU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_RAP_PHIMModel.FK_VE_SUATCHIEU" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

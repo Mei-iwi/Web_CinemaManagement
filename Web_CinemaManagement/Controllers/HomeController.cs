@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web_CinemaManagement.Models.ModelLinq;
+using Web_CinemaManagement.Helper;
 
 namespace Web_CinemaManagement.Controllers
 {
     public class HomeController : Controller
     {
         // GET: Home
+
+
         public ActionResult Index()
         {
-            return View();
+            DataGlobal.getInformationUser("NV00000004", "Abc12345!", 0);
+            CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+            List<PHIM> p = db.PHIMs.ToList();
+            return View(p);
         }
     }
 }
