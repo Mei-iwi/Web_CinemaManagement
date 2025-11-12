@@ -15,7 +15,7 @@ namespace Web_CinemaManagement.Controllers
 
         public ActionResult Index()
         {
-            DataGlobal.getInformationUser("NV00000004", "Abc12345!", 0);
+            DataGlobal.getInformationUser("sqlserver", "123456789", 0);
             CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
 
             List<PHIM> p = db.PHIMs.ToList();
