@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/wwwroot/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/css/Login.css" rel="stylesheet" />
+    <title>Login</title>
+
+</head>
+<body>
+    <div class="form-login">
+        <h1 class="text-center" id="then">ĐĂNG NHẬP</h1>
+        <h4 id="start" class="text">ĐĂNG NHẬP TẠI ĐÂY</h4>
+        @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { @class = "form-group" }))
+        {
+            <div class="form-group">
+                @Html.Label("Nhập tài khoản đăng nhập")
+                @Html.TextBox("UserName", null, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Nhập tài mật khẩu")
+                @Html.TextBox("Password", null, new { @class = "form-control", type = "password" })
+            </div>
+            <div class="form-group d-flex ml-4">
+                @Html.CheckBox("checkpass", false, new { @class = "form-check" })
+                <span class="ml-3">Hiện thị mật khẩu</span>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary w-50 h-75">ĐĂNG NHẬP</button>
+            </div>
+
+            <div class="btn-link text-center form-group">
+                @Html.ActionLink("Quên mật khẩu", "ChangePassword", "Authentication")
+            </div>
+            <div class="form-group d-flex justify-content-end">
+                <input type="hidden" id="recaptchaToken" name="recaptchaToken" />
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        }
+        <div class="text-center">
+
+            <span>Bạn chưa có tài khoản? Đăng ký ngay: </span>
+            @Html.ActionLink("Tại đây", "Registration", "Authentication")
+        </div>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcTNgssAAAAAG52tZt9aaTnwHjSo72ruknoQqrz"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LcTNgssAAAAAG52tZt9aaTnwHjSo72ruknoQqrz', { action: 'login' }).then(function (token) {
+                // Gửi token về server
+                console.log("Token nhận được:", token);
+                document.getElementById("recaptchaToken").value = token;
+            });
+        });
+    </script>
+    <script src="~/wwwroot/js/Login.js"></script>
+</body>
+</html>

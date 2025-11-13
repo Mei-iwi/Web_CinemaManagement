@@ -142,15 +142,37 @@
     <Content Include="wwwroot\Bootstrap\js\bootstrap.min.js" />
     <Content Include="wwwroot\Bootstrap\js\jquery-3.3.1.min.js" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
+    <Content Include="wwwroot\css\Login.css" />
     <Content Include="wwwroot\Images\Search.png" />
     <Content Include="wwwroot\Images\user.png" />
     <Content Include="wwwroot\Images\Buynow.png" />
     <Content Include="wwwroot\css\LayoutCustomer.css" />
     <Content Include="wwwroot\Images\logo.png" />
+    <Content Include="wwwroot\PhotoOfPerson\KH01.jpg" />
+    <Content Include="wwwroot\PhotoOfPerson\KH02.jpg" />
+    <Content Include="wwwroot\PhotoOfPerson\NV01.JPG" />
+    <Content Include="wwwroot\PhotoOfPerson\NV02.JPG" />
+    <Content Include="wwwroot\PhotoOfTheFilm\AnimeSaga.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\Annabell.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\AvengersEndgame.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\Champion.jpeg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\Documenter.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\edge.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\emvatrinh.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\endgame.jpeg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\Frontline.jpeg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\giadinh.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\KungfuPanda.jpeg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\lm8.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\minion.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\mmdb.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\phimthai.jpg" />
+    <Content Include="wwwroot\PhotoOfTheFilm\SongLines.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -162,6 +184,7 @@
     <Compile Include="Helper\DataGlobal.cs" />
     <Compile Include="Helper\Employee.cs" />
     <Compile Include="Helper\User.cs" />
+    <Compile Include="Helper\VerifyCaptcha.cs" />
     <Compile Include="Helper\VerifyViaEmail.cs" />
     <Compile Include="Models\ModelEF\CAUHOI.cs">
       <DependentUpon>CinemaManagementEF.tt</DependentUpon>
@@ -297,6 +320,7 @@
     </None>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -308,6 +332,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\ADO\" />
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

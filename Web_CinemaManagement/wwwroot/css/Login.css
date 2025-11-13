@@ -1,0 +1,153 @@
+﻿
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: change_images 20s infinite;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+@keyframes change_images {
+    0% {
+        background-image: url("/wwwroot/Images/bgMuado.jpg");
+        background-position: left center;
+    }
+
+    33% {
+        background-image: url("/wwwroot/Images/bgMarvel.png");
+        background-position: center center;
+    }
+
+    66% {
+        background-image: url("/wwwroot/Images/doraemon.jpg");
+        background-position: right center;
+    }
+
+    100% {
+        background-image: url("/wwwroot/Images/bgMuado.jpg");
+        background-position: left center;
+    }
+}
+
+.form-login {
+    background-color: rgb(255, 255, 255, 0.8);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    border-radius: 100%;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-radius 0.4s ease;
+    overflow: hidden;
+}
+
+form {
+    position: relative;
+}
+
+    form * {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+.form-login > #start {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.form-login > #then {
+    opacity: 0;
+}
+
+.form-login h1 {
+    font-weight: bold;
+    color: blue;
+}
+
+.form-login:hover, .form-login:active {
+    transform: translate(-50%, -50%) scale(1.2);
+    border-radius: 3%;
+    width: 35%;
+    height: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+}
+
+    .form-login:hover *, .form-login:active * {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .form-login:hover > #start, .form-login:active > #start {
+        opacity: 0;
+    }
+
+    .form-login:hover > #then, .form-login:active #then {
+        opacity: 1;
+    }
+
+
+@keyframes rainbow-move {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.text {
+    background: linear-gradient( 90deg,#2c2c2c, #5a1f1f, #a67c00 );
+    background-size: 400% 100%;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow-move 5s linear infinite;
+    font-size: 25px;
+}
+
+#UserName, #Password {
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 30px;
+    padding-left: 40px;
+}
+
+#UserName {
+    background-image: url("/wwwroot/Images/username.png")
+}
+
+#Password {
+    background-image: url("/wwwroot/Images/pass.png")
+}
+
+@media(max-width: 850px) {
+    .btn {
+        width: 100px;
+        font-size: 15px;
+        background-color:red;
+    }
+    .form-login:hover, .form-login:active {
+        width: 80%;
+    }
+
+
+}
