@@ -83,7 +83,7 @@ form {
     color: blue;
 }
 
-.form-login:hover, .form-login:active {
+.form-login:hover, .form-login.active {
     transform: translate(-50%, -50%) scale(1.2);
     border-radius: 3%;
     width: 35%;
@@ -91,16 +91,16 @@ form {
     box-shadow: 0 20px 40px rgba(0,0,0,0.7);
 }
 
-    .form-login:hover *, .form-login:active * {
+    .form-login:hover *, .form-login.active * {
         opacity: 1;
         transform: translateY(0);
     }
 
-    .form-login:hover > #start, .form-login:active > #start {
+    .form-login:hover > #start, .form-login.active > #start {
         opacity: 0;
     }
 
-    .form-login:hover > #then, .form-login:active #then {
+    .form-login:hover > #then, .form-login.active #then {
         opacity: 1;
     }
 
@@ -125,6 +125,7 @@ form {
 }
 
 #UserName, #Password {
+
     background-repeat: no-repeat;
     background-position: 10px center;
     background-size: 30px;
@@ -139,15 +140,30 @@ form {
     background-image: url("/wwwroot/Images/pass.png")
 }
 
+
+    #UserName:-webkit-autofill,
+    #UserName:-webkit-autofill:hover,
+    #UserName:-webkit-autofill:focus,
+    #UserName:-webkit-autofill:active,
+    #Password:-webkit-autofill,
+    #Password:-webkit-autofill:hover,
+    #Password:-webkit-autofill:focus,
+    #Password:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+        box-shadow: 0 0 0px 1000px white inset !important;
+        -webkit-text-fill-color: #000 !important;
+        transition: background-color 5000s ease-in-out 0s;
+        background-color: white !important;
+    }
+
 @media(max-width: 850px) {
     .btn {
         width: 100px;
         font-size: 15px;
-        background-color:red;
+        background-color: red;
     }
-    .form-login:hover, .form-login:active {
+
+    .form-login:hover, .form-login.active {
         width: 80%;
     }
-
-
 }

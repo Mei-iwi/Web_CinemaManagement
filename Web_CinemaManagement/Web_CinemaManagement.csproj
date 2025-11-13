@@ -141,6 +141,7 @@
     <Content Include="wwwroot\Bootstrap\css\bootstrap.min.css" />
     <Content Include="wwwroot\Bootstrap\js\bootstrap.min.js" />
     <Content Include="wwwroot\Bootstrap\js\jquery-3.3.1.min.js" />
+    <Content Include="wwwroot\css\ForgetPassword.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
     <Content Include="wwwroot\Images\Search.png" />
@@ -148,6 +149,10 @@
     <Content Include="wwwroot\Images\Buynow.png" />
     <Content Include="wwwroot\css\LayoutCustomer.css" />
     <Content Include="wwwroot\Images\logo.png" />
+    <Content Include="wwwroot\js\CinemaNews.js" />
+    <Content Include="wwwroot\js\ForgetPassword.js" />
+    <Content Include="wwwroot\js\Layout.js" />
+    <Content Include="wwwroot\js\Login.js" />
     <Content Include="wwwroot\PhotoOfPerson\KH01.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\KH02.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\NV01.JPG" />
@@ -173,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\CinemaCornerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,8 +187,10 @@
     <Compile Include="Helper\CheckKey.cs" />
     <Compile Include="Helper\ConnectionHelper.cs" />
     <Compile Include="Helper\Customer.cs" />
+    <Compile Include="Helper\DataAccess.cs" />
     <Compile Include="Helper\DataGlobal.cs" />
     <Compile Include="Helper\Employee.cs" />
+    <Compile Include="Helper\UpdatePassword.cs" />
     <Compile Include="Helper\User.cs" />
     <Compile Include="Helper\VerifyCaptcha.cs" />
     <Compile Include="Helper\VerifyViaEmail.cs" />
@@ -321,6 +329,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Shared\Message.cshtml" />
+    <Content Include="Views\Authentication\ForgetPassword.cshtml" />
+    <Content Include="Views\CinemaCorner\CinemaNews.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -331,7 +342,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ADO\" />
-    <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,12 @@ namespace Web_CinemaManagement.Helper
 
         private static string InitialCatalog = "QL_RAP_PHIM";
 
+
+        public static string getConnectionString(string UserID, string Password)
+        {
+            return $"Data Source={DataSource};Initial Catalog={InitialCatalog};User ID={UserID};Password={Password}";
+        }
+
         public static string getEFConnectionString(string UserID, string Password)
         {
             string providerConn = $"Data Source={DataSource};" +
