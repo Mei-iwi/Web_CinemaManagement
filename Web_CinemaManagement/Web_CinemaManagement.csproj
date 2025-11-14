@@ -144,6 +144,7 @@
     <Content Include="wwwroot\css\ForgetPassword.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
+    <Content Include="wwwroot\css\Registration.css" />
     <Content Include="wwwroot\Images\Search.png" />
     <Content Include="wwwroot\Images\user.png" />
     <Content Include="wwwroot\Images\Buynow.png" />
@@ -153,6 +154,7 @@
     <Content Include="wwwroot\js\ForgetPassword.js" />
     <Content Include="wwwroot\js\Layout.js" />
     <Content Include="wwwroot\js\Login.js" />
+    <Content Include="wwwroot\js\Registration.js" />
     <Content Include="wwwroot\PhotoOfPerson\KH01.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\KH02.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\NV01.JPG" />
@@ -332,6 +334,7 @@
     <Content Include="Views\Shared\Message.cshtml" />
     <Content Include="Views\Authentication\ForgetPassword.cshtml" />
     <Content Include="Views\CinemaCorner\CinemaNews.cshtml" />
+    <Content Include="Views\Authentication\Registration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

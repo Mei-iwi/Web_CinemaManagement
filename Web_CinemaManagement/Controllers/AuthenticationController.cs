@@ -190,5 +190,14 @@ namespace Web_CinemaManagement.Controllers
             }
             return View("ForgetPassword");
         }
+        public ActionResult Registration(string currentPage, string currentController)
+        {
+
+            ViewBag.currentPage = (currentPage != null) ? currentPage : "/Authentication/Login";
+
+            ViewBag.currentController = (currentController != null) ? currentController : "Authentication";
+
+            return View();
+        }
     }
 }

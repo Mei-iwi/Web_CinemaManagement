@@ -1,0 +1,173 @@
+﻿@model Web_CinemaManagement.Models.ModelEF.KHACHHANG
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/wwwroot/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/css/Registration.css" rel="stylesheet" />
+    <title>Registration</title>
+
+</head>
+<body>
+    <div class="d-flex justify-content-center flex-column mt-3">
+        @using (Html.BeginForm("Registration", "Authentication", FormMethod.Post, new { @class = "form-group container" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 class="text-center text-primary">ĐĂNG KÝ TÀI KHOẢN RẠP PHIM</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="row">
+                    <div class="chosseimage col-sm-3 col-3 text-center">
+                        <img style="width:90%; height:200px; border-radius:100%" class="ml-3" src="@Url.Content("~/wwwroot/Images/DefautUserMale.png")" alt="Alternate Text" />
+                        <span class="text-primary font-weight-bold">Tải ảnh lên</span>
+                        <input class="btn w-75" type="file" name="avatar" id="avatar" value="" />
+                    </div>
+                    <div class="col-sm-9 col-9">
+                        <div id="info">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HOTENKH, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.HOTENKH, new { @class = "form-control w-75" })
+                                    @Html.ValidationMessageFor(model => model.HOTENKH, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NGAYSINH, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.NGAYSINH, new { @class = "form-control w-50", type = "date" })
+                                    @Html.ValidationMessageFor(model => model.NGAYSINH, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PHAI, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.PHAI, new List<SelectListItem>()
+                               {
+                                   new SelectListItem {Text = "Nam", Value = "Nam"},
+                                   new SelectListItem {Text = "Nữ", Value = "Nữ" }
+                               }, null, new { @class = "form-control w-50" })
+
+                                    @Html.ValidationMessageFor(model => model.PHAI, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-9 col-9">
+
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", type = "email" })
+                                            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", type = "tel" })
+                                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.DIACHI, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 text-success font-weight-bold">
+                                    @ViewBag.message
+                                </div>
+                                <div class="col-sm-4">
+                                    <button id="sendinfo" class="btn btn-primary d-flex justify-content-center" type="button">Xác thực thông tin đăng ký</button>
+                                </div>
+                                <div class="col-sm-4"></div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="pass">
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.Label("UserName", "Mã khách hàng")
+                                    @Html.TextBox("UserName", null, new { @class = "form-control", @readonly = "true" })
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        @Html.Label("NewPass", "Nhập mật khẩu mới")
+                                        @Html.TextBox("NewPass", null, new { @class = "form-control", type = "password" })
+                                    </div>
+
+                                    <div class="form-group d-flex ml-4">
+                                        @Html.CheckBox("checkpassNew", false, new { @class = "form-check" })
+                                        <span class="ml-3">Hiện thị mật khẩu</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        @Html.Label("NewPassAgain", "Nhập lại mật khẩu mới")
+                                        @Html.TextBox("NewPassAgain", null, new { @class = "form-control", type = "password" })
+                                    </div>
+                                    <div class="form-group d-flex ml-4">
+                                        @Html.CheckBox("checkpassAgain", false, new { @class = "form-check" })
+                                        <span class="ml-3">Hiện thị mật khẩu</span>
+                                    </div>
+                                </div>
+                                <span class="text-primary font-weight-bold">Lưu ý: Mật khẩu phải dài tối thiếu 8 kí tự, có chứa số và kí tự đặc biệt</span>
+                                <span id="diff" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row" id="regis">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Đăng ký tài khoản" class="btn btn-success mb-5" />
+                                <br />
+                                <a href="/@ViewBag.currentController/@ViewBag.currentPage">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+
+                    </div>
+                </div>
+
+            </div>
+        }
+
+    </div>
+    <script src="~/wwwroot/Bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/wwwroot/js/Registration.js"></script>
+    
+</body>
+</html>

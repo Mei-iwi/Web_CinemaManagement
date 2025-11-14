@@ -21,7 +21,7 @@
         {
             <div class="form-group">
                 @Html.Label("Nhập tài khoản đăng nhập")
-                @Html.TextBox("UserName", null, new { @class = "form-control" , placeholder = "UserName"})
+                @Html.TextBox("UserName", null, new { @class = "form-control", placeholder = "UserName" })
             </div>
             <div class="form-group">
                 @Html.Label("Nhập tài mật khẩu")
@@ -48,7 +48,7 @@
         <div class="text-center">
 
             <span>Bạn chưa có tài khoản? Đăng ký ngay: </span>
-            @Html.ActionLink("Tại đây", "Registration", "Authentication")
+            @Html.ActionLink("Tại đây", "Registration", "Authentication", new { currentPage = "Login" , currentController = "Authentication"  }, null)
         </div>
     </div>
     <script src="https://www.google.com/recaptcha/api.js?render=6LcTNgssAAAAAG52tZt9aaTnwHjSo72ruknoQqrz"></script>
