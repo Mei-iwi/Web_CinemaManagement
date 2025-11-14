@@ -1,0 +1,47 @@
+﻿.menu-left {
+    min-height: 100vh;
+    border-right: 1px solid #ddd;
+    padding: 2rem 1rem;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+    .menu-left .nav-link {
+        color: #333;
+        margin: 10px 0;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+        .menu-left .nav-link:hover {
+            color: #007bff;
+            transform: translateX(5px);
+        }
+
+        .menu-left .nav-link.active {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+@media (max-width: 767px) {
+    .menu-left {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        min-height: auto;
+        padding: 1rem;
+        justify-content: flex-start;
+    }
+}
+main h1 {
+    margin-top: 20px; /* đẩy xuống 20px */
+    margin-bottom: 30px; /* khoảng cách với map */
+    font-size: 2rem;
+    font-weight: bold;
+}
