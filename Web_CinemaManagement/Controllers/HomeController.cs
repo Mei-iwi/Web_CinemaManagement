@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Web_CinemaManagement.Models.ModelLinq;
 using Web_CinemaManagement.Helper;
+using Web_CinemaManagement.Models.ModelLinq;
 
 namespace Web_CinemaManagement.Controllers
 {
@@ -12,6 +13,7 @@ namespace Web_CinemaManagement.Controllers
     {
         // GET: Home
 
+       
 
         public ActionResult Index()
         {
@@ -21,5 +23,7 @@ namespace Web_CinemaManagement.Controllers
             List<PHIM> p = db.PHIMs.ToList();
             return View(p);
         }
+
+       
     }
 }

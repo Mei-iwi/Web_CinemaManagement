@@ -6,6 +6,7 @@
     <link href="~/wwwroot/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/wwwroot/css/LayoutCustomer.css" rel="stylesheet" />
     <link href="~/wwwroot/css/LayoutEmployee.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
     <title>@ViewBag.Title</title>
     @{
 
@@ -37,6 +38,10 @@
 
                         <li>
                             @Html.ActionLink("Bán vé / Đặt vé", "", "", new { @class = "nav-link text-light" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Dịch vụ", "DichVu", "Cart", new { @class = "nav-link text-light" })
+
                         </li>
                         <li>
                             @Html.ActionLink("Quản lý suất chiếu", "", "", new { @class = "nav-link text-light" })
@@ -115,7 +120,7 @@
 
     <script src="~/wwwroot/Bootstrap/js/jquery-3.3.1.min.js"></script>
     <script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
-
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>
