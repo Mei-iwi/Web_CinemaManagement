@@ -332,6 +332,7 @@
     <Content Include="Views\Shared\Message.cshtml" />
     <Content Include="Views\Authentication\ForgetPassword.cshtml" />
     <Content Include="Views\CinemaCorner\CinemaNews.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
