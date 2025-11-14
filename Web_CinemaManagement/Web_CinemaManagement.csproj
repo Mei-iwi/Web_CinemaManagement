@@ -197,7 +197,6 @@
     <Compile Include="Helper\ConnectionHelper.cs" />
     <Compile Include="Helper\Customer.cs" />
     <Compile Include="Helper\DataAccess.cs" />
-    <Compile Include="Helper\DataGlobal.cs" />
     <Compile Include="Helper\Employee.cs" />
     <Compile Include="Helper\UpdatePassword.cs" />
     <Compile Include="Helper\User.cs" />
