@@ -1,47 +1,120 @@
-﻿.menu-left {
-    min-height: 100vh;
-    border-right: 1px solid #ddd;
+﻿/* ================= MENU LEFT ================= */
+.menu-left {
+    min-height: 100vh; /* full chiều cao cột menu */
     padding: 2rem 1rem;
     background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    justify-content: flex-start;
 }
 
+    /* Menu items */
     .menu-left .nav-link {
+        font-size: 1.4rem; /* chữ to hơn */
+        font-weight: 600;
         color: #333;
-        margin: 10px 0;
-        font-weight: 500;
-        font-size: 1.1rem;
+        margin: 12px 0;
+        text-align: left; /* chữ căn trái */
+        padding-left: 15px; /* đẩy chữ vào trong */
+        padding-right: 15px; /* optional */
+        border-radius: 6px;
         transition: all 0.3s ease;
-        text-align: center;
     }
 
+        /* Hover */
         .menu-left .nav-link:hover {
             color: #007bff;
-            transform: translateX(5px);
+            background-color: #e9f2ff;
+            transform: translateX(3px);
         }
 
+        /* Active link */
         .menu-left .nav-link.active {
-            color: #007bff;
+            color: #fff;
+            background-color: #007bff;
             font-weight: bold;
         }
 
+/* Responsive menu */
 @media (max-width: 767px) {
     .menu-left {
+        flex-direction: row;
         border-right: none;
         border-bottom: 1px solid #ddd;
-        min-height: auto;
         padding: 1rem;
-        justify-content: flex-start;
+        justify-content: space-around;
+        align-items: center;
     }
+
+        .menu-left .nav-link {
+            font-size: 1.1rem;
+            margin: 0 5px;
+            text-align: center;
+            transform: none;
+        }
 }
+
+/* ================= MAIN HEADING ================= */
 main h1 {
-    margin-top: 20px; /* đẩy xuống 20px */
-    margin-bottom: 30px; /* khoảng cách với map */
+    margin-top: 40px; /* đẩy xuống từ trên */
+    margin-bottom: 30px;
     font-size: 2rem;
     font-weight: bold;
+}
+
+/* ================= CONTACT FORM ================= */
+.contact-divider {
+    border-left: 2px solid #ccc;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .contact-divider form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .contact-divider form .btn {
+        align-self: flex-start;
+    }
+
+/* ================= CONTACT INFO ================= */
+.contact-info h2 {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+    .contact-info h2::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 3px;
+        background-color: #007bff;
+    }
+
+.contact-info p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* ================= RESPONSIVE COLUMNS ================= */
+.col-md-6 {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 991px) {
+    .contact-divider {
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid #ccc;
+        padding-top: 20px;
+    }
 }
