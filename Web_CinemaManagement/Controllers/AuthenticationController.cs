@@ -8,6 +8,7 @@ using Web_CinemaManagement.Helper;
 using Web_CinemaManagement.Models.ModelLinq;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 namespace Web_CinemaManagement.Controllers
 {
@@ -217,9 +218,142 @@ namespace Web_CinemaManagement.Controllers
         public ActionResult Registration(string currentPage, string currentController)
         {
 
-            ViewBag.currentPage = (currentPage != null) ? currentPage : "/Authentication/Login";
+            ViewBag.currentPage = (currentPage != null) ? currentPage : "Login";
 
             ViewBag.currentController = (currentController != null) ? currentController : "Authentication";
+
+            return View();
+        }
+
+        private string createdID()
+        {
+            CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+            KHACHHANG kh = db.KHACHHANGs
+                       .OrderByDescending(t => t.MAHANG)
+                       .FirstOrDefault();
+
+            int newID = 1;
+
+            if (kh != null && !string.IsNullOrEmpty(kh.MAKH))
+            {
+                string currentID = kh.MAKH;
+
+                // Định dạng KH + 8 số
+                if (currentID.Length == 10 && currentID.StartsWith("KH") &&
+                    int.TryParse(currentID.Substring(2, 8), out int num))
+                {
+                    newID = num + 1;
+                }
+            }
+
+
+            return "KH" + newID.ToString("D8");
+        }
+
+        public JsonResult CodeGeneration(string name, DateTime date, string gender, string email, string phone, string addr)
+        {
+
+            CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+            string newID = createdID();
+
+            KHACHHANG kh = new KHACHHANG
+            {
+                MAKH = newID,
+                HOTENKH = name,
+                NGAYSINH = date,
+                PHAI = gender,
+                EMAIL = email,
+                SDT = phone,
+                DIACHI = addr,
+                MAHANG = "H00000001"
+            };
+
+            db.KHACHHANGs.InsertOnSubmit(kh);
+
+            db.SubmitChanges();
+
+            return Json(new { success = true, newID = newID }, JsonRequestBehavior.AllowGet); ;
+        }
+
+        [HttpPost]
+        public ActionResult Registration(FormCollection fc, HttpPostedFileBase avatar)
+        {
+
+
+            try
+            {
+                if (avatar.ContentLength > 0)
+                {
+
+                    string filename = avatar.FileName;
+
+                    string uniqueName = Guid.NewGuid().ToString() + Path.GetExtension(filename);
+
+
+                    string path = Path.Combine(Server.MapPath("~/wwwroot/PhotoOfPerson"), uniqueName);
+
+                    if (avatar != null && avatar.ContentLength > 0)
+                    {
+                        avatar.SaveAs(path);
+                    } 
+
+                    CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+                    KHACHHANG kh = db.KHACHHANGs.FirstOrDefault(t => t.MAKH == fc["UserName"].ToString());
+
+                    if (kh != null)
+                    {
+
+                        kh.HINH_ANH = uniqueName;
+
+                        db.SubmitChanges();
+                    }
+
+
+                }
+
+
+                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+
+                bool checkUser = DataAccess.DataProvider.TestConnection(str);
+
+                if (checkUser)
+                {
+
+
+
+                    SqlConnection con = new SqlConnection(str);
+
+                    con.Open();
+
+                    string proc = "SP_CREATE_ACCOUNT";
+
+                    SqlCommand cmd = new SqlCommand(proc, con);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@UserName", fc["UserName"]);
+
+                    cmd.Parameters.AddWithValue("@Password", fc["NewPass"]);
+
+                    cmd.ExecuteNonQuery();
+
+                    con.Close();
+
+                    ViewBag.message = "Đăng ký tài khoản thành công";
+                }
+                else
+                {
+                    ViewBag.message = "Lỗi kết nối";
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = "Đăng ký lỗi";
+            }
 
             return View();
         }

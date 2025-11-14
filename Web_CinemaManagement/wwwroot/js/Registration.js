@@ -20,6 +20,8 @@ var date = document.querySelectorAll(".form-group input[type='date']");
 
 var phone = document.querySelectorAll(".form-group input[type='tel']");
 
+var gender = document.querySelector(".form-group select");
+
 var checkpassNew = document.getElementById("checkpassNew");
 
 var checkpassAgain = document.getElementById("checkpassAgain");
@@ -27,6 +29,7 @@ var checkpassAgain = document.getElementById("checkpassAgain");
 var pass = document.querySelectorAll(".form-group input[type='password']");
 
 var user = document.getElementById("PHAI");
+
 
 //Hàm xử lý
 
@@ -112,20 +115,42 @@ sendinfo.addEventListener("click", function () {
 
     if (cnt == 0) {
 
-        setTimeout(() => {
-            info.fadeOut();
-        }, 1000)
+        
+        console.log(mail[0].value)
 
-        setTimeout(function () {
-            passInput.fadeIn();
+        $.ajax({
+            url: "/Authentication/CodeGeneration",
+            type: "GET",
+            data: { name: textbox[0].value, date: date[0].value, gender: gender.value, email: mail[0].value, phone: phone[0].value, addr: textbox[1].value },
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
 
-            regis.css("display", "flex")
+                    $("#UserName").val(data.newID);
 
-            regis.fadeIn();
+                    setTimeout(() => {
+                        info.fadeOut();
+                    }, 1000)
+
+                    setTimeout(function () {
+                        passInput.fadeIn();
+
+                        regis.css("display", "flex")
+
+                        regis.fadeIn();
 
 
-            console.log(textbox)
-        }, 1000);
+                    }, 1000);
+
+                }
+            },
+            error: function () {
+                console.log("Lỗi");
+            }
+
+        });
+
+       
     }
 
     return;
