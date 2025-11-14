@@ -180,7 +180,10 @@
     <Content Include="wwwroot\PhotoOfTheFilm\SongLines.jpeg" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
@@ -189,6 +192,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -349,6 +353,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cart\DichVu.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -364,7 +369,9 @@
     <Folder Include="Areas\Manager\Controllers\" />
     <Folder Include="Areas\Manager\Data\" />
     <Folder Include="Areas\Manager\Views\Shared\" />
+    <Folder Include="Data\" />
     <Folder Include="Models\ADO\" />
+    <Folder Include="Views\Showtimes\" />
     <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
   <ItemGroup>
