@@ -11,7 +11,7 @@ namespace Web_CinemaManagement.Helper
 
         public static string Password;
 
-        public static int Position;
+        public static int Position = -1;
 
         public static void getInformationUser(string user, string password, int position)
         {

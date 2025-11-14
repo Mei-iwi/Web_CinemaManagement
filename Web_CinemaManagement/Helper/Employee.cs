@@ -17,6 +17,7 @@ namespace Web_CinemaManagement.Helper
 
         public string MA_NQL { get; set; }    // NV00000002
 
+
         public Employee()
         {
         }

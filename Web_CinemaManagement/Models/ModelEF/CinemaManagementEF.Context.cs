@@ -15,12 +15,31 @@ namespace Web_CinemaManagement.Models.ModelEF
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     using Web_CinemaManagement.Helper;
+    using System.Web;
 
     public partial class QL_RAP_PHIMEntities : DbContext
     {
         public QL_RAP_PHIMEntities()
-            : base(ConnectionHelper.getEFConnectionString(DataGlobal.UserID, DataGlobal.Password))
+            : base(GetConnectionStringFromSession())
         {
+        }
+
+        private static string GetConnectionStringFromSession()
+        {
+            if (HttpContext.Current.Session["UserID"] != null &&
+                HttpContext.Current.Session["Password"] != null)
+            {
+                string user = HttpContext.Current.Session["UserID"].ToString();
+                string pass = HttpContext.Current.Session["Password"].ToString();
+                return ConnectionHelper.getEFConnectionString(user, pass);
+            }
+            else
+            {
+                return ConnectionHelper.getLinqConnectionString("JustWatch", "Abc12345!");
+            }
+
+            // Nếu Session chưa có, có thể throw lỗi hoặc dùng mặc định
+            throw new Exception("User not logged in. Session information missing.");
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

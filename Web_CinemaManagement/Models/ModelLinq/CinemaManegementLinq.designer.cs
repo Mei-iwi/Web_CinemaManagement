@@ -22,14 +22,32 @@ namespace Web_CinemaManagement.Models.ModelLinq
     using System.Configuration;
     using System;
     using Web_CinemaManagement.Helper;
+    using System.Web;
 
     [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "QL_RAP_PHIM")]
     public partial class CinemaManegementLinqDataContext : System.Data.Linq.DataContext
     {
 
         public CinemaManegementLinqDataContext()
-          : base(ConnectionHelper.getLinqConnectionString(DataGlobal.UserID, DataGlobal.Password), mappingSource)
+          : base(GetConnectionStringFromSession(), mappingSource)
         {
+        }
+
+        private static string GetConnectionStringFromSession()
+        {
+            if (HttpContext.Current.Session["UserID"] != null &&
+                HttpContext.Current.Session["Password"] != null)
+            {
+                string user = HttpContext.Current.Session["UserID"].ToString();
+                string pass = HttpContext.Current.Session["Password"].ToString();
+                return ConnectionHelper.getLinqConnectionString(user, pass);
+            }
+            else
+            {
+                return ConnectionHelper.getLinqConnectionString("JustWatch", "Abc12345!");
+            }
+
+            throw new Exception("User not logged in. Session information missing.");
         }
 
         private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();

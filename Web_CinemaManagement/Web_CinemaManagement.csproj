@@ -126,6 +126,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\ModelEF\CinemaManagementEF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -146,6 +147,7 @@
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
     <Content Include="wwwroot\css\Registration.css" />
+    <Content Include="wwwroot\css\style_DichVu.css" />
     <Content Include="wwwroot\Images\Search.png" />
     <Content Include="wwwroot\Images\user.png" />
     <Content Include="wwwroot\Images\Buynow.png" />
@@ -185,6 +187,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CinemaCornerController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,6 +203,8 @@
     <Compile Include="Helper\User.cs" />
     <Compile Include="Helper\VerifyCaptcha.cs" />
     <Compile Include="Helper\VerifyViaEmail.cs" />
+    <Compile Include="Models\Cart\Cart.cs" />
+    <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\ModelEF\CAUHOI.cs">
       <DependentUpon>CinemaManagementEF.tt</DependentUpon>
     </Compile>
@@ -342,6 +347,9 @@
     <Content Include="Views\CinemaCorner\CinemaNews.cshtml" />
     <Content Include="Views\Authentication\Registration.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Cart\DichVu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -49,9 +49,16 @@ namespace Web_CinemaManagement.Controllers
 
                 Session["User"] = null;
 
+
                 Authentication authentication = new Authentication();
 
                 position = authentication.authenticate(ConnecionString, UserName);
+
+                Session["UserID"] = UserName;
+
+                Session["Password"] = Password;
+
+                Session["Position"] = position;
 
                 if (position == 0)
                 {
@@ -62,12 +69,14 @@ namespace Web_CinemaManagement.Controllers
 
                     Session["User"] = cus;
 
+
                 }
                 else
                 {
                     Employee em = new Employee();
 
                     em = authentication.getInfomation(ConnecionString, UserName);
+
 
                     if (position == 1)
                     {
@@ -94,6 +103,14 @@ namespace Web_CinemaManagement.Controllers
             {
                 ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu");
 
+                Session["UserID"] = "JustWatch";
+
+                Session["Password"] = "Abc12345!";
+
+                Session["Position"] = -1;
+
+
+
                 return View();
             }
 
@@ -102,6 +119,13 @@ namespace Web_CinemaManagement.Controllers
         public ActionResult Logout()
         {
             Session["User"] = null;
+
+            Session["UserID"] = "JustWatch";
+
+            Session["Password"] = "Abc12345!";
+
+            Session["Position"] = -1;
+
 
             return RedirectToAction("Index", "Home");
         }
