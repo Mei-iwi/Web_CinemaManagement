@@ -181,6 +181,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CinemaCornerController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -334,9 +335,7 @@
     <Content Include="Views\Shared\Message.cshtml" />
     <Content Include="Views\Authentication\ForgetPassword.cshtml" />
     <Content Include="Views\CinemaCorner\CinemaNews.cshtml" />
-
     <Content Include="Views\Authentication\Registration.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -347,6 +346,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ADO\" />
+    <Folder Include="Views\Contact\" />
     <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
   <ItemGroup>
