@@ -3,23 +3,9 @@ html, body {
     height: 100%;
     margin: 0;
 }
-
-
-
-body {
-    display: flex;
-    flex-direction: column;
-    padding-top: 80px;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    z-index: 1000;
-    border-bottom: 1px solid #ccc;
+body{
+    display:flex;
+    flex-direction:column;
 }
 
 nav {
@@ -77,7 +63,7 @@ nav {
 
 .dropdown-content {
     left: 0;
-    top: 50px;
+    top:50px;
 }
 
 
@@ -89,12 +75,10 @@ nav {
     .minimum {
         display: block;
     }
-
     .navbar-nav li {
         justify-content: flex-start;
-        margin-top: 10px;
+        margin-top:10px;
     }
-
     .dropdown-content {
         left: 200px;
         top: 0;
@@ -127,9 +111,9 @@ nav {
     padding-top: 10px;
 }
 
-    .footer a, li {
-        color: white;
-    }
+.footer a, li{
+    color: white;
+}
 
 .footer-bottom {
     display: flex;
@@ -137,34 +121,7 @@ nav {
     align-items: center;
 }
 
-.main {
-    flex: 1;
-}
-
-.iconAvatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-}
-
-ul li a {
-    font-size: 15px;
-}
-
-.message {
-    display:none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255,255,255, 0.9);
-    border: solid blue 2px;
-    border-radius:20px;
-    padding: 3%;
-}
-.content{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+.main{
+    flex:1;
 }
 

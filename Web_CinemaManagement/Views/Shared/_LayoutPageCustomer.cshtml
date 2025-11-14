@@ -1,5 +1,4 @@
-﻿@using Web_CinemaManagement.Helper;
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -9,7 +8,7 @@
     <title>@ViewBag.Title</title>
     @{
 
-        var currentUser = Session["User"] as Customer;
+        var currentUser = Session["User"];
     }
 </head>
 <body>
@@ -63,7 +62,7 @@
                             GÓC ĐIỆN ẢNH
                         </a>
                         <div class="dropdown-content" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/CinemaCorner/CinemaNews">TIN TỨC ĐIỆN ẢNH</a>
+                            <a class="dropdown-item" href="#">TIN TỨC ĐIỆN ẢNH</a>
                             <a class="dropdown-item" href="#">DIỄN VIÊN & ĐẠO DIỄN</a>
                             <a class="dropdown-item" href="#">BÍ KÍP XEM PHIM</a>
                             <a class="dropdown-item" href="#">REVIEW PHIM</a>
@@ -82,9 +81,12 @@
                             <a class="dropdown-item" href="#">kHUYỂN MÃI DANH RIÊNG</a>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("DichVu", "Cart")"> Dich Vu</a>
+                    </li>
 
                 </ul>
-                <form class="form-inline my-2 my-lg-0 w-25 maximum">
+                <form class="form-inline my-2 my-lg-0 w-50 maximum">
                     @Html.TextBox("Search", null, new { @class = "form-control w-75", placeholder = "Bạn yêu thích phim gì?" })
                     <button class="btn btn-outline-light my-2 my-sm-0 search" type="submit"><img src="@Url.Content("~/wwwroot/Images/Search.png")" alt="Alternate Text" /></button>
                 </form>
@@ -98,9 +100,9 @@
                             <table>
                                 <tr>
                                     <td rowspan="2">
-                                        <img class="iconAvatar" src="@Url.Content("~/wwwroot/PhotoOfPerson/" + currentUser.Avatar)" alt="Alternate Text" />
+                                        <img src="@Url.Content("~/wwwroot/Images/user.png")" alt="Alternate Text" />
                                     </td>
-                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> @currentUser.FullName</td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> Mai Nhật Cường</td>
 
                                 </tr>
                                 <tr>
@@ -111,7 +113,7 @@
                             <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="#">Thay đổi mật khẩu</a>
-                                <a class="dropdown-item" id="logout">Đăng xuất</a>
+                                <a class="dropdown-item" href="#">Đăng xuất</a>
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Liên hệ, sự cố</a>
@@ -168,10 +170,9 @@
         </div>
     </footer>
 
-    @Html.Partial("~/Views/Shared/Message.cshtml")
 
     <script src="~/wwwroot/Bootstrap/js/jquery-3.3.1.min.js"></script>
     <script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/wwwroot/js/Layout.js"></script>
+    
 </body>
 </html>

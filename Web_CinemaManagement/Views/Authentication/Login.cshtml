@@ -21,11 +21,11 @@
         {
             <div class="form-group">
                 @Html.Label("Nhập tài khoản đăng nhập")
-                @Html.TextBox("UserName", null, new { @class = "form-control" , placeholder = "UserName"})
+                @Html.TextBox("UserName", null, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 @Html.Label("Nhập tài mật khẩu")
-                @Html.TextBox("Password", null, new { @class = "form-control", type = "password", placeholder = "Password" })
+                @Html.TextBox("Password", null, new { @class = "form-control", type = "password" })
             </div>
             <div class="form-group d-flex ml-4">
                 @Html.CheckBox("checkpass", false, new { @class = "form-check" })
@@ -36,7 +36,7 @@
             </div>
 
             <div class="btn-link text-center form-group">
-                @Html.ActionLink("Quên mật khẩu", "ForgetPassword", "Authentication")
+                @Html.ActionLink("Quên mật khẩu", "ChangePassword", "Authentication")
             </div>
             <div class="form-group d-flex justify-content-end">
                 <input type="hidden" id="recaptchaToken" name="recaptchaToken" />

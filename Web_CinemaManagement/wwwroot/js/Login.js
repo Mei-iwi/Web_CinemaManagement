@@ -3,8 +3,6 @@ var checkbox = document.getElementById("checkpass");
 
 var pass = document.getElementById("Password");
 
-var form = document.querySelector(".form-login");
-
 //Khu vực hàm, xử lý
 checkbox.addEventListener("change", function (e) {
     e.preventDefault();
@@ -17,10 +15,3 @@ checkbox.addEventListener("change", function (e) {
     }
 
 });
-
-//
-
-form.addEventListener("click", function () {
-    this.classList.add("active");
-});
-

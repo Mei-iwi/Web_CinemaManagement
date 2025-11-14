@@ -1,0 +1,250 @@
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.DICHVU>
+
+@using Web_CinemaManagement.Models.Cart
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageEmployee.cshtml";
+    ViewBag.Title = "Dịch Vụ Bắp Nước";
+
+    // Logic lấy giỏ hàng
+    var cart = Session["Cart"] as Cart;
+    if (cart == null)
+    {
+        cart = new Cart(); // Nếu chưa có, tạo giỏ hàng rỗng
+    }
+
+    var cartItems = cart.cart;
+    var tongSoLuong = cart.TongSoluongSP();
+    var tongTien = cart.TongTien();
+}
+
+@section Styles {
+
+    <link href="~/wwwroot/css/style_DichVu.css" rel="stylesheet" />
+
+    <style>
+        /* --- BỐ CỤC 2 CỘT --- */
+        .container-dichvu {
+            /* DEBUG: Thêm viền đỏ để kiểm tra CSS có chạy không */
+            /* border: 2px solid red;  */ /* Bỏ comment này nếu muốn thấy viền đỏ */
+
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Cho phép xuống hàng trên màn hình nhỏ */
+        }
+
+        #product-section {
+            width: 100%; /* Mặc định 100% cho di động */
+        }
+
+        #cart-sidebar {
+            width: 100%; /* Mặc định 100% cho di động */
+            margin-top: 20px;
+        }
+
+        /* * THAY ĐỔI Ở ĐÂY:
+         * Đổi thành 576px.
+         * Giờ đây, "chia khung" sẽ xảy ra trên màn hình 576px trở lên.
+        */
+        @@media (min-width: 576px) {
+            #product-section {
+                width: 65%; /* Sản phẩm chiếm 65% */
+            }
+
+            #cart-sidebar {
+                width: 33%; /* Giỏ hàng chiếm 33% */
+                margin-top: 0;
+            }
+        }
+
+        /* --- CSS CHO CỘT GIỎ HÀNG (ASIDE) --- */
+        #cart-sidebar {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            align-self: flex-start;
+        }
+
+        /* --- CSS CHO NỘI DUNG BÊN TRONG GIỎ HÀNG --- */
+        .cart-container {
+            padding: 10px;
+        }
+
+            .cart-container h3 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+        .cart-empty {
+            text-align: center;
+            color: #888;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .cart-table tr {
+                border-bottom: 1px solid #eee;
+            }
+
+            .cart-table td {
+                padding: 8px 4px;
+                vertical-align: middle;
+            }
+
+        .cart-item-name {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        .cart-item-qty {
+            font-size: 0.9em;
+            color: #555;
+            width: 15%;
+            text-align: center;
+        }
+
+        .cart-item-price {
+            font-size: 0.9em;
+            color: #111;
+            width: 30%;
+            text-align: right;
+        }
+
+        .cart-item-remove {
+            width: 15%;
+            text-align: center;
+        }
+
+        .remove-btn {
+            color: #d9534f;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+            .remove-btn:hover {
+                color: #c9302c;
+                text-decoration: underline;
+            }
+
+        /* --- PHẦN TỔNG KẾT (TỔNG TIỀN) --- */
+        .cart-summary {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+            .cart-summary div {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 0;
+            }
+
+            .cart-summary .total-price {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #c00;
+            }
+
+        /* --- NÚT THANH TOÁN --- */
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: #fff;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+
+            .checkout-btn:hover {
+                background-color: #218838;
+                color: #fff;
+            }
+    </style>
+}
+
+<h1>Chào mừng bạn đến với gian hàng bắp nước</h1>
+
+<div class="container-dichvu">
+
+    <main id="product-section">
+        <h2>Thực Đơn Nổi Bật</h2>
+        <div id="product-list">
+
+            @foreach (var item in Model)
+            {
+                <div class="product-card">
+
+                    @{
+                        // Sửa lỗi HINH_ANH bị null
+                        var hinhAnh = !string.IsNullOrEmpty(item.HINH_ANH)
+                                        ? item.HINH_ANH
+                                        : "~/wwwroot/Images/logo.png";
+                    }
+
+                    <img class="product-image" src="@Url.Content(hinhAnh)" alt="@item.TENSP" />
+
+                    <h3 class="product-name">@item.TENSP</h3>
+                    <p class="product-price">@string.Format("{0:N0} VNĐ", item.DONGIA)</p>
+
+                    @Html.ActionLink("Thêm vào giỏ", "AddToCart", "Cart",
+                        new { id = item.MASP },
+                        new { @class = "add-to-cart-btn" })
+                </div>
+            }
+        </div>
+    </main>
+
+    <aside id="cart-sidebar">
+        <div class="cart-container">
+            <h3>Giỏ Hàng Của Bạn</h3>
+
+            @if (cartItems == null || !cartItems.Any())
+            {
+                <p class="cart-empty">Giỏ hàng đang trống.</p>
+            }
+            else
+            {
+                <table class="cart-table">
+                    @foreach (var item in cartItems)
+                    {
+                        <tr>
+                            <td class="cart-item-name">@item.TenSP</td>
+                            <td class="cart-item-qty">x @item.SoLuong</td>
+                            <td class="cart-item-price">@string.Format("{0:N0}", item.ThanhTien)</td>
+                            <td class="cart-item-remove">
+                                @Html.ActionLink("Xóa", "RemoveFromCart", "Cart", new { id = item.MaSP }, new { @class = "remove-btn" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <hr />
+
+                <div class="cart-summary">
+                    <div>
+                        <strong>Tổng số lượng:</strong>
+                        <span>@tongSoLuong</span>
+                    </div>
+                    <div>
+                        <strong>Tổng tiền:</strong>
+                        <span class="total-price">@string.Format("{0:N0} VNĐ", tongTien)</span>
+                    </div>
+                </div>
+
+                <a href="#" class="checkout-btn">Thanh Toán</a>
+            }
+        </div>
+    </aside>
+
+</div>
