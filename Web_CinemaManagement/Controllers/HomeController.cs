@@ -21,5 +21,10 @@ namespace Web_CinemaManagement.Controllers
             List<PHIM> p = db.PHIMs.ToList();
             return View(p);
         }
+        public ActionResult Contact() 
+        {
+            return View();
+        }
+
     }
 }

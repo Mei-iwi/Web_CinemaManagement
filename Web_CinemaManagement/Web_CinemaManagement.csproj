@@ -334,7 +334,11 @@
     <Content Include="Views\Shared\Message.cshtml" />
     <Content Include="Views\Authentication\ForgetPassword.cshtml" />
     <Content Include="Views\CinemaCorner\CinemaNews.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Authentication\Registration.cshtml" />
+=======
+    <Content Include="Views\Home\Contact.cshtml" />
+>>>>>>> 692171c97cf51afce3ca6791db6c50bf6d8f23e9
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
