@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.SUATCHIEU>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageManager.cshtml";
+    ViewBag.Title = "SuatChieuIndex";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">
+        🎬 Quản lý suất chiếu
+    </h2>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a href="@Url.Action()" class="btn btn-success d-flex align-items-center">
+            <i class="bi bi-plus-circle me-2"></i> Thêm suất chiếu mới
+        </a>
+
+        <form class="d-flex" method="get" action="@Url.Action("TimKiem", "SuatChieu")">
+            <input type="text" name="keyword" class="form-control me-2" placeholder="Tìm theo mã phim, phòng hoặc tên phim..." value="@Request.QueryString["keyword"]" />
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="bi bi-search"></i> Tìm
+            </button>
+        </form>
+    </div>
+
+
+    <table class="table table-hover table-striped align-middle shadow-sm rounded-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Tên phòng</th>
+                <th>Tên phim</th> <!-- đổi tiêu đề -->
+                <th>Giờ bắt đầu</th>
+                <th>Giờ kết thúc</th>
+                <th>Ngày chiếu</th>
+                <th>Số lượng ghế</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.PHONGCHIEU.TENPHONG</td>
+                    <td>@(item.PHIM != null ? item.PHIM.TENPHIM : "Chưa có")</td> <!-- Hiển thị tên phim -->
+                    <td>@item.GIOBATDAU</td>
+                    <td>@item.GIOKETTHUC</td>
+                    <td>
+                        @(item.NGAYCHIEU.HasValue ? item.NGAYCHIEU.Value.ToString("dd/MM/yyyy") : "")
+                    </td>
+                    <td>@item.SOLUONG</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("SuaSuatChieu", "SuatChieu", new { id=item.MASUAT })" class="btn btn-warning me-1">
+                            Sửa <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="@Url.Action("ChiTiet", "Suatchieu", new { id=item.MASUAT })" class="btn btn-info me-1 text-white">
+                            Chi Tiết <i class="bi bi-eye"></i>
+                        </a>
+                        <a href="@Url.Action("XoaSuatChieu", "Suatchieu", new { id=item.MASUAT })" class="btn btn-danger">
+                            Xóa <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

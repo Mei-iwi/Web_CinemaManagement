@@ -1,0 +1,67 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.SUATCHIEU
+
+@{
+    ViewBag.Title = "ThemSuatchieu";
+    Layout = "~/Views/Shared/_LayoutPageManager.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Giới hạn chiều rộng form, có thể chỉnh 4,5,6 tùy ý -->
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center fs-4 fw-bold rounded-top-4">
+                    🎬 Thêm Suất Chiếu Mới
+                </div>
+                <div class="card-body px-4 py-4">
+                    @using (Html.BeginForm("ThemSuatchieuCOMMIT", "Suatchieu", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.MAPHONG, "Mã Phòng", new { @class = "form-label fw-bold" })
+                            @Html.DropDownListFor(m => m.MAPHONG, new SelectList(ViewBag.DanhSachPhong, "MAPHONG", "TENPHONG"), "Chọn phòng", new { @class = "form-select" })
+                            @Html.ValidationMessageFor(m => m.MAPHONG, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.MAPHIM, "Mã Phim", new { @class = "form-label fw-bold" })
+                            @Html.DropDownListFor(m => m.MAPHIM, new SelectList(ViewBag.DanhSachPhim, "MAPHIM", "TENPHIM"), "Chọn phim", new { @class = "form-select" })
+                            @Html.ValidationMessageFor(m => m.MAPHIM, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.GIOBATDAU, "Giờ Bắt Đầu", new { @class = "form-label fw-bold" })
+                                @Html.TextBoxFor(m => m.GIOBATDAU, "{0:hh\\:mm}", new { @class = "form-control", type = "time" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.GIOKETTHUC, "Giờ Kết Thúc", new { @class = "form-label fw-bold" })
+                                @Html.TextBoxFor(m => m.GIOKETTHUC, "{0:hh\\:mm}", new { @class = "form-control", type = "time" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.NGAYCHIEU, "Ngày Chiếu", new { @class = "form-label fw-bold" })
+                            @Html.TextBoxFor(m => m.NGAYCHIEU, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                        </div>
+
+                        <div class="mb-4">
+                            @Html.LabelFor(m => m.SOLUONG, "Số Lượng Vé", new { @class = "form-label fw-bold" })
+                            @Html.TextBoxFor(m => m.SOLUONG, new { @class = "form-control", type = "number", placeholder = "Nhập số lượng vé..." })
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("SuatChieuIndex", "Suatchieu")" class="btn btn-outline-secondary">
+                                ⬅ Quay lại danh sách
+                            </a>
+                            <button type="submit" class="btn btn-success px-4">💾 Lưu suất chiếu</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

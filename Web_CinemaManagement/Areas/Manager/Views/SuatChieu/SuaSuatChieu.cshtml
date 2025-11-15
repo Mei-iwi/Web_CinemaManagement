@@ -1,0 +1,83 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.SUATCHIEU
+
+@{
+    ViewBag.Title = "Sửa Suất Chiếu";
+    Layout = "~/Views/Shared/_LayoutPageManager.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white text-center fs-4 fw-bold rounded-top-4">
+            ✏️ Sửa Suất Chiếu
+        </div>
+
+        @using (Html.BeginForm("SuaCOMMIT", "Suatchieu", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card p-4 shadow-sm">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+                @Html.HiddenFor(model => model.MASUAT)
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.MAPHONG, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.MAPHONG, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập mã phòng" } })
+                        @Html.ValidationMessageFor(model => model.MAPHONG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.MAPHIM, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.MAPHIM, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập mã phim" } })
+                        @Html.ValidationMessageFor(model => model.MAPHIM, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.GIOBATDAU, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.GIOBATDAU, "{0:hh\\:mm}", new { @class = "form-control", type = "time" })
+                        @Html.ValidationMessageFor(model => model.GIOBATDAU, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.GIOKETTHUC, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.GIOKETTHUC, "{0:hh\\:mm}", new { @class = "form-control", type = "time" })
+                        @Html.ValidationMessageFor(model => model.GIOKETTHUC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.NGAYCHIEU, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.NGAYCHIEU, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(model => model.NGAYCHIEU, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.SOLUONG, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập số lượng ghế" } })
+                        @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <input type="submit" value="Lưu" class="btn btn-primary" />
+                    @Html.ActionLink("Quay lại danh sách", "SuatChieuIndex", null, new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
