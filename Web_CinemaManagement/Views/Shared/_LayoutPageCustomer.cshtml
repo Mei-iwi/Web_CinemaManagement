@@ -33,16 +33,11 @@
                     <li>
                         <a href=""><img width="140" src="@Url.Content("~/wwwroot/Images/Buynow.png")" alt="Alternate Text" /></a>
                     </li>
-                    <li class="nav-item active dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            PHIM MỚI
+                    <li class="nav-item active">
+                        <a href="/Home/Dashboard" class="nav-link">
+                            TRANG CHỦ
                         </a>
-                        <div class="dropdown-content" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">PHIN LƯỢT XEM CAO NHẤT</a>
-                            <a class="dropdown-item" href="#">PHIM CÓ DOANH THU CAO NHẤT</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">PHIM MỚI NHẤT</a>
-                        </div>
+
 
                     </li>
                     <li class="nav-item active dropdown">
@@ -79,6 +74,7 @@
                         <div class="dropdown-content" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">DANH SÁCH RẠP</a>
                             <a class="dropdown-item" href="#">GIÁ VÉ</a>
+                            <a class="dropdown-item" href="/Tickets/BookingHistory">TRA CỨU LỊCH SỬ ĐẶT VÉ</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">KHUYẾN MÃI</a>
                             <a class="dropdown-item" href="#">kHUYỂN MÃI DANH RIÊNG</a>
@@ -141,11 +137,9 @@
             </div>
         </nav>
     </header>
-    <div class="main">
+    <div class="main p-5">
         @RenderBody()
     </div>
-
-
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-info">

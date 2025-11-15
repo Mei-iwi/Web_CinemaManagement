@@ -61,6 +61,12 @@
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.3\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
     </Reference>
@@ -126,6 +132,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\ModelEF\CinemaManagementEF.Context.tt">
@@ -144,6 +151,7 @@
     <Content Include="wwwroot\Bootstrap\js\jquery-3.3.1.min.js" />
     <Content Include="wwwroot\css\About.css" />
     <Content Include="wwwroot\css\AboutThree.css" />
+    <Content Include="wwwroot\css\DashboardCustomer.css" />
     <Content Include="wwwroot\css\ForgetPassword.css" />
     <Content Include="wwwroot\css\KhachHangManager.css" />
     <Content Include="wwwroot\css\LayoutContact1.css" />
@@ -160,6 +168,7 @@
     <Content Include="wwwroot\Images\manhinh4.png" />
     <Content Include="wwwroot\Images\nhanvien1.jpg" />
     <Content Include="wwwroot\Images\nhanvien3.jpg" />
+    <Content Include="wwwroot\css\TicketManagement.css" />
     <Content Include="wwwroot\Images\Search.png" />
     <Content Include="wwwroot\Images\user.png" />
     <Content Include="wwwroot\Images\Buynow.png" />
@@ -170,6 +179,7 @@
     <Content Include="wwwroot\js\Layout.js" />
     <Content Include="wwwroot\js\Login.js" />
     <Content Include="wwwroot\js\Registration.js" />
+    <Content Include="wwwroot\js\TicketManagement.js" />
     <Content Include="wwwroot\PhotoOfPerson\KH01.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\KH02.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\NV01.JPG" />
@@ -196,14 +206,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Employee\Controllers\API_TicketsManagementController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QLKhachHangController.cs" />
+    <Compile Include="Areas\Employee\Controllers\TicketManagementController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CinemaCornerController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,6 +230,8 @@
     <Compile Include="Helper\User.cs" />
     <Compile Include="Helper\VerifyCaptcha.cs" />
     <Compile Include="Helper\VerifyViaEmail.cs" />
+    <Compile Include="Models\ADO\getInfoTickets.cs" />
+    <Compile Include="Models\ADO\InfoTickets_Model.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\ModelEF\CAUHOI.cs">
@@ -360,6 +375,9 @@
     <Content Include="Areas\Employee\Views\Home\Dashboard.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Employee\Views\TicketManagement\TicketManagement.cshtml" />
+    <Content Include="Areas\Employee\Views\TicketManagement\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Shared\_TicketServices.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
@@ -377,6 +395,8 @@
     <Content Include="Views\Contact\About.cshtml" />
     <Content Include="Views\Contact\AboutTwo.cshtml" />
     <Content Include="Views\Contact\AboutThree.cshtml" />
+    <Content Include="Views\Tickets\BookingHistory.cshtml" />
+    <Content Include="Views\Tickets\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -388,7 +408,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Manager\Data\" />
-    <Folder Include="Models\ADO\" />
+    <Folder Include="Areas\Manager\Views\Tickets\" />
     <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
   <ItemGroup>

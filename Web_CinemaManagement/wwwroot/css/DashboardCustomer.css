@@ -1,0 +1,116 @@
+﻿.pagination li a {
+    margin: 2px;
+    padding: 6px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+}
+
+.pagination li.active a {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.page-item {
+    margin-top: 20px;
+}
+
+.row div img {
+    border-radius: 5px;
+}
+
+.row div p {
+    font-size: 30px;
+}
+
+.banner {
+    position: relative;
+}
+
+.infoMovie {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 92%;
+    margin-left: 0%;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    border-radius: 5px;
+}
+
+    .infoMovie img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .infoMovie p span {
+        font-size: 17px;
+        color: yellow;
+    }
+
+    .infoMovie strong {
+        font-size: 25px;
+    }
+
+.banner:hover > .infoMovie {
+    opacity: 1;
+    transition: opacity 0.6s ease;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.infoMovie .textInfo {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.banner:hover > .infoMovie .textInfo {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.banner p strong {
+    color: #f1f1f1;
+}
+
+.banner:hover p strong {
+    color: yellow;
+    transition: color 1s ease;
+}
+
+.col-sm-6 div .btn {
+    background-color: gold;
+    color: black;
+}
+
+
+@keyframes rainbow-move {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.text {
+    background: linear-gradient(90deg,#FFD700, #FF6347, #00FFFF );
+    background-size: 400% 100%;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow-move 10s ease-in-out infinite;
+    font-size: 35px;
+}

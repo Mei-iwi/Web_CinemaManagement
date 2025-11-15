@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.VE>
+
+@{
+    ViewBag.Title = "BookingHistory";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+    int index = 1;
+}
+<h1 class="text-center text-warning">LỊCH SỬ ĐẶT VÉ</h1>
+<p>
+    @Html.ActionLink("Quay lại trang chủ", "Dashboard", "Home", new { area = "" }, null)
+</p>
+<table class="table text-light">
+    <tr class="bg-primary text-light">
+        <th>STT</th>
+        <th>
+            Tên suất chiếu
+        </th>
+        <th>
+            Loại vé
+        </th>
+        <th>
+            Họ tên khách hàng
+        </th>
+        <th>
+            Họ tên nhân viên bán vé
+        </th>
+        <th>
+            Loại ghế
+        </th>
+        <th>
+            Ngày mua vé
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@index</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SUATCHIEU.PHIM.TENPHIM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOAIVE.TENLV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KHACHHANG.HOTENKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHANVIEN.HOTENNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GHE.LOAIGHE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYBANVE)
+            </td>
+            <td>
+                @Html.ActionLink("Chi tiết", "Details", "Tickets", new { id = item.MAVE }, null)
+            </td>
+        </tr>
+        index++;
+    }
+
+</table>
