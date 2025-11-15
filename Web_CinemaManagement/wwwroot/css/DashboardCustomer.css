@@ -1,0 +1,26 @@
+﻿.pagination li a {
+    margin: 2px;
+    padding: 6px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+}
+
+.pagination li.active a {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.page-item{
+    margin-top:20px;
+}
+
+.row div img{
+    border-radius:5px;
+}
+
+.row div p {
+    font-size:30px;
+}

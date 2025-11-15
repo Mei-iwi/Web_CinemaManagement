@@ -1,93 +1,44 @@
-﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.PHIM>
+﻿@using Web_CinemaManagement.Models.ModelLinq;
+@using PagedList.Mvc
+@model PagedList.IPagedList<Web_CinemaManagement.Models.ModelLinq.PHIM>
+@helper Truncate(string input, int length)
+{
 
-@{
-    ViewBag.Title = "Dashboard";
-    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
-}
-
-<h2>Dashboard</h2>
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MATHELOAI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MADP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TENPHIM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NHASX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NGAYKHOICHIEU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NGAYKETTHUC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.THOILUONG)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NGAYCAPNHAT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HINH_ANH)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+    if (input.Length < length)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MATHELOAI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MADP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TENPHIM)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NHASX)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NGAYKHOICHIEU)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NGAYKETTHUC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.THOILUONG)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NGAYCAPNHAT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HINH_ANH)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MAPHIM }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MAPHIM }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MAPHIM })
-            </td>
-        </tr>
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length) <text>...</text>
     }
 
-</table>
+}
 
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
 }
 
-<h2>Dashboard</h2>
+<link href="~/wwwroot/css/DashboardCustomer.css" rel="stylesheet" />
+<h1 class="text-primary text-center">PHIM ĐANG CHIẾU</h1>
+
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
+            <img style="width:100%; height:500px" src="~/wwwroot/PhotoOfTheFilm/@item.HINH_ANH" />
+            <p class="text-center"><strong class="font-weight-bold">@item.TENPHIM</strong></p>
+        </div>
+    }
+
+</div>
+
+<div class="page-item d-flex justify-content-center">
+    @Html.PagedListPager(Model, page => Url.Action("Dashboard", "Home", new { page, area = "" }),
+ PagedListRenderOptions.ClassicPlusFirstAndLast)
+
+</div>
 

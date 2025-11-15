@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web_CinemaManagement.Helper;
 using Web_CinemaManagement.Models.ModelLinq;
+using PagedList;
 
 namespace Web_CinemaManagement.Controllers
 {
@@ -13,35 +14,27 @@ namespace Web_CinemaManagement.Controllers
     {
         // GET: Home
 
-        public ActionResult Dashboard()
+        public ActionResult Dashboard(int? page)
         {
             int position = Session["Position"] != null ? (int)Session["Position"] : -1;
 
             CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
 
-            List<PHIM> p;
+            List<PHIM> p = db.PHIMs.ToList();
 
             if (position == -1)
             {
-
                 Session["UserID"] = "JustWatch";
-
                 Session["Password"] = "Abc12345!";
-
                 Session["Position"] = -1;
-
-                db = new CinemaManegementLinqDataContext();
-
-                p = db.PHIMs.ToList();
-
-                return View(p);
             }
 
+            // Phân trang
+            int pageNumber = page ?? 1;
+            int pageSize = 8;
+            var pageList = p.ToPagedList(pageNumber, pageSize);
 
-            p = db.PHIMs.ToList();
-
-
-            return View(p);
+            return View(pageList);
         }
 
 

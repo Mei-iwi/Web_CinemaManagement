@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.DANGKY>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+    int total = 0;
+    int index = 1;
+}
+
+<h2 class="text-center text-primary">CHI TIẾT VÉ <br /> @Model.First().MAVE</h2>
+
+<p>
+    @Html.ActionLink("Quay lại lịch sử đặt vé", "BookingHistory", "Tickets", new { area = "" }, null)
+</p>
+<table class="table">
+    <tr class="bg-primary text-light">
+        <th>STT</th>
+        <th>
+            Dịch vụ kèm theo
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>Tổng tiền sản phẩm</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@index</td>
+            <td>
+                @Html.DisplayFor(model => item.DICHVU.TENSP)
+            </td>
+            <td>
+                X<i> @Html.DisplayFor(model => item.SOLUONG)</i>
+            </td>
+            <td>
+                @(((double)(item.SOLUONG * item.DICHVU.DONGIA)).ToString("N0")) VNĐ
+            </td>
+        </tr>
+        index++;
+    }
+
+</table>
+
+<div class="text-right">
+    <strong class="text-danger">TỔNG THANH TOÁN: </strong> <span> <strong class="text-primary">@ViewBag.total.ToString("N0") VNĐ</strong></span>
+</div>
