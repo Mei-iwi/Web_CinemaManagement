@@ -20,6 +20,14 @@
         <dl class="dl-horizontal">
 
             <dt>
+                @Html.DisplayNameFor(model => model.MAKH)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MAKH)
+            </dd>
+
+            <dt>
                 @Html.DisplayNameFor(model => model.HOTENKH)
             </dt>
 
@@ -81,6 +89,7 @@
         {
             @Html.AntiForgeryToken()
 
+            @Html.HiddenFor(model => model.MAKH, null);
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
                 @Html.ActionLink("Quay lại danh sách", "KhachHang")

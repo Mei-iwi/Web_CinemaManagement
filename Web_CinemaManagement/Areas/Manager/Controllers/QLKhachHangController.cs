@@ -9,7 +9,7 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
 {
     public class QLKhachHangController : Controller
     {
-        CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+        CinemaManegementLinqDataContext db;
         // GET: Manager/QLKhachHang
         public ActionResult Index()
         {
@@ -18,6 +18,14 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         [HttpGet]
         public ActionResult KhachHang()
         {
+            Session["UserID"] = "sqlserver";
+
+            Session["Password"] = "123456789";
+
+            Session["Position"] = -1;
+
+            db = new CinemaManegementLinqDataContext();
+
             return View(db.KHACHHANGs.ToList());
         }
 
@@ -28,18 +36,43 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
 
         public ActionResult Edit(string id)
         {
+            Session["UserID"] = "sqlserver";
+
+            Session["Password"] = "123456789";
+
+            Session["Position"] = -1;
+
+            db = new CinemaManegementLinqDataContext();
+
             KHACHHANG kh = db.KHACHHANGs.FirstOrDefault(n => n.MAKH == id);
             return View(kh);
         }
 
         public ActionResult Delete(string id)
         {
+
+            Session["UserID"] = "sqlserver";
+
+            Session["Password"] = "123456789";
+
+            Session["Position"] = -1;
+
+            db = new CinemaManegementLinqDataContext();
+
             KHACHHANG kh = db.KHACHHANGs.FirstOrDefault(n => n.MAKH == id);
             return View(kh);
         }
 
         public ActionResult Details(string id)
         {
+            Session["UserID"] = "sqlserver";
+
+            Session["Password"] = "123456789";
+
+            Session["Position"] = -1;
+
+            db = new CinemaManegementLinqDataContext();
+
             if (string.IsNullOrEmpty(id))
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
@@ -60,14 +93,33 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(KHACHHANG kh)
         {
+            Session["UserID"] = "sqlserver";
+
+            Session["Password"] = "123456789";
+
+            Session["Position"] = -1;
+
+            db = new CinemaManegementLinqDataContext();
+
             db.KHACHHANGs.InsertOnSubmit(kh);
+
             db.SubmitChanges();
+
             return RedirectToAction("KhachHang");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(KHACHHANG kh)
         {
+
+            Session["UserID"] = "sqlserver";
+
+            Session["Password"] = "123456789";
+
+            Session["Position"] = -1;
+
+            db = new CinemaManegementLinqDataContext();
+
             KHACHHANG khachhang = db.KHACHHANGs.FirstOrDefault(n => n.MAKH == kh.MAKH);
             khachhang.HOTENKH = kh.HOTENKH;
             khachhang.SDT = kh.SDT;
@@ -78,6 +130,14 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         [HttpPost]
         public ActionResult Delete(KHACHHANG kh)
         {
+            Session["UserID"] = "sqlserver";
+
+            Session["Password"] = "123456789";
+
+            Session["Position"] = -1;
+
+            db = new CinemaManegementLinqDataContext();
+
             KHACHHANG khachhang = db.KHACHHANGs.FirstOrDefault(n => n.MAKH == kh.MAKH);
             db.KHACHHANGs.DeleteOnSubmit(khachhang);
             db.SubmitChanges();
