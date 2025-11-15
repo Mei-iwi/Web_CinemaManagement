@@ -7,12 +7,12 @@
     int index = 1;
 }
 
-<h2 class="text-center text-primary">CHI TIẾT VÉ <br /> @Model.First().MAVE</h2>
+<h2 class="text-center text-warning">CHI TIẾT VÉ  @Model.First().MAVE</h2>
 
 <p>
     @Html.ActionLink("Quay lại lịch sử đặt vé", "BookingHistory", "Tickets", new { area = "" }, null)
 </p>
-<table class="table">
+<table class="table text-light">
     <tr class="bg-primary text-light">
         <th>STT</th>
         <th>
@@ -44,5 +44,5 @@
 </table>
 
 <div class="text-right">
-    <strong class="text-danger">TỔNG THANH TOÁN: </strong> <span> <strong class="text-primary">@ViewBag.total.ToString("N0") VNĐ</strong></span>
+    <strong style="color:red">TỔNG THANH TOÁN: </strong> <span> <strong class="text-primary">@ViewBag.total.ToString("N0") VNĐ</strong></span>
 </div>
