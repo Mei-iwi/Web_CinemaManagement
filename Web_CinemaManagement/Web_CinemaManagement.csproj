@@ -157,6 +157,7 @@
     <Content Include="wwwroot\css\Login.css" />
     <Content Include="wwwroot\css\Registration.css" />
     <Content Include="wwwroot\css\style_DichVu.css" />
+    <Content Include="wwwroot\css\TicketManagement.css" />
     <Content Include="wwwroot\Images\Search.png" />
     <Content Include="wwwroot\Images\user.png" />
     <Content Include="wwwroot\Images\Buynow.png" />
@@ -167,6 +168,7 @@
     <Content Include="wwwroot\js\Layout.js" />
     <Content Include="wwwroot\js\Login.js" />
     <Content Include="wwwroot\js\Registration.js" />
+    <Content Include="wwwroot\js\TicketManagement.js" />
     <Content Include="wwwroot\PhotoOfPerson\KH01.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\KH02.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\NV01.JPG" />
@@ -193,8 +195,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Employee\Controllers\API_TicketsManagementController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QLKhachHangController.cs" />
+    <Compile Include="Areas\Employee\Controllers\TicketManagementController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CinemaCornerController.cs" />
@@ -215,6 +219,8 @@
     <Compile Include="Helper\User.cs" />
     <Compile Include="Helper\VerifyCaptcha.cs" />
     <Compile Include="Helper\VerifyViaEmail.cs" />
+    <Compile Include="Models\ADO\getInfoTickets.cs" />
+    <Compile Include="Models\ADO\InfoTickets_Model.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\ModelEF\CAUHOI.cs">
@@ -358,6 +364,9 @@
     <Content Include="Areas\Employee\Views\Home\Dashboard.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Employee\Views\TicketManagement\TicketManagement.cshtml" />
+    <Content Include="Areas\Employee\Views\TicketManagement\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Shared\_TicketServices.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
@@ -385,7 +394,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Manager\Data\" />
-    <Folder Include="Models\ADO\" />
+    <Folder Include="Areas\Manager\Views\Tickets\" />
     <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
   <ItemGroup>

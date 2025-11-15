@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.DANGKY>
+
+<table class="table">
+    <tr>
+        <th>
+            Mã sản phẩm
+        </th>
+        <th>Tên sẳn phẩm</th>
+        <th>
+            Số lượng
+        </th>
+        <th>Đơn giá</th>
+        <th>
+            Tổng tiền
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.MASP
+            </td>
+            <td>
+                @item.DICHVU.TENSP
+            </td>
+            <td>
+                @item.SOLUONG
+            </td>
+            <td>
+                @item.DICHVU.DONGIA
+            </td>
+            <td>@(((double)(item.SOLUONG * item.DICHVU.DONGIA)).ToString("N0"))</td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    <strong class="text-danger">Tổng chi phí đã thanh toán:</strong> <span class="text-warning">@ViewBag.total VNĐ</span>
+</div>

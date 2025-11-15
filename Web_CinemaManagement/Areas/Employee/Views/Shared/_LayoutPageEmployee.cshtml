@@ -40,6 +40,9 @@
                             @Html.ActionLink("Bán vé / Đặt vé", "", "", null, new { @class = "nav-link text-light" })
                         </li>
                         <li>
+                            @Html.ActionLink("Quản lý vé", "TicketManagement", "TicketManagement", null, new { @class = "nav-link text-light" })
+                        </li>
+                        <li>
                             @Html.ActionLink("Dịch vụ", "DichVu", "Cart", new { @class = "nav-link text-light" })
 
                         </li>
@@ -103,7 +106,7 @@
         </nav>
     </header>
 
-    <div class="main">
+    <div class="main mt-5 p-3">
         @RenderBody()
     </div>
 
