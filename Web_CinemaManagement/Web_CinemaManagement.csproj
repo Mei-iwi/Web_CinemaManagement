@@ -142,6 +142,8 @@
     <Content Include="wwwroot\Bootstrap\css\bootstrap.min.css" />
     <Content Include="wwwroot\Bootstrap\js\bootstrap.min.js" />
     <Content Include="wwwroot\Bootstrap\js\jquery-3.3.1.min.js" />
+    <Content Include="wwwroot\css\About.css" />
+    <Content Include="wwwroot\css\AboutThree.css" />
     <Content Include="wwwroot\css\ForgetPassword.css" />
     <Content Include="wwwroot\css\KhachHangManager.css" />
     <Content Include="wwwroot\css\LayoutContact1.css" />
@@ -149,6 +151,15 @@
     <Content Include="wwwroot\css\Login.css" />
     <Content Include="wwwroot\css\Registration.css" />
     <Content Include="wwwroot\css\style_DichVu.css" />
+    <Content Include="wwwroot\Images\AnVat1.jpg" />
+    <Content Include="wwwroot\Images\AnVat2.jpg" />
+    <Content Include="wwwroot\Images\dichvu1.jpg" />
+    <Content Include="wwwroot\Images\manhinh1.jpg" />
+    <Content Include="wwwroot\Images\manhinh2.jpg" />
+    <Content Include="wwwroot\Images\manhinh3.png" />
+    <Content Include="wwwroot\Images\manhinh4.png" />
+    <Content Include="wwwroot\Images\nhanvien1.jpg" />
+    <Content Include="wwwroot\Images\nhanvien3.jpg" />
     <Content Include="wwwroot\Images\Search.png" />
     <Content Include="wwwroot\Images\user.png" />
     <Content Include="wwwroot\Images\Buynow.png" />
@@ -363,6 +374,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cart\DichVu.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Contact\About.cshtml" />
+    <Content Include="Views\Contact\AboutTwo.cshtml" />
+    <Content Include="Views\Contact\AboutThree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
