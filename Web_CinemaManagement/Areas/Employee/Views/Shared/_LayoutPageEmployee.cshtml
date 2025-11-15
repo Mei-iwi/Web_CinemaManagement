@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-
+@using Web_CinemaManagement.Helper;
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,7 +10,7 @@
     <title>@ViewBag.Title</title>
     @{
 
-        var currentUser = Session["User"];
+        var currentUser = Session["User"] as Employee;
     }
 </head>
 <body>
@@ -27,46 +27,46 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                @if (currentUser == null)
+                @if (currentUser != null && (int)Session["Position"] == 1)
                 {
 
 
                     <ul class="navbar-nav mr-auto ">
                         <li>
-                            @Html.ActionLink("Trang chủ", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Trang chủ", "Dashboard", "Home", new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
-                            @Html.ActionLink("Bán vé / Đặt vé", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Bán vé / Đặt vé", "", "", null, new { @class = "nav-link text-light" })
                         </li>
                         <li>
                             @Html.ActionLink("Dịch vụ", "DichVu", "Cart", new { @class = "nav-link text-light" })
 
                         </li>
                         <li>
-                            @Html.ActionLink("Quản lý suất chiếu", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Quản lý suất chiếu", "", "", null, new { @class = "nav-link text-light" })
 
                         </li>
 
                         <li>
-                            @Html.ActionLink("Tra cứu khách hàng/ thành viên", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Tra cứu khách hàng/ thành viên", "", "", null, new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
-                            @Html.ActionLink("Thống kế doanh thu theo ca", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Thống kế doanh thu theo ca", "", "", null, new { @class = "nav-link text-light" })
                         </li>
 
                     </ul>
                 }
                 else
                 {
-                    @Html.ActionLink("Đăng nhập tại đây để tiếp tục", "Login", "Authentication", null, new { @class = "nav-link text-light" })
+                    @Html.ActionLink("Đăng nhập tại đây để tiếp tục", "Login", "Authentication", new { area = "" }, new { @class = "nav-link text-light" })
                 }
 
 
                 <div style="cursor:pointer">
 
-                    @if (currentUser == null)
+                    @if (currentUser != null && (int)Session["Position"] == 1)
                     {
 
 
@@ -76,18 +76,18 @@
                                     <td rowspan="2">
                                         <img src="@Url.Content("~/wwwroot/Images/user.png")" alt="Alternate Text" />
                                     </td>
-                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> Mai Nhật Cường</td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> @currentUser.FullName</td>
 
                                 </tr>
                                 <tr>
-                                    <td><img src="@Url.Content("~/wwwroot/Images/positon.png")" alt="Alternate Text" /> Chức vụ: Nhân viên</td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/positon.png")" alt="Alternate Text" /> Chức vụ: @currentUser.Position</td>
                                 </tr>
 
                             </table>
                             <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="#">Thay đổi mật khẩu</a>
-                                <a class="dropdown-item" href="#">Đăng xuất</a>
+                                <a class="dropdown-item" id="logout">Đăng xuất</a>
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Liên hệ, sự cố</a>
@@ -116,10 +116,11 @@
         </div>
     </footer>
 
-
+    @Html.Partial("~/Views/Shared/Message.cshtml")
 
     <script src="~/wwwroot/Bootstrap/js/jquery-3.3.1.min.js"></script>
     <script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/wwwroot/js/Layout.js"></script>
     @RenderSection("Scripts", required: false)
 
 </body>

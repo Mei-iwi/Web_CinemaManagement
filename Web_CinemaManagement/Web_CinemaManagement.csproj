@@ -183,7 +183,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QLKhachHangController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
@@ -321,8 +323,8 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\_LayoutPageCustomer.cshtml" />
-    <Content Include="Views\Shared\_LayoutPageEmployee.cshtml" />
-    <Content Include="Views\Shared\_LayoutPageManager.cshtml" />
+    <Content Include="Areas\Employee\Views\Shared\_LayoutPageEmployee.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_LayoutPageManager.cshtml" />
     <EntityDeploy Include="Models\ModelEF\CinemaManagementEF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CinemaManagementEF.Designer.cs</LastGenOutput>
@@ -337,18 +339,20 @@
     </Content>
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
-    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Manager\Views\QLKhachHang\Create.cshtml" />
     <Content Include="Areas\Manager\Views\QLKhachHang\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\QLKhachHang\Delete.cshtml" />
     <Content Include="Areas\Manager\Views\QLKhachHang\Details.cshtml" />
     <Content Include="Areas\Manager\Views\QLKhachHang\KhachHang.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\Dashboard.cshtml" />
+    <Content Include="Areas\Employee\Views\Home\Dashboard.cshtml" />
+    <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Shared\Message.cshtml" />
     <Content Include="Views\Authentication\ForgetPassword.cshtml" />
@@ -358,6 +362,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cart\DichVu.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -367,9 +372,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Employee\Controllers\" />
     <Folder Include="Areas\Employee\Data\" />
-    <Folder Include="Areas\Employee\Views\Shared\" />
     <Folder Include="Areas\Manager\Data\" />
     <Folder Include="Models\ADO\" />
     <Folder Include="wwwroot\ProductPhoto\" />

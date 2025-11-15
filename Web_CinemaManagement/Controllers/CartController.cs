@@ -14,7 +14,7 @@ public class CartController : Controller
 
         int position = Session["Position"] != null ? (int)Session["Position"] : -1;
 
-        if (position == -1)
+        if (position == -1 || position == 1 || position == 2)
         {
             return RedirectToAction("Login", "Authentication");
         }

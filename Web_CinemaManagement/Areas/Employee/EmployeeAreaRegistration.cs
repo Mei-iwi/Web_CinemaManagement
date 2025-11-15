@@ -17,7 +17,8 @@ namespace Web_CinemaManagement.Areas.Employee
             context.MapRoute(
                 "Employee_default",
                 "Employee/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Dashboard", id = UrlParameter.Optional },
+                 namespaces: new[] { "Web_CinemaManagement.Areas.Employee.Controllers" }
             );
         }
     }

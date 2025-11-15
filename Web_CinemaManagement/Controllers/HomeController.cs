@@ -13,7 +13,7 @@ namespace Web_CinemaManagement.Controllers
     {
         // GET: Home
 
-        public ActionResult Index()
+        public ActionResult Dashboard()
         {
             int position = Session["Position"] != null ? (int)Session["Position"] : -1;
 

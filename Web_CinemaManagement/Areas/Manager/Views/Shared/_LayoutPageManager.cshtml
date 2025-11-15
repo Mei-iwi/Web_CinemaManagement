@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Web_CinemaManagement.Helper;
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -10,7 +11,7 @@
     <title>@ViewBag.Title</title>
     @{
 
-        var currentUser = Session["User"];
+        var currentUser = Session["User"] as Employee;
     }
 
 </head>
@@ -28,50 +29,50 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                @if (currentUser == null)
+                @if (currentUser != null && (int)Session["Position"] == 2)
                 {
 
 
                     <ul class="navbar-nav mr-auto ">
                         <li>
-                            @Html.ActionLink("Trang chủ quản trị", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Trang chủ quản trị", "Dashboard", "Home", null, new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
-                            @Html.ActionLink("Quản lý nhân viên", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Quản lý nhân viên", "", "", null, new { @class = "nav-link text-light" })
                         </li>
                         <li>
-                            @Html.ActionLink("Quản lý phòng chiếu", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Quản lý phòng chiếu", "", "", null, new { @class = "nav-link text-light" })
 
                         </li>
 
                         <li>
-                            @Html.ActionLink("Quản lý khách hàng", "KhachHang", "QLKhachHang", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Quản lý khách hàng", "KhachHang", "QLKhachHang", null, new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
-                            @Html.ActionLink("Lịch chiếu", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Lịch chiếu", "", "", null, new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
-                            @Html.ActionLink("Quản lý khuyến mãi", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Quản lý khuyến mãi", "", "", null, new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
-                            @Html.ActionLink("Cài đặt hệ thống", "", "", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Cài đặt hệ thống", "", "", null, new { @class = "nav-link text-light" })
                         </li>
 
                     </ul>
                 }
                 else
                 {
-                    @Html.ActionLink("Đăng nhập tại đây để tiếp tục", "Login", "Authentication", null, new { @class = "nav-link text-light" })
+                    @Html.ActionLink("Đăng nhập tại đây để tiếp tục", "Login", "Authentication", new { area = "" }, new { @class = "nav-link text-light" })
                 }
 
 
                 <div style="cursor:pointer">
 
-                    @if (currentUser == null)
+                    @if (currentUser != null && (int)Session["Position"] == 2)
                     {
 
 
@@ -81,18 +82,18 @@
                                     <td rowspan="2">
                                         <img src="@Url.Content("~/wwwroot/Images/user.png")" alt="Alternate Text" />
                                     </td>
-                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> Mai Nhật Cường</td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> @currentUser.FullName</td>
 
                                 </tr>
                                 <tr>
-                                    <td><img src="@Url.Content("~/wwwroot/Images/positon.png")" alt="Alternate Text" /> Chức vụ: Nhân viên quản lý</td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/positon.png")" alt="Alternate Text" /> Chức vụ: @currentUser.Position</td>
                                 </tr>
 
                             </table>
                             <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="#">Thay đổi mật khẩu</a>
-                                <a class="dropdown-item" href="#">Đăng xuất</a>
+                                <a class="dropdown-item" id="logout">Đăng xuất</a>
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Liên hệ, sự cố</a>
@@ -119,6 +120,12 @@
             <p class="mb-0">&copy; 2025 HUIT Cinema Management System | Bản quyền thuộc HUIT Cinema</p>
         </div>
     </footer>
+    @Html.Partial("~/Views/Shared/Message.cshtml")
+
+    <script src="~/wwwroot/Bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/wwwroot/js/Layout.js"></script>
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>

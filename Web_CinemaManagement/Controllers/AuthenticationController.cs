@@ -83,13 +83,15 @@ namespace Web_CinemaManagement.Controllers
                     {
                         Session["User"] = em;
 
-                        return RedirectToAction("DashBoard", "Management");
+                        return RedirectToAction("Dashboard", "Home", new { area = "Employee" });
+
+
                     }
                     else if (position == 2)
                     {
                         Session["User"] = em;
+                        return RedirectToAction("Dashboard", "Home", new { area = "Manager" });
 
-                        return RedirectToAction("DashBoard", "Employee");
                     }
                     else
                     {
@@ -98,7 +100,7 @@ namespace Web_CinemaManagement.Controllers
                     }
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Dashboard", "Home");
             }
             else
             {
@@ -119,6 +121,9 @@ namespace Web_CinemaManagement.Controllers
 
         public ActionResult Logout()
         {
+
+            int position = (int)Session["Position"];
+
             Session["User"] = null;
 
             Session["UserID"] = "JustWatch";
@@ -127,8 +132,16 @@ namespace Web_CinemaManagement.Controllers
 
             Session["Position"] = -1;
 
+            if (position != 0)
+            {
+                return RedirectToAction("Dashboard", "Home", new { area = "" });
 
-            return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Dashboard", "Home");
+
+            }
         }
 
         public ActionResult ForgetPassword()
@@ -297,7 +310,7 @@ namespace Web_CinemaManagement.Controllers
                     if (avatar != null && avatar.ContentLength > 0)
                     {
                         avatar.SaveAs(path);
-                    } 
+                    }
 
                     CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
 
