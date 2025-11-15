@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.KHACHHANG>
+
+@{
+    ViewBag.Title = "KhachHang";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutPageManager.cshtml";
+    ViewBag.Title = "Quản lý khách hàng";
+}
+<link href="~/wwwroot/css/KhachHangManager.css" rel="stylesheet" />
+
+<div class="cinema-management-page">
+
+    <h2>Khách hàng</h2>
+
+    <p>
+        @Html.ActionLink("Thêm khách hàng", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HOTENKH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DIACHI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NGAYSINH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HINH_ANH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PHAI)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HOTENKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYSINH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMAIL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HINH_ANH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PHAI)
+                </td>
+                <td>
+                    @Html.ActionLink("Cập nhật", "Edit", new { id = item.MAKH }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MAKH }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MAKH })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

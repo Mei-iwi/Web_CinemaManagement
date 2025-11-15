@@ -1,0 +1,73 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.KHACHHANG
+
+@{
+    ViewBag.Title = "Details";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutPageManager.cshtml";
+    ViewBag.Title = "Quản lý khách hàng";
+}
+<link hidden href="~/wwwroot/css/KhachHangManager.css" rel="stylesheet" />
+
+<div class="cinema-management-page">
+    <h2>Chi tiết khách hàng</h2> <div class="details-card">
+        <h4>Thông tin khách hàng</h4> <hr />
+        <dl class="dl-horizontal">
+            
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HOTENKH)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HOTENKH)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SDT)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DIACHI)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DIACHI)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NGAYSINH)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NGAYSINH)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EMAIL)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HINH_ANH)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HINH_ANH)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PHAI)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PHAI)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="details-actions">
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MAKH }, new { @class = "btn-primary-link" })
+        @Html.ActionLink("Quay lại danh sách", "KhachHang", null, new { @class = "btn-secondary-link" })
+    </div>
+</div>

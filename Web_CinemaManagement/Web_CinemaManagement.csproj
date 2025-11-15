@@ -143,6 +143,7 @@
     <Content Include="wwwroot\Bootstrap\js\bootstrap.min.js" />
     <Content Include="wwwroot\Bootstrap\js\jquery-3.3.1.min.js" />
     <Content Include="wwwroot\css\ForgetPassword.css" />
+    <Content Include="wwwroot\css\KhachHangManager.css" />
     <Content Include="wwwroot\css\LayoutContact1.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
@@ -183,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Controllers\QLKhachHangController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CinemaCornerController.cs" />
@@ -335,6 +337,13 @@
     </Content>
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
+    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manager\Views\QLKhachHang\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\QLKhachHang\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\QLKhachHang\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\QLKhachHang\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\QLKhachHang\KhachHang.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
@@ -361,9 +370,7 @@
     <Folder Include="Areas\Employee\Controllers\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
-    <Folder Include="Areas\Manager\Controllers\" />
     <Folder Include="Areas\Manager\Data\" />
-    <Folder Include="Areas\Manager\Views\Shared\" />
     <Folder Include="Models\ADO\" />
     <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
