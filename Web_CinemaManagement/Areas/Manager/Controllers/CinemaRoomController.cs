@@ -51,7 +51,18 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
             return View("Create", room);
         }
 
+        public ActionResult TimKiemTheoTen(string keyword)
+        {
+            IQueryable<PHONGCHIEU> phongs = db.PHONGCHIEUs;
 
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                phongs = phongs.Where(p => p.TENPHONG.Contains(keyword));
+            }
+
+            ViewBag.CurrentFilter = keyword;
+            return View("CinemaRoomIndex", phongs.ToList());
+        }
 
 
         //
