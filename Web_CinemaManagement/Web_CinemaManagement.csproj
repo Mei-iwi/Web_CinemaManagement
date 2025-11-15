@@ -352,6 +352,8 @@
     <Content Include="Areas\Manager\Views\SuatChieu\SuatChieuIndex.cshtml" />
     <Content Include="Areas\Manager\Views\SuatChieu\SuaSuatChieu.cshtml" />
     <Content Include="Areas\Manager\Views\SuatChieu\ThemSuatchieu.cshtml" />
+    <Content Include="Areas\Manager\Views\SuatChieu\ChiTietSuatChieu.cshtml" />
+    <Content Include="Areas\Manager\Views\SuatChieu\XoaSuatChieu.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>

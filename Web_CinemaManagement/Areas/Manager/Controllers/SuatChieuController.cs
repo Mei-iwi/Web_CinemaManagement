@@ -47,7 +47,7 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         public ActionResult ThemSuatchieu()
         {
             ViewBag.DanhSachPhim = db.PHIMs.ToList();
-            ViewBag.DanhSachPhong = db.PHONGCHIEUs.ToList(); // thêm dòng này
+            ViewBag.DanhSachPhong = db.PHONGCHIEUs.ToList(); // đúng bảng phòng
 
             return View();
         }
@@ -91,7 +91,7 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
             {
                 db.SUATCHIEUs.InsertOnSubmit(suatchieu);
                 db.SubmitChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SuatChieuIndex");
             }
 
             // Nếu lỗi, load lại dữ liệu cho form
@@ -107,6 +107,11 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
             {
                 return HttpNotFound();
             }
+            // Danh sách phòng
+            ViewBag.ListPhong = new SelectList(db.PHONGCHIEUs.ToList(), "MAPHONG", "TENPHONG", suatchieu.MAPHONG);
+
+            // Danh sách phim
+            ViewBag.ListPhim = new SelectList(db.PHIMs.ToList(), "MAPHIM", "TENPHIM", suatchieu.MAPHIM);
 
             return View(suatchieu);
         }
@@ -127,8 +132,59 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
 
                 db.SubmitChanges();
             }
+            return RedirectToAction("SuatChieuIndex");
+        }
 
-            return RedirectToAction("Index");
+        public ActionResult ChiTietSuatChieu(string id)
+        {
+            var suatchieu = db.SUATCHIEUs.FirstOrDefault(s => s.MASUAT == id);
+            if (suatchieu == null)
+                return HttpNotFound();
+
+            return View(suatchieu);
+        }
+
+        public ActionResult XoaSuatChieu(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var suatchieu = db.SUATCHIEUs.SingleOrDefault(s => s.MASUAT == id);
+            if (suatchieu == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Lấy tên phòng
+            ViewBag.TenPhong = db.PHONGCHIEUs
+                .Where(p => p.MAPHONG == suatchieu.MAPHONG)
+                .Select(p => p.TENPHONG)
+                .FirstOrDefault();
+
+            // Lấy tên phim
+            ViewBag.TenPhim = db.PHIMs
+                .Where(f => f.MAPHIM == suatchieu.MAPHIM)
+                .Select(f => f.TENPHIM)
+                .FirstOrDefault();
+
+            return View(suatchieu);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult XoaSuatChieuCOMMIT(string MASUAT)
+        {
+            var suatchieu = db.SUATCHIEUs.SingleOrDefault(s => s.MASUAT == MASUAT);
+
+            if (suatchieu != null)
+            {
+                db.SUATCHIEUs.DeleteOnSubmit(suatchieu);
+                db.SubmitChanges();
+            }
+
+            return RedirectToAction("SuatChieuIndex");
         }
     }
 }

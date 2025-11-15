@@ -21,13 +21,23 @@
 
                         <div class="mb-3">
                             @Html.LabelFor(m => m.MAPHONG, "Mã Phòng", new { @class = "form-label fw-bold" })
-                            @Html.DropDownListFor(m => m.MAPHONG, new SelectList(ViewBag.DanhSachPhong, "MAPHONG", "TENPHONG"), "Chọn phòng", new { @class = "form-select" })
+                            @Html.DropDownListFor(
+                                m => m.MAPHONG,
+                                new SelectList(ViewBag.DanhSachPhong, "MAPHONG", "TENPHONG"),
+                                "Chọn phòng",
+                                new { @class = "form-control" }
+                            )
                             @Html.ValidationMessageFor(m => m.MAPHONG, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="mb-3">
                             @Html.LabelFor(m => m.MAPHIM, "Mã Phim", new { @class = "form-label fw-bold" })
-                            @Html.DropDownListFor(m => m.MAPHIM, new SelectList(ViewBag.DanhSachPhim, "MAPHIM", "TENPHIM"), "Chọn phim", new { @class = "form-select" })
+                            @Html.DropDownListFor(
+                                m => m.MAPHIM,
+                                new SelectList(ViewBag.DanhSachPhim, "MAPHIM", "TENPHIM"),
+                                "Chọn phim",
+                                new { @class = "form-control" }
+                            )
                             @Html.ValidationMessageFor(m => m.MAPHIM, "", new { @class = "text-danger" })
                         </div>
 
