@@ -1,0 +1,48 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.PHONGCHIEU
+
+@{
+    ViewBag.Title = "Chi Tiết Phòng Chiếu";
+}
+
+<div class="container-fluid mt-4">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h5 class="mb-0">Thông tin phòng: @Html.DisplayFor(model => model.TENPHONG)</h5>
+        </div>
+        <div class="card-body">
+
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.MAPHONG)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.MAPHONG)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.TENPHONG)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TENPHONG)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.TONGSOGHE)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TONGSOGHE)
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+
+    <div class="mt-3">
+        @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MAPHONG }, new { @class = "btn btn-primary" })
+        @Html.ActionLink(" Quay lại danh sách", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
+    </div>
+
+</div>
