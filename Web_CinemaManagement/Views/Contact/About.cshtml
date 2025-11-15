@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+@* link boostrap *@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
+<!--Link css-->
+<link href="~/wwwroot/css/About.css" rel="stylesheet" />
+<!-- CSS thư viện Magnific Popup -->
+<link rel="stylesheet" href="css/magnific-popup.min.css">
+<body>
+    <div class="about-page">
+
+        <!-- Tiêu đề -->
+        <h1 class="about-title">Về Chúng Tôi</h1>
+        <!-- Menu chuyển trang -->
+        <div class="page-links">
+            <a href="@Url.Action("About","Contact")" class="active">Giới thiệu</a>
+             <a  href="@Url.Action("AboutTwo","Contact")">Rạp</a>
+             <a href="@Url.Action("AboutThree", "Contact")">Nhân Viên</a>
+        </div>
+        <!-- Đoạn văn giới thiệu -->
+        <p class="about-text">
+            <b>Mei</b> là một trong năm Cụm Rạp Chiếu Phim lớn nhất toàn cầu và <b>Mei</b> Việt Nam là Nhà Phát Hành, nhà quản lý và vận hành <b>Rạp Chiếu Phim Mei lớn nhất tại Việt Nam</b>. <br /><b>Mục tiêu của Mei </b>là trở thành công ty giải trí điển hình, đóng góp cho sự phát triển không ngừng của lĩnh vực điện ảnh Việt Nam nói riêng và công nghiệp văn hóa mang đậm bản sắc Việt Nam nói chung.
+        </p>
+
+        <!-- Gallery hình lia ngang -->
+        <div class="about-gallery">
+            <div class="gallery-item">
+                <a href="~/wwwroot/images/hinh1.jpg" class="popup-img">
+                    <img src="~/wwwroot/Images/nhanvien1.jpg" alt="Hình nhân viên" />
+                </a>
+                <div class="caption">Hình nhân viên</div>
+            </div>
+            <div class="gallery-item">
+                <a href="~/wwwroot/images/hinh2.jpg" class="popup-img">
+                    <img src="~/wwwroot/Images/manhinh1.jpg" alt="Hình màn hình phim" />
+                </a>
+                <div class="caption">Hình màn hình phim</div>
+            </div>
+            <div class="gallery-item">
+                <a href="~/wwwroot/images/hinh3.jpg" class="popup-img">
+                    <img src="~/wwwroot/Images/dichvu1.jpg" alt="Hình dịch vụ" />
+                </a>
+                <div class="caption">Hình dịch vụ</div>
+            </div>
+            <div class="gallery-item">
+                <a href="~/wwwroot/images/hinh4.jpg" class="popup-img">
+                    <img src="~/wwwroot/Images/AnVat1.jpg" alt="Hình đồ ăn vặt" />
+                </a>
+                <div class="caption">Hình đồ ăn vặt</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS trực tiếp trong HTML -->
+    <script>
+                    .page - links {
+                text - align: center;
+                margin: 30px 0;
+            }
+
+                    .page - links a {
+                display: inline - block;
+                padding: 10px 20px;
+                margin: 0 5px;
+                background - color: #f0f0f0;
+                color: #333;
+                text - decoration: none;
+                border - radius: 5px;
+                transition: all 0.3s ease; /* hiệu ứng mượt */
+            }
+
+                    /* Khi hover */
+                    .page - links a:hover {
+                background - color: #4CAF50; /* đổi màu nền */
+                color: #fff;               /* đổi màu chữ */
+                transform: scale(1.1);     /* phóng to nhẹ */
+                box - shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* bóng nổi */
+            }
+
+                    /* Trang hiện tại */
+                    .page - links a.active {
+                background - color: #4CAF50;
+                color: #fff;
+                box - shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+    </script>
+
+</body>
+
+

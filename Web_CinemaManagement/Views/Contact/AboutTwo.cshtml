@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "AboutTwo";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+<!--boostrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+@* link boostrap *@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="~/wwwroot/Bootstrap/js/bootstrap.min.js"></script>
+<!--Link css-->
+<link href="~/wwwroot/css/About.css" rel="stylesheet" />
+<!-- CSS thư viện Magnific Popup -->
+<link rel="stylesheet" href="css/magnific-popup.min.css">
+<body>
+    <div class="about-page">
+
+        <!-- Tiêu đề -->
+        <h1 class="about-title">Về Chúng Tôi</h1>
+        <!-- Menu chuyển trang -->
+        <div class="page-links">
+            <a href="@Url.Action("About","Contact")" >Giới thiệu</a>
+            <a href="@Url.Action("AboutTwo","Contact")"class="active">Rạp</a>
+            <a href="@Url.Action("AboutThree", "Contact")">Nhân Viên</a>
+        </div>
+        <!-- Đoạn văn giới thiệu -->
+        <p class="about-text">
+            <b>Mei</b> sở hữu hệ thống cụm rạp trải dài trên cả nước.Đến <b>Mei</b> bạn sẽ được trải nghiệm kho phim đặc sắc cùng với đó là nhiều định dạng phim cho bạn lựa chọn
+            <br />Ở <b>Mei</b>Bạn sẽ có được trải nghiệm xem phim thoải mái với chất lượng hình ảnh đỉnh cao
+        </p>
+        <!-- Bootstrap Carousel -->
+        <div id="cinemaCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/wwwroot/Images/manhinh1.jpg" class="d-block w-100" alt="Màn hình 1">
+                    <div class="carousel-caption d-none d-md-block overlay-text">
+                        <h5>Màn hình 3D thực tế</h5>
+                        <p>ScreenX trải nghiệm hình ảnh 270 độ, mở rộng từ màn hình chính sang hai bên tường.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/wwwroot/Images/manhinh2.jpg" class="d-block w-100" alt="Màn hình 2">
+                    <div class="carousel-caption d-none d-md-block overlay-text">
+                        <h5>Trải nghiệm thị giác vượt trội</h5>
+                        <p>Màn hình đa diện giúp nâng tầm trải nghiệm xem phim của bạn</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/wwwroot/Images/manhinh4.png" class="d-block w-100" alt="Màn hình 3">
+                    <div class="carousel-caption d-none d-md-block overlay-text">
+                        <h5>Âm thanh sống động và ghế ngồi</h5>
+                        <p>Hệ thống âm thanh vòm chất lượng cao và chỗ ngồi thoải mái, mang đến trải nghiệm điện ảnh tuyệt vời.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/wwwroot/Images/manhinh3.png" class="d-block w-100" alt="Màn hình 3">
+                    <div class="carousel-caption d-none d-md-block overlay-text">
+                        <h5>Chiếu Phim Imax</h5>
+                        <p>Hệ thống chiếu phim với định dạng <b>Imax</b>chất lượng cao.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#cinemaCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#cinemaCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+
+
+    </div>
+
+    <!-- JS trực tiếp trong HTML -->
+    <script>
+                    .page - links {
+                text - align: center;
+                margin: 30px 0;
+            }
+
+                    .page - links a {
+                display: inline - block;
+                padding: 10px 20px;
+                margin: 0 5px;
+                background - color: #f0f0f0;
+                color: #333;
+                text - decoration: none;
+                border - radius: 5px;
+                transition: all 0.3s ease; /* hiệu ứng mượt */
+            }
+
+                    /* Khi hover */
+                    .page - links a:hover {
+                background - color: #4CAF50; /* đổi màu nền */
+                color: #fff;               /* đổi màu chữ */
+                transform: scale(1.1);     /* phóng to nhẹ */
+                box - shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* bóng nổi */
+            }
+
+                    /* Trang hiện tại */
+                    .page - links a.active {
+                background - color: #4CAF50;
+                color: #fff;
+                box - shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+    </script>
+
+

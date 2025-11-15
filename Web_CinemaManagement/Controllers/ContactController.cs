@@ -13,5 +13,17 @@ namespace Web_CinemaManagement.Controllers
         {
             return View();
         }
+        public  ActionResult About()
+        {
+            return View(); 
+        }
+        public ActionResult AboutTwo()
+        {
+            return View();
+        }
+        public ActionResult AboutThree()
+        {
+            return View();
+        }
     }
 }
