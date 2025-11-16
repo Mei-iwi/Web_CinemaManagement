@@ -42,21 +42,21 @@ namespace Web_CinemaManagement.Controllers
             {
                 if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(email))
                 {
-                    // Tạo object CONTACT
-                    CONTACT contact = new CONTACT
-                    {
-                        Name = name,
-                        Email = email,
-                        Message = message,
-                        CreatedAt = DateTime.Now
-                    };
+                    //// Tạo object CONTACT
+                    //CONTACT contact = new CONTACT
+                    //{
+                    //    Name = name,
+                    //    Email = email,
+                    //    Message = message,
+                    //    CreatedAt = DateTime.Now
+                    //};
 
-                    // Thêm vào DB
-                    db.CONTACTS.InsertOnSubmit(contact);
-                    db.SubmitChanges(); // 1 lệnh submit change
+                    //// Thêm vào DB
+                    //db.CONTACTS.InsertOnSubmit(contact);
+                    //db.SubmitChanges(); // 1 lệnh submit change
 
-                    ViewBag.Message = "Gửi thành công!";
-                    ModelState.Clear(); // Xóa dữ liệu form cũ
+                    //ViewBag.Message = "Gửi thành công!";
+                    //ModelState.Clear(); // Xóa dữ liệu form cũ
                 }
                 else
                 {
