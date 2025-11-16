@@ -1,0 +1,90 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.PHIM
+
+@{
+    ViewBag.Title = "Thêm Phim Mới";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid" style="padding-top: 20px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">@ViewBag.Title</h3>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("CreatePhim", "Movies", new { area = "Manager" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MAPHIM, "Mã Phim", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.MAPHIM, new { htmlAttributes = new { @class = "form-control", placeholder = "Ví dụ: P00000001" } })
+                            @Html.ValidationMessageFor(m => m.MAPHIM, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.TENPHIM, "Tên phim", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.TENPHIM, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.TENPHIM, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Thể loại</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("MATHELOAI", (SelectList)ViewBag.TheLoaiOptions, "--- Chọn ---", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MATHELOAI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Dạng phim</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("MADP", (SelectList)ViewBag.DangPhimOptions, "--- Chọn ---", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MADP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NHASX, "Nhà sản xuất", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NHASX, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NGAYKHOICHIEU, "Ngày khởi chiếu", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NGAYKHOICHIEU, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NGAYKETTHUC, "Ngày kết thúc", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NGAYKETTHUC, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Thời lượng (phút)</label>
+                        <div class="col-md-10">
+                            <input type="number" name="ThoiLuongInput" class="form-control" value="0" />
+                            @Html.ValidationMessage("ThoiLuongInput", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Hình ảnh</label>
+                        <div class="col-md-10">
+                            <input type="file" name="HINH_ANH_Upload" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                            @Html.ActionLink("Quay lại danh sách", "Index", "Movies", new { area = "Manager" }, new { @class = "btn btn-default" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

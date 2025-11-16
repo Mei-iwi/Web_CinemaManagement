@@ -327,6 +327,22 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\PhotoOfTheFilm\AnimeSaga.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\Annabell.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\AvengersEndgame.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\Champion.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\Documenter.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\edge.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\emvatrinh.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\endgame.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\Frontline.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\giadinh.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\KungfuPanda.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\lm8.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\minion.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\mmdb.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\phimthai.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\SongLines.jpeg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -395,6 +411,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Employee\Controllers\API_TicketsManagementController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QLKhachHangController.cs" />
@@ -407,6 +424,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -445,6 +463,18 @@
     </Content>
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
+    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\CreatePhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\EditPhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\DeletePhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\CreateTheLoai.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\EditTheLoai.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\DeleteTheLoai.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\CreateDangPhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\EditDangPhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\DeleteDangPhim.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Manager\Views\QLKhachHang\Create.cshtml" />
     <Content Include="Areas\Manager\Views\QLKhachHang\Edit.cshtml" />
@@ -479,6 +509,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cart\DichVu.cshtml" />
+    <Content Include="Views\Showtimes\ShowtimesIndex.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Contact\About.cshtml" />
     <Content Include="Views\Contact\AboutTwo.cshtml" />
@@ -495,6 +526,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
+    <Folder Include="Areas\Employee\Views\Shared\" />
+    <Folder Include="Areas\Manager\Data\" />
+    <Folder Include="Models\ADO\" />
     <Folder Include="Areas\Manager\Data\" />
     <Folder Include="Areas\Manager\Views\Tickets\" />
     <Folder Include="wwwroot\ProductPhoto\" />
