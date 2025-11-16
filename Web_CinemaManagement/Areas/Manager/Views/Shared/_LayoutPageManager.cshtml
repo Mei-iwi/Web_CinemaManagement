@@ -13,7 +13,11 @@
 
         var currentUser = Session["User"] as Employee;
     }
-
+    <style>
+        .navbar .dropdown-content {
+            margin-top: -10px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -31,31 +35,42 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @if (currentUser != null && (int)Session["Position"] == 2)
                 {
+                    <ul class="navbar-nav mr-auto">
 
-
-                    <ul class="navbar-nav mr-auto ">
                         <li>
                             @Html.ActionLink("Trang chủ quản trị", "Dashboard", "Home", null, new { @class = "nav-link text-light" })
                         </li>
 
-                        <li>
-                            @Html.ActionLink("Quản lý nhân viên", "", "", null, new { @class = "nav-link text-light" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Quản lý phòng chiếu", "", "", null, new { @class = "nav-link text-light" })
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Quản lý chủ thể
+                            </a>
+                            <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Quản lý khách hàng</a>
+                                <a class="dropdown-item" href="#">Quản lý nhân viên</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/Cart/DichVu">DỊCH VỤ ĐI KÈM</a>
 
-                        </li>
-
-                        <li>
-                            @Html.ActionLink("Quản lý khách hàng", "KhachHang", "QLKhachHang", null, new { @class = "nav-link text-light" })
-                        </li>
-
-                        <li>
-                            @Html.ActionLink("Lịch chiếu", "", "", null, new { @class = "nav-link text-light" })
+                            </div>
                         </li>
 
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Quản lý hệ thống
+                            </a>
+                            <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Quản lý phòng chiếu</a>
+                                <a class="dropdown-item" href="#">Lịch chiếu</a>
+                                <a class="dropdown-item" href="#">Quản lý khuyến mãi</a>
+                                <a class="dropdown-item" href="/Manager/Services/Index">Quản lý dịch vụ</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/Cart/DichVu">DỊCH VỤ ĐI KÈM</a>
+
+                            </div>
+                        </li>
+
                         <li>
-                            @Html.ActionLink("Quản lý khuyến mãi", "", "", null, new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Báo cáo thống kê", "Index", "Reports", null, new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
@@ -108,7 +123,7 @@
         </nav>
     </header>
 
-    <div class="main">
+    <div class="main mt-3">
         @RenderBody()
     </div>
 
