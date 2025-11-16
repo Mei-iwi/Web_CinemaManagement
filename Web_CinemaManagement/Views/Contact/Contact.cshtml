@@ -3,6 +3,7 @@
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
 }
+<link href="~/wwwroot/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/wwwroot/css/LayoutContact1.css" rel="stylesheet" />
 @* link boostrap *@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -27,25 +28,26 @@
             <h1 class="mb-4">Liên hệ với chúng tôi</h1>
 
             <!-- Form liên hệ full width -->
-            <div class="row mb-4">
-                <div class="col-12 contact-divider">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Họ và tên</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Nội dung</label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Nhập nội dung liên hệ" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Gửi</button>
-                    </form>
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success">@ViewBag.Message</div>
+            }
+
+            <form method="post" action="@Url.Action("Contact","Contact")">
+                <div class="form-group">
+                    <label for="name">Họ và tên</label>
+                    <input type="text" class="form-control" id="name" name="name" value="@Request.Form["name"]" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="@Request.Form["email"]" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Nội dung</label>
+                    <textarea class="form-control" id="message" name="message" rows="5">@Request.Form["message"]</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
 
             <!-- Hai cột dưới form: contact-info | map -->
             <div class="row">
@@ -67,7 +69,7 @@
                 <!-- Map Google -->
                 <div class="col-md-6 mb-4">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0572728098978!2d106.62625947316987!3d10.806925558634246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27ea41e05%3A0xfa77697a39f13ab0!2zMTQwIEzDqiBUcuG7jW5nIFThuqVuLCBUw6J5IFRo4bqhbmgsIFTDom4gUGjDuiwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oIDcwMDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1763126796582!5m2!1svi!2s"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </main>
