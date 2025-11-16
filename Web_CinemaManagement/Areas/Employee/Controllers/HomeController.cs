@@ -13,5 +13,7 @@ namespace Web_CinemaManagement.Areas.Employee.Controllers
         {
             return View();
         }
+
+
     }
 }

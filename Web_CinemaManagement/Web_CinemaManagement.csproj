@@ -43,10 +43,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -135,16 +135,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ModelEF\CinemaManagementEF.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CinemaManagementEF.Context.cs</LastGenOutput>
-      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ModelEF\CinemaManagementEF.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
-      <LastGenOutput>CinemaManagementEF.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="wwwroot\Bootstrap\css\bootstrap.min.css" />
     <Content Include="wwwroot\Bootstrap\js\bootstrap.min.js" />
@@ -234,111 +224,6 @@
     <Compile Include="Models\ADO\InfoTickets_Model.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartItem.cs" />
-    <Compile Include="Models\ModelEF\CAUHOI.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\CinemaManagementEF.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CinemaManagementEF.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\CinemaManagementEF.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\CinemaManagementEF.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\CT_GHE_PHONG.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\DANGKY.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\DANGPHIM.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\DANHMUC_KHIEUNAY.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\DICHVU.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\fn_SuatChieuHomNay_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\GHE.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\HANGTHANHVIEN.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\KHACHHANG.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\LayPhimTheoThoiLuong_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\LaySuatChieu_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\LOAIVE.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\NHANVIEN.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\NOIDUNG_PHANHOI.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\PHIM.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\PHONGCHIEU.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\SP_DSSP_NHIEUNHAT_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\SP_DS_NHANVIEN_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\sp_GetAllLoaiVe_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\sp_helpdiagrams_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\SP_SOLUONGPHIM_THELOAI_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\SP_THELOAIPHIM_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\SP_THONGTINVE_Result.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\SUATCHIEU.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\sysdiagram.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\THELOAIPHIM.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\VE.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEF\YEUCAUHOTRO.cs">
-      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ModelLinq\CinemaManegementLinq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -351,13 +236,6 @@
     <Content Include="Views\Shared\_LayoutPageCustomer.cshtml" />
     <Content Include="Areas\Employee\Views\Shared\_LayoutPageEmployee.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_LayoutPageManager.cshtml" />
-    <EntityDeploy Include="Models\ModelEF\CinemaManagementEF.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CinemaManagementEF.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelEF\CinemaManagementEF.edmx.diagram">
-      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
-    </Content>
     <Content Include="Models\ModelLinq\CinemaManegementLinq.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>CinemaManegementLinq.designer.cs</LastGenOutput>

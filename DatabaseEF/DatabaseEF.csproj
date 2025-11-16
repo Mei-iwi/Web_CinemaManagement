@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{404344AB-94FC-495D-B35E-5A060E9CE315}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DatabaseEF</RootNamespace>
+    <AssemblyName>DatabaseEF</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.3.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.3.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionHelper.cs" />
+    <Compile Include="ModelEF\CAUHOI.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\CinemaManagementEF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaManagementEF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\CinemaManagementEF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\CinemaManagementEF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\CT_GHE_PHONG.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\DANGKY.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\DANGPHIM.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\DANHMUC_KHIEUNAY.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\DICHVU.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\fn_SuatChieuHomNay_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\GHE.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\HANGTHANHVIEN.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\KHACHHANG.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\LayPhimTheoThoiLuong_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\LaySuatChieu_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\LOAIVE.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\NHANVIEN.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\NOIDUNG_PHANHOI.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\PHIM.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\PHONGCHIEU.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\SP_DSSP_NHIEUNHAT_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\SP_DS_NHANVIEN_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\sp_GetAllLoaiVe_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\sp_helpdiagrams_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\SP_SOLUONGPHIM_THELOAI_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\SP_THELOAIPHIM_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\SP_THONGTINVE_Result.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\SUATCHIEU.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\sysdiagram.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\THELOAIPHIM.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\VE.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF\YEUCAUHOTRO.cs">
+      <DependentUpon>CinemaManagementEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="ModelEF\CinemaManagementEF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CinemaManagementEF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelEF\CinemaManagementEF.edmx.diagram">
+      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelEF\CinemaManagementEF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
+      <LastGenOutput>CinemaManagementEF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelEF\CinemaManagementEF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CinemaManagementEF.edmx</DependentUpon>
+      <LastGenOutput>CinemaManagementEF.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>
