@@ -152,7 +152,7 @@ namespace Web_CinemaManagement.Controllers
         public JsonResult getCode(string username, string email)
         {
 
-            string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+            string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
 
             bool checkUser = DataAccess.DataProvider.TestConnection(str);
 
@@ -209,7 +209,7 @@ namespace Web_CinemaManagement.Controllers
         {
             try
             {
-                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
 
                 UpdatePassword update = new UpdatePassword();
                 int kq = update.changePassword(str, User, NewPass);
@@ -328,7 +328,7 @@ namespace Web_CinemaManagement.Controllers
                 }
 
 
-                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
 
                 bool checkUser = DataAccess.DataProvider.TestConnection(str);
 
