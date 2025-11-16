@@ -362,6 +362,7 @@
     <Content Include="wwwroot\css\LayoutContact1.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
+    <Content Include="wwwroot\js\Movies.js" />
     <Content Include="wwwroot\css\Registration.css" />
     <Content Include="wwwroot\css\style_DichVu.css" />
     <Content Include="wwwroot\Images\AnVat1.jpg" />
@@ -441,6 +442,9 @@
     <Compile Include="Helper\VerifyViaEmail.cs" />
     <Compile Include="Models\ADO\getInfoTickets.cs" />
     <Compile Include="Models\ADO\InfoTickets_Model.cs" />
+    <Compile Include="Models\ADO\MovieViewModel.cs" />
+    <Compile Include="Models\ADO\ShowtimeDetailViewModel.cs" />
+    <Compile Include="Models\ADO\ShowtimeViewModel.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\ModelLinq\CinemaManegementLinq.designer.cs">
@@ -526,9 +530,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
-    <Folder Include="Areas\Employee\Views\Shared\" />
-    <Folder Include="Areas\Manager\Data\" />
-    <Folder Include="Models\ADO\" />
     <Folder Include="Areas\Manager\Data\" />
     <Folder Include="Areas\Manager\Views\Tickets\" />
     <Folder Include="wwwroot\ProductPhoto\" />

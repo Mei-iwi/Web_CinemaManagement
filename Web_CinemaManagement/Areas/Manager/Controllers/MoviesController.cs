@@ -15,12 +15,12 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
     {
         // Khai báo 'db' nhưng không khởi tạo ở đây
         CinemaManegementLinqDataContext db;
-        string connString;
+        //string connString;
 
         public MoviesController()
         {
-            connString = ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
-            db = new CinemaManegementLinqDataContext(connString);
+            //connString = ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
+            db = new CinemaManegementLinqDataContext();
         }
 
         // --- HÀM HỖ TRỢ ---
