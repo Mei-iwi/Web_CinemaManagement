@@ -1,49 +1,99 @@
-﻿@model Web_CinemaManagement.Models.ModelLinq.SUATCHIEU
-
-@{
-    ViewBag.Title = "Chọn ghế";
-    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
-
-    // Lấy danh sách ghế từ ViewBag (đã được gửi từ Controller)
-    var allSeats = ViewBag.Seats as List<Web_CinemaManagement.Models.ModelLinq.CT_GHE_PHONG>;
-    // var bookedSeatIDs = ViewBag.BookedSeats as List<string>;
+﻿@{
+    ViewBag.Title = "Lịch chiếu phim";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml"; // Sử dụng layout chung của bạn
 }
 
-<div class="container" style="padding-top: 20px;">
-    <h2>@ViewBag.Title</h2>
-    <hr />
+<style>
+    .showtime-btn-group .btn {
+        margin-right: 8px;
+        margin-bottom: 8px;
+        min-width: 140px; /* Đảm bảo các nút có chiều rộng đồng đều */
+    }
 
-    <div class="well">
-        <h4><strong>@Model.PHIM.TENPHIM</strong></h4>
-        <p>
-            <strong>Ngày:</strong> @Model.NGAYCHIEU.ToString("dd/MM/yyyy") |
-            <strong>Giờ:</strong> @Model.GIOBATDAU.Value.ToString(@"hh\:mm") |
-            <strong>Phòng:</strong> @Model.PHONGCHIEU.TENPHONG
-        </p>
-    </div>
+    .movie-poster {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
 
-    <h3>Sơ đồ phòng chiếu (Màn hình ở đây)</h3>
-    <hr style="border-top: 3px solid #ccc;" />
+    .movie-card {
+        border: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        border-radius: 12px;
+        overflow: hidden; /* Giữ bo góc cho đẹp */
+    }
+</style>
 
-    <div class="seat-map">
-        @if (allSeats != null)
+<div class="container mt-4">
+    <h1 class="display-4 text-center mb-5">Lịch Chiếu Phim</h1>
+
+    @*Kiểm tra xem ViewBag.GroupedShowtimes có tồn tại và có dữ liệu không.*@
+      
+    @{
+        var showtimesList = (IEnumerable<dynamic>)ViewBag.GroupedShowtimes;
+    }
+
+    @if (showtimesList == null || !showtimesList.Any())
+    {
+        <div class="alert alert-info text-center" role="alert">
+            Hiện tại chưa có lịch chiếu nào. Vui lòng quay lại sau!
+        </div>
+    }
+    else
+    {
+        @* Vòng lặp 1: Lặp qua từng NGÀY trong ViewBag *@
+        foreach (var dateGroup in showtimesList)
         {
-            foreach (var seat in allSeats)
-            {
-                // Giả sử MAGHE có dạng "A01", "A02", ...
-                // Bạn sẽ cần logic CSS và Javascript phức tạp ở đây để:
-                // 1. Hiển thị ghế theo đúng hàng/cột
-                // 2. Tô màu ghế đã đặt (so sánh với 'bookedSeatIDs')
-                // 3. Cho phép người dùng click để chọn ghế
+            <h2 class="text-primary border-bottom pb-2 mb-4">
+                🗓️ @dateGroup.Date.ToString("dddd, dd/MM/yyyy")
+            </h2>
 
-                <div class="btn btn-default" style="margin: 2px; width: 50px;">
-                    @seat.MAGHE
+            @* Vòng lặp 2: Lặp qua từng PHIM trong ngày đó *@
+            foreach (var movieGroup in dateGroup.MovieGroups)
+            {
+                <div class="card mb-4 movie-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 p-3">
+                            @* Sử dụng thuộc tính "HinhAnh" mà Controller đã tạo
+                                (tương ứng với cột HINH_ANH của bạn)
+                            *@
+                            <img src="@Url.Content(movieGroup.HinhAnh ?? "~/Content/Images/default-poster.png")"
+                                 class="movie-poster"
+                                 alt="Poster phim @movieGroup.TenPhim">
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h4 class="card-title text-danger">@movieGroup.TenPhim</h4>
+                                <p class="card-text text-muted">
+                                    <i class="far fa-clock"></i> Thời lượng: @movieGroup.ThoiLuong phút
+                                </p>
+
+                                <hr />
+
+                                <h5 class="mb-3">Giờ chiếu:</h5>
+                                <div class="showtime-btn-group">
+
+                                    @* Vòng lặp 3: Lặp qua từng SUẤT CHIẾU (giờ + phòng) *@
+                                    @foreach (var showtime in movieGroup.AvailableShowtimes)
+                                    {
+                                        @* Nút này sẽ chuyển đến Action "SelectSeats" của "BookingController"
+                                            Bạn cần tạo Controller/Action này cho bước tiếp theo
+                                        *@
+                                        <a href="@Url.Action("SelectSeats", "Booking", new { id = showtime.MaSuat })"
+                                           class="btn btn-outline-primary">
+                                            <strong>@showtime.GioBatDau.ToString(@"hh\:mm")</strong>
+                                            <br />
+                                            <small>@showtime.TenPhong</small>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
         }
-    </div>
-
-    <hr />
-    <a href="#" class="btn btn-success btn-lg">Tiếp tục (Nút thanh toán)</a>
-
+    }
 </div>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Web_CinemaManagement.Models.ModelLinq; // Đảm bảo namespace này đúng
+using Web_CinemaManagement.Models.ModelLinq;
 using System.Configuration;
 
 namespace Web_CinemaManagement.Controllers
@@ -13,70 +13,96 @@ namespace Web_CinemaManagement.Controllers
         CinemaManegementLinqDataContext db;
         string connString;
 
-        // Khởi tạo CSDL
         public ShowtimesController()
         {
             connString = ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
             db = new CinemaManegementLinqDataContext(connString);
         }
 
-        /// <summary>
-        /// Trang chính: Liệt kê tất cả suất chiếu
-        /// </summary>
-        public ActionResult ShowtimesIndex()
+        // GET: Showtimes
+        // ===== CẬP NHẬT: Thêm 2 tham số tìm kiếm =====
+        public ActionResult ShowtimesIndex(string searchMovie, DateTime? searchDate)
         {
-            // 1. Lấy tất cả suất chiếu TỪ HÔM NAY trở về sau
-            var allShowtimes = db.SUATCHIEUs
-                .Where(sc => sc.NGAYCHIEU >= DateTime.Today)
-                .OrderBy(sc => sc.NGAYCHIEU)      // Sắp xếp theo Ngày
-                .ThenBy(sc => sc.PHIM.TENPHIM)  // Rồi theo Tên Phim
-                .ThenBy(sc => sc.GIOBATDAU)     // Rồi theo Giờ chiếu
-                .ToList();
+            // 1. Tạo query cơ bản
+            var query = from sc in db.SUATCHIEUs
+                        join p in db.PHIMs on sc.MAPHIM equals p.MAPHIM
+                        join r in db.PHONGCHIEUs on sc.MAPHONG equals r.MAPHONG
+                        select new
+                        {
+                            sc.MASUAT,
+                            sc.NGAYCHIEU,
+                            sc.GIOBATDAU,
+                            p.MAPHIM,
+                            p.TENPHIM,
+                            p.HINH_ANH,
+                            p.THOILUONG,
+                            r.TENPHONG
+                        };
 
-            // 2. Gửi danh sách đã sắp xếp này sang View
-            // View (Razor) sẽ tự xử lý việc nhóm (grouping)
-            return View(allShowtimes);
-        }
+            // 2. Lọc theo điều kiện tìm kiếm
 
-        /// <summary>
-        /// Trang "Chọn ghế" (sẽ được gọi khi bấm vào nút giờ chiếu)
-        /// </summary>
-        public ActionResult SelectSeats(string maSuat)
-        {
-            if (string.IsNullOrEmpty(maSuat))
+            // Lọc theo ngày
+            if (searchDate != null)
             {
-                return HttpNotFound();
+                // Nếu người dùng chọn ngày, lọc chính xác theo ngày đó
+                query = query.Where(sc => sc.NGAYCHIEU == searchDate.Value.Date);
+            }
+            else
+            {
+                // Mặc định: Chỉ lấy suất chiếu từ hôm nay trở đi
+                query = query.Where(sc => sc.NGAYCHIEU >= DateTime.Today);
             }
 
-            // 1. Lấy thông tin Suất chiếu (Phim, Giờ, Phòng)
-            var showtime = db.SUATCHIEUs.SingleOrDefault(sc => sc.MASUAT == maSuat);
-            if (showtime == null)
+            // Lọc theo tên phim
+            if (!String.IsNullOrEmpty(searchMovie))
             {
-                return HttpNotFound();
+                query = query.Where(sc => sc.TENPHIM.Contains(searchMovie));
             }
 
-            // 2. Lấy toàn bộ ghế thuộc phòng chiếu của suất chiếu này
-            var seatsInRoom = db.CT_GHE_PHONGs
-                .Where(g => g.MAPHONG == showtime.MAPHONG)
-                .OrderBy(g => g.MAGHE) // Sắp xếp ghế cho dễ hiển thị
+            // 3. Sắp xếp và lấy dữ liệu
+            var upcomingShowtimes = query.OrderBy(sc => sc.NGAYCHIEU)
+                                         .ThenBy(sc => sc.TENPHIM)
+                                         .ThenBy(sc => sc.GIOBATDAU);
+
+            // 4. Lưu lại giá trị tìm kiếm để hiển thị lại trên View
+            ViewBag.CurrentMovieSearch = searchMovie;
+            ViewBag.CurrentDateSearch = searchDate;
+
+
+            // 5. Nhóm dữ liệu
+            var groupedData = upcomingShowtimes.AsEnumerable()
+                .GroupBy(sc => ((DateTime)sc.NGAYCHIEU).Date) // Nhóm theo NGÀY
+                .Select(dateGroup => new
+                {
+                    Date = dateGroup.Key,
+                    MovieGroups = dateGroup
+                        .GroupBy(sc => sc.MAPHIM) // Nhóm theo PHIM
+                        .Select(movieGroup => new
+                        {
+                            MaPhim = movieGroup.Key,
+                            TenPhim = movieGroup.First().TENPHIM,
+                            HinhAnh = movieGroup.First().HINH_ANH,
+                            ThoiLuong = (int)(movieGroup.First().THOILUONG?.TotalMinutes ?? 0),
+                            AvailableShowtimes = movieGroup
+                                .Select(showtime => new
+                                {
+                                    MaSuat = showtime.MASUAT,
+                                    TenPhong = showtime.TENPHONG,
+                                    GioBatDau = (TimeSpan)showtime.GIOBATDAU
+                                })
+                                .OrderBy(s => s.GioBatDau)
+                                .ToList()
+                        })
+                        .OrderBy(m => m.TenPhim)
+                        .ToList()
+                })
+                .OrderBy(d => d.Date)
                 .ToList();
 
-            // 3. (QUAN TRỌNG) Lấy danh sách các ghế ĐÃ ĐƯỢC ĐẶT của suất chiếu này
-            // (Giả sử bạn có bảng VE (Vé) hoặc CT_VE (Chi tiết vé) có cột MASUAT và MAGHE)
-            // var bookedSeatIDs = db.VEs.Where(v => v.MASUAT == maSuat).Select(v => v.MAGHE).ToList();
+            // 6. Gán dữ liệu đã nhóm vào ViewBag
+            ViewBag.GroupedShowtimes = groupedData;
 
-            // ViewBag.BookedSeats = bookedSeatIDs; // Gửi danh sách ghế đã đặt sang View
-            ViewBag.Seats = seatsInRoom; // Gửi danh sách TẤT CẢ ghế sang View
-
-            // Trả về View "SelectSeats.cshtml" với model là thông tin suất chiếu
-            return View(showtime);
-        }
-
-        // --- DỌN DẸP ---
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing) db.Dispose();
-            base.Dispose(disposing);
+            return View();
         }
     }
 }
