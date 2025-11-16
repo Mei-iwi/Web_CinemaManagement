@@ -1,0 +1,49 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.SUATCHIEU
+
+@{
+    ViewBag.Title = "Chọn ghế";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+
+    // Lấy danh sách ghế từ ViewBag (đã được gửi từ Controller)
+    var allSeats = ViewBag.Seats as List<Web_CinemaManagement.Models.ModelLinq.CT_GHE_PHONG>;
+    // var bookedSeatIDs = ViewBag.BookedSeats as List<string>;
+}
+
+<div class="container" style="padding-top: 20px;">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    <div class="well">
+        <h4><strong>@Model.PHIM.TENPHIM</strong></h4>
+        <p>
+            <strong>Ngày:</strong> @Model.NGAYCHIEU.ToString("dd/MM/yyyy") |
+            <strong>Giờ:</strong> @Model.GIOBATDAU.Value.ToString(@"hh\:mm") |
+            <strong>Phòng:</strong> @Model.PHONGCHIEU.TENPHONG
+        </p>
+    </div>
+
+    <h3>Sơ đồ phòng chiếu (Màn hình ở đây)</h3>
+    <hr style="border-top: 3px solid #ccc;" />
+
+    <div class="seat-map">
+        @if (allSeats != null)
+        {
+            foreach (var seat in allSeats)
+            {
+                // Giả sử MAGHE có dạng "A01", "A02", ...
+                // Bạn sẽ cần logic CSS và Javascript phức tạp ở đây để:
+                // 1. Hiển thị ghế theo đúng hàng/cột
+                // 2. Tô màu ghế đã đặt (so sánh với 'bookedSeatIDs')
+                // 3. Cho phép người dùng click để chọn ghế
+
+                <div class="btn btn-default" style="margin: 2px; width: 50px;">
+                    @seat.MAGHE
+                </div>
+            }
+        }
+    </div>
+
+    <hr />
+    <a href="#" class="btn btn-success btn-lg">Tiếp tục (Nút thanh toán)</a>
+
+</div>

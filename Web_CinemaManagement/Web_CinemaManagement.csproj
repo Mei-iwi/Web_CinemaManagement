@@ -126,6 +126,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\PhotoOfTheFilm\AnimeSaga.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\Annabell.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\AvengersEndgame.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\Champion.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\Documenter.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\edge.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\emvatrinh.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\endgame.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\Frontline.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\giadinh.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\KungfuPanda.jpeg" />
+    <Content Include="Content\PhotoOfTheFilm\lm8.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\minion.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\mmdb.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\phimthai.jpg" />
+    <Content Include="Content\PhotoOfTheFilm\SongLines.jpeg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\ModelEF\CinemaManagementEF.Context.tt">
@@ -190,6 +206,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -362,6 +379,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cart\DichVu.cshtml" />
+    <Content Include="Views\Showtimes\ShowtimesIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

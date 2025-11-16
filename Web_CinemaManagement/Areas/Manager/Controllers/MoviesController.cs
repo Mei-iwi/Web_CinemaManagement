@@ -72,13 +72,16 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
                     if (HINH_ANH_Upload != null && HINH_ANH_Upload.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(HINH_ANH_Upload.FileName);
-                        var path = Path.Combine(Server.MapPath("~/wwwroot/PhotoOfTheFilm/"), fileName);
-                        if (!Directory.Exists(Server.MapPath("~/wwwroot/PhotoOfTheFilm/")))
+                        // Lưu vào thư mục Content
+                        var path = Path.Combine(Server.MapPath("~/Content/PhotoOfTheFilm/"), fileName);
+                        if (!Directory.Exists(Server.MapPath("~/Content/PhotoOfTheFilm/")))
                         {
-                            Directory.CreateDirectory(Server.MapPath("~/wwwroot/PhotoOfTheFilm/"));
+                            Directory.CreateDirectory(Server.MapPath("~/Content/PhotoOfTheFilm/"));
                         }
                         HINH_ANH_Upload.SaveAs(path);
-                        phim.HINH_ANH = "~/wwwroot/PhotoOfTheFilm/" + fileName;
+
+                        // Chỉ lưu TÊN FILE vào CSDL
+                        phim.HINH_ANH = fileName;
                     }
                     if (ThoiLuongInput.HasValue && ThoiLuongInput > 0)
                     {
@@ -140,13 +143,17 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
                     if (HINH_ANH_Upload != null && HINH_ANH_Upload.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(HINH_ANH_Upload.FileName);
-                        var path = Path.Combine(Server.MapPath("~/wwwroot/PhotoOfTheFilm/"), fileName);
-                        if (!Directory.Exists(Server.MapPath("~/wwwroot/PhotoOfTheFilm/")))
+
+                        // Lưu vào thư mục Content
+                        var path = Path.Combine(Server.MapPath("~/Content/PhotoOfTheFilm/"), fileName);
+                        if (!Directory.Exists(Server.MapPath("~/Content/PhotoOfTheFilm/")))
                         {
-                            Directory.CreateDirectory(Server.MapPath("~/wwwroot/PhotoOfTheFilm/"));
+                            Directory.CreateDirectory(Server.MapPath("~/Content/PhotoOfTheFilm/"));
                         }
                         HINH_ANH_Upload.SaveAs(path);
-                        phimToUpdate.HINH_ANH = "~/wwwroot/PhotoOfTheFilm/" + fileName;
+
+                        // Chỉ lưu TÊN FILE vào CSDL
+                        phimToUpdate.HINH_ANH = fileName;
                     }
                     if (ThoiLuongInput.HasValue && ThoiLuongInput > 0)
                     {

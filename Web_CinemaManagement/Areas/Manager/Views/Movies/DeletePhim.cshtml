@@ -29,7 +29,7 @@
                     <dd>
                         @if (!string.IsNullOrEmpty(Model.HINH_ANH))
                         {
-                            <img src="@Url.Content(Model.HINH_ANH)" width="150" />
+                            <img src="@Url.Content("~/Content/PhotoOfTheFilm/" + Model.HINH_ANH)" width="150" />
                         }
                         else
                         {

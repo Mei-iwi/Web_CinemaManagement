@@ -81,8 +81,16 @@
                         <div class="col-md-10">
                             <input type="file" name="HINH_ANH_Upload" />
                             <br />
-                            <img src="@Url.Content(Model.HINH_ANH)" width="150" alt="Ảnh hiện tại" />
-                            (Ảnh hiện tại)
+
+                            @if (!string.IsNullOrEmpty(Model.HINH_ANH))
+                            {
+                                <img src="@Url.Content("~/Content/PhotoOfTheFilm/" + Model.HINH_ANH)" width="150" alt="Ảnh hiện tại" />
+                                <span>(Ảnh hiện tại)</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">(Chưa có ảnh)</span>
+                            }
                         </div>
                     </div>
                     <div class="form-group">

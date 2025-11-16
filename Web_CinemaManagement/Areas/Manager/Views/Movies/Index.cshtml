@@ -60,7 +60,7 @@
                                     <td>
                                         @if (!string.IsNullOrEmpty(item.HINH_ANH))
                                         {
-                                            <img src="@Url.Content(item.HINH_ANH)" width="80" alt="Hình ảnh" />
+                                            <img src="@Url.Content("~/Content/PhotoOfTheFilm/" + item.HINH_ANH)" width="80" alt="Hình ảnh" />
                                         }
                                         else
                                         {
