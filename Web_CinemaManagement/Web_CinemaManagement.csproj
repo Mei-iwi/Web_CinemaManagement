@@ -338,8 +338,16 @@
     <Content Include="Areas\Employee\Views\web.config" />
     <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Manager\Views\Movies\MoviesIndex.cshtml" />
-    <Content Include="Areas\Manager\Views\Movies\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\CreatePhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\EditPhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\DeletePhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\CreateTheLoai.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\EditTheLoai.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\DeleteTheLoai.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\CreateDangPhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\EditDangPhim.cshtml" />
+    <Content Include="Areas\Manager\Views\Movies\DeleteDangPhim.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>

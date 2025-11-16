@@ -1,0 +1,52 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.PHIM
+
+@{
+    ViewBag.Title = "Xóa Phim";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="padding-top: 20px;">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">@ViewBag.Title</h3>
+        </div>
+        <div class="panel-body">
+            <h3>Bạn có chắc chắn muốn xóa phim này?</h3>
+            <div>
+                <h4>@Html.DisplayFor(model => model.TENPHIM)</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>Mã Phim</dt>
+                    <dd>@Html.DisplayFor(model => model.MAPHIM)</dd>
+
+                    <dt>Nhà sản xuất</dt>
+                    <dd>@Html.DisplayFor(model => model.NHASX)</dd>
+
+                    <dt>Thể loại</dt>
+                    <dd>@Html.DisplayFor(model => model.THELOAIPHIM.TENTHELOAI)</dd>
+
+                    <dt>Ảnh</dt>
+                    <dd>
+                        @if (!string.IsNullOrEmpty(Model.HINH_ANH))
+                        {
+                            <img src="@Url.Content(Model.HINH_ANH)" width="150" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">(Chưa có ảnh)</span>
+                        }
+                    </dd>
+                </dl>
+
+                @using (Html.BeginForm("DeletePhim", "Movies", new { area = "Manager", id = Model.MAPHIM }, FormMethod.Post, null))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Xác nhận Xóa" class="btn btn-danger" />
+                        @Html.ActionLink("Quay lại danh sách", "Index", "Movies", new { area = "Manager" }, new { @class = "btn btn-default" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
