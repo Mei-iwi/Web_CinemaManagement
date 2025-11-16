@@ -6,6 +6,7 @@ using Web_CinemaManagement.Models.ModelLinq;
 using Web_CinemaManagement.Models.Report;
 using ClosedXML.Excel;
 using Rotativa;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Web_CinemaManagement.Areas.Manager.Controllers
 {

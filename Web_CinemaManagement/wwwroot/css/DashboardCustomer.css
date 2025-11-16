@@ -27,6 +27,7 @@
 
 .banner {
     position: relative;
+    cursor: pointer;
 }
 
 .infoMovie {
