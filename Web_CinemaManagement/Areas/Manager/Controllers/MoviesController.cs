@@ -73,10 +73,10 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
                     {
                         var fileName = Path.GetFileName(HINH_ANH_Upload.FileName);
                         // Lưu vào thư mục Content
-                        var path = Path.Combine(Server.MapPath("~/Content/PhotoOfTheFilm/"), fileName);
-                        if (!Directory.Exists(Server.MapPath("~/Content/PhotoOfTheFilm/")))
+                        var path = Path.Combine(Server.MapPath("~/wwwroot/PhotoOfTheFilm/"), fileName);
+                        if (!Directory.Exists(Server.MapPath("~/wwwroot/PhotoOfTheFilm/")))
                         {
-                            Directory.CreateDirectory(Server.MapPath("~/Content/PhotoOfTheFilm/"));
+                            Directory.CreateDirectory(Server.MapPath("~/wwwroot/PhotoOfTheFilm/"));
                         }
                         HINH_ANH_Upload.SaveAs(path);
 
@@ -145,10 +145,10 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
                         var fileName = Path.GetFileName(HINH_ANH_Upload.FileName);
 
                         // Lưu vào thư mục Content
-                        var path = Path.Combine(Server.MapPath("~/Content/PhotoOfTheFilm/"), fileName);
-                        if (!Directory.Exists(Server.MapPath("~/Content/PhotoOfTheFilm/")))
+                        var path = Path.Combine(Server.MapPath("~/wwwrooot/PhotoOfTheFilm/"), fileName);
+                        if (!Directory.Exists(Server.MapPath("~/wwwrooot/PhotoOfTheFilm/")))
                         {
-                            Directory.CreateDirectory(Server.MapPath("~/Content/PhotoOfTheFilm/"));
+                            Directory.CreateDirectory(Server.MapPath("~/wwwrooot/PhotoOfTheFilm/"));
                         }
                         HINH_ANH_Upload.SaveAs(path);
 
