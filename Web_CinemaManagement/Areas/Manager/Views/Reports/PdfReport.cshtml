@@ -1,0 +1,163 @@
+﻿@model Web_CinemaManagement.Models.Report.ReportViewModel
+@using System.Linq
+@{
+    ViewBag.Title = "Thống kê doanh thu";
+}
+
+<div style="background:#ffffff; padding:20px; border-radius:6px; margin-top:15px;">
+
+    <h2 style="margin-bottom:15px; font-weight:600; color:#000;">Thống kê doanh thu</h2>
+
+    <form method="post" style="background:#f8f8f8; padding:15px; border-radius:6px; border:1px solid #ccc;">
+        <div style="margin-bottom: 15px; display:flex; align-items:center; gap:20px;">
+
+            <div>
+                <label style="color:#000;">Từ ngày:</label><br />
+                <input type="date" name="FromDate"
+                       value="@(Model.FromDate?.ToString("yyyy-MM-dd"))"
+                       style="padding:6px; width:150px;" />
+            </div>
+
+            <div>
+                <label style="color:#000;">Đến ngày:</label><br />
+                <input type="date" name="ToDate"
+                       value="@(Model.ToDate?.ToString("yyyy-MM-dd"))"
+                       style="padding:6px; width:150px;" />
+            </div>
+
+            <div>
+                <label style="color:#000;">Thống kê theo:</label><br />
+                <select name="Mode" style="padding:6px; width:150px;">
+                    <option value="day" @(Model.Mode == "day" ? "selected" : "")>Theo ngày</option>
+                    <option value="month" @(Model.Mode == "month" ? "selected" : "")>Theo tháng</option>
+                    <option value="movie" @(Model.Mode == "movie" ? "selected" : "")>Theo phim</option>
+                    <option value="employee" @(Model.Mode == "employee" ? "selected" : "")>Theo nhân viên</option>
+                </select>
+            </div>
+
+            <div>
+                <br />
+                <button type="submit"
+                        style="padding:7px 15px; background:#007bff; color:white; border:none; border-radius:4px; cursor:pointer;">
+                    Xem thống kê
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <hr />
+
+    <h3 style="margin-top:20px; color:#000;">Tổng quan doanh thu</h3>
+
+    <table border="1" cellpadding="8" cellspacing="0"
+           style="margin-top:10px; background:white; width:350px; border-collapse:collapse; color:#000;">
+        <tr>
+            <th>Tổng vé bán</th>
+            <td>@Model.TotalTickets</td>
+        </tr>
+        <tr>
+            <th>Doanh thu vé</th>
+            <td>@Model.TicketRevenue.ToString("N0") đ</td>
+        </tr>
+        <tr>
+            <th>Doanh thu dịch vụ</th>
+            <td>@Model.ServiceRevenue.ToString("N0") đ</td>
+        </tr>
+        <tr>
+            <th><b>Tổng doanh thu</b></th>
+            <td><b>@Model.TotalRevenue.ToString("N0") đ</b></td>
+        </tr>
+    </table>
+
+    <!-- ============================
+         NÚT EXPORT
+    =============================== -->
+    <div style="margin-top:20px;">
+        @Html.ActionLink(
+            "Xuất Excel",
+            "ExportExcel",
+            new { from = Model.FromDate, to = Model.ToDate, mode = Model.Mode },
+            new { @class = "btn btn-success", style = "margin-right:10px; padding:8px 15px;" }
+        )
+
+        @Html.ActionLink(
+            "Xuất PDF",
+            "ExportPDF",
+            new { from = Model.FromDate, to = Model.ToDate, mode = Model.Mode },
+            new { @class = "btn btn-danger", style = "padding:8px 15px;" }
+        )
+    </div>
+
+    <hr />
+
+    <!-- ============================
+         BIỂU ĐỒ
+    =============================== -->
+    <h3 style="margin-top:20px; color:#000;">Biểu đồ doanh thu</h3>
+    <canvas id="chartRevenue" height="120"></canvas>
+
+    <hr />
+
+    <h3 style="margin-top:20px; color:#000;">Kết quả chi tiết</h3>
+
+    <table border="1" cellpadding="10" cellspacing="0"
+           style="width:100%; margin-top:10px; background:white; border-collapse:collapse; color:#000;">
+        <thead style="background:#e6e6e6; font-weight:600;">
+            <tr>
+                <th>Nhóm</th>
+                <th>Doanh thu</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model.Items != null && Model.Items.Any())
+            {
+                foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.Label</td>
+                        <td>@item.Revenue.ToString("N0") đ</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2" style="text-align:center; padding:10px;">Không có dữ liệu.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<!-- ============================
+     SCRIPT CHART.JS
+=============================== -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var labels = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Items.Select(x => x.Label)));
+    var values = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Items.Select(x => x.Revenue)));
+
+    var ctx = document.getElementById('chartRevenue').getContext('2d');
+
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Doanh thu",
+                data: values,
+                backgroundColor: "rgba(54, 162, 235, 0.6)"
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>

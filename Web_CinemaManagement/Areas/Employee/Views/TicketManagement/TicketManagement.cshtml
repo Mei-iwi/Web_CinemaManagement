@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "TicketManagement";
+}
+
+
+<link href="~/wwwroot/css/TicketManagement.css" rel="stylesheet" />
+
+<div class="container">
+    <h1 class="text-center text-warning">QUẢN LÝ VÉ KHÁCH HÀNG</h1>
+    <span class="text-light">Lọc thông tin</span>
+    <div class="d-flex justify-content-between ">
+        <div class="w-25">
+            @Html.DropDownList("Filter", new List<SelectListItem>
+             {
+                  new SelectListItem {Text = "Tất cả", Value = "0"},
+                  new SelectListItem {Text = "Trong ngày", Value = "1"},
+                  new SelectListItem {Text = "Trong tháng", Value = "2"},
+                  new SelectListItem {Text = "Trong Năm", Value = "3"}
+             }, new { @class = "form-control" })
+        </div>
+        @using (Html.BeginForm("Search", "TicketManagement", FormMethod.Post, new { @class = "w-25 d-flex" }))
+        {
+            <div class="form-group d-flex">
+                @Html.TextBox("Search", "", new { @class = "form-control w-100", placeholder = "Search Ticket" })
+                <button type="button" id="submit" class="ml-3 btn btn-primary">Tìm</button>
+            </div>
+        }
+    </div>
+    <table id="ticketTable" class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã Vé</th>
+                <th>Mã suất</th>
+                <th>Mã loại vé</th>
+                <th>Mã khách hàng</th>
+                <th>Mã nhân viên</th>
+                <th>Mã ghế</th>
+                <th>Ngày bán vé</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="text-light">
+        </tbody>
+    </table>
+    @section Scripts{
+        <script src="~/wwwroot/js/TicketManagement.js"></script>
+    }
+
+</div>

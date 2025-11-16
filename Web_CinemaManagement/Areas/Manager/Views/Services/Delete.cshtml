@@ -1,0 +1,61 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.DICHVU
+
+@{
+    ViewBag.Title = "Xóa dịch vụ";
+}
+
+<link href="~/wwwroot/css/KhachHangManager.css" rel="stylesheet" />
+
+<div class="cinema-management-page">
+    <h2>Xóa dịch vụ</h2>
+
+    <h3>Bạn có muốn xóa dịch vụ này?</h3>
+    <div>
+        <h4>Dịch vụ</h4>
+        <hr />
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MASP)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MASP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TENSP)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TENSP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DONGIA)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DONGIA)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HINH_ANH)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HINH_ANH)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.MASP);
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                @Html.ActionLink("Quay lại danh sách", "Index")
+            </div>
+        }
+    </div>
+</div>
