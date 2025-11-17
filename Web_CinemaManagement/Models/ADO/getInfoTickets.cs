@@ -10,7 +10,7 @@ namespace Web_CinemaManagement.Models.ADO
 {
     public class getInfoTickets
     {
-        string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+        string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
 
         public List<InfoTickets_Model> getInfo()
         {
