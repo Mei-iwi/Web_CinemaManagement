@@ -243,7 +243,7 @@ namespace Web_CinemaManagement.Controllers
             CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
 
             KHACHHANG kh = db.KHACHHANGs
-                       .OrderByDescending(t => t.MAHANG)
+                       .OrderByDescending(t => t.MAKH)
                        .FirstOrDefault();
 
             int newID = 1;

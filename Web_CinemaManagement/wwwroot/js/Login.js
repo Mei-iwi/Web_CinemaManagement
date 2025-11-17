@@ -46,14 +46,15 @@ function startInterval() {
             text.style.color = "yellow"
 
         } else {
+            text.classList.add("text");
             text.innerHTML = "ĐĂNG NHẬP TẠI ĐÂY";
             text.style.color = ""
-            text.classList.add("text");
+
 
         }
 
         form.classList.toggle("MessageErr");
-    }, 2000);
+    }, 1500);
 
 
 };
@@ -65,7 +66,7 @@ function startIntervalLogin() {
 
     intervalId = setInterval(() => {
         form.classList.toggle("MessageLogin");
-    }, 2000);
+    }, 1500);
 
 
 };
@@ -93,7 +94,11 @@ form.addEventListener("mouseover", function () {
 });
 
 form.addEventListener("mouseout", function () {
-    startInterval();
+    if (err !== null) {
+        startInterval();
+    } else {
+        startIntervalLogin();
+    }
 });
 
 

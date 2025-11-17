@@ -240,14 +240,14 @@ form {
 }
 
 .MessageErr {
-    animation: flashErr 2s ease-in-out;
+    animation: flashErr 1.5s ease-in-out;
     position: absolute;
     top: 50%;
     left: 50%;
 }
 
 .MessageLogin {
-    animation: MessageLogin 2s ease-in-out;
+    animation: MessageLogin 1.5s ease-in-out;
     position: absolute;
     top: 50%;
     left: 50%;
