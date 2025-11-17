@@ -362,6 +362,9 @@
     <Content Include="wwwroot\css\LayoutContact1.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
+    <Content Include="wwwroot\Images\Error.png" />
+    <Content Include="wwwroot\Images\Protect.png" />
+    <Content Include="wwwroot\Images\ProtectLogin.png" />
     <Content Include="wwwroot\js\Movies.js" />
     <Content Include="wwwroot\css\Registration.css" />
     <Content Include="wwwroot\css\style_DichVu.css" />

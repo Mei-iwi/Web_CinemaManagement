@@ -9,11 +9,13 @@ var formLogin = document.querySelector("form");
 
 var err = document.querySelector(".validation-summary-errors");
 
-var text = document.querySelector("h4[id='start']")
+var text = document.querySelector("h4[id='start'] img")
 
-let intervalId = null;
+let intervalId1 = null;
+let intervalId2 = null;
+let stopped = false;
 
-console.log(form);
+console.log(text);
 
 //Khu vực hàm, xử lý
 checkbox.addEventListener("change", function (e) {
@@ -34,49 +36,56 @@ form.addEventListener("click", function () {
     this.classList.add("active");
 });
 
+let images = [
+    "/wwwroot/Images/Protect.png",
+    "/wwwroot/Images/Error.png"
+];
+let current = 0;
+
 function startInterval() {
+    if (intervalId1 !== null || stopped) return;
 
-    if (intervalId !== null) return;
+    intervalId1 = setInterval(() => {
+        // fade out
+        text.style.opacity = 0;
 
+        setTimeout(() => {
+            // đổi ảnh khi đã fade out
+            current = (current + 1) % images.length;
+            text.src = images[current];
 
-    intervalId = setInterval(() => {
-        if (text.innerHTML === "ĐĂNG NHẬP TẠI ĐÂY") {
-            text.innerHTML = "ĐĂNG NHẬP THẤT BẠI";
-            text.classList.remove("text");
-            text.style.color = "yellow"
+            // fade in
+            text.style.opacity = 1;
+        }, 500); // 500ms trùng với CSS transition
 
-        } else {
-            text.classList.add("text");
-            text.innerHTML = "ĐĂNG NHẬP TẠI ĐÂY";
-            text.style.color = ""
+        form.classList.toggle("MessageErr"); // hiệu ứng form
+    }, 2000);
+}
 
-
-        }
-
-        form.classList.toggle("MessageErr");
-    }, 1500);
-
-
-};
 
 function startIntervalLogin() {
 
-    if (intervalId !== null) return;
+    if (intervalId2 !== null) return;
 
 
-    intervalId = setInterval(() => {
+    intervalId2 = setInterval(() => {
         form.classList.toggle("MessageLogin");
-    }, 1500);
+    }, 2000);
 
 
 };
 
 
 function stopInterval() {
-    clearInterval(intervalId);
-    intervalId = null;
+    clearInterval(intervalId1);
+    clearInterval(intervalId2);
+    intervalId1 = null;
+    intervalId2 = null;
     form.classList.remove("MessageErr");
-    text.innerHTML = "ĐĂNG NHẬP TẠI ĐÂY";
+    form.classList.remove("MessageLogin");
+    text.src = images[0];
+
+    text.style.opacity = 1;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -89,20 +98,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 form.addEventListener("mouseover", function () {
-    stopInterval();
-    form.classList.remove("MessageErr", "MessageErrHide");
+    if (!stopped) stopInterval();
+    form.classList.remove("MessageErr");
 });
 
 form.addEventListener("mouseout", function () {
     if (err !== null) {
-        startInterval();
+        if (!stopped)
+            startInterval();
     } else {
-        startIntervalLogin();
+        if (!stopped)
+            startIntervalLogin();
     }
 });
 
 
 form.onclick = () => {
+    stopped = true;
     stopInterval();
-    form.classList.remove("MessageErr", "MessageErrHide");
+    form.classList.remove("MessageErr");
+    form.classList.remove("MessageLogin");
+
 }
