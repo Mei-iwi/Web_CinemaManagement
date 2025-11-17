@@ -409,6 +409,20 @@
     <Content Include="wwwroot\PhotoOfTheFilm\mmdb.jpg" />
     <Content Include="wwwroot\PhotoOfTheFilm\phimthai.jpg" />
     <Content Include="wwwroot\PhotoOfTheFilm\SongLines.jpeg" />
+    <Content Include="wwwroot\ProductPhoto\AnVat2.jpg" />
+    <Content Include="wwwroot\ProductPhoto\BanhQuy.jpg" />
+    <Content Include="wwwroot\ProductPhoto\BapLon.jpg" />
+    <Content Include="wwwroot\ProductPhoto\ComboBapNuoc.jpg" />
+    <Content Include="wwwroot\ProductPhoto\ComBoDoi.jpg" />
+    <Content Include="wwwroot\ProductPhoto\ComboGiaDinh.jpg" />
+    <Content Include="wwwroot\ProductPhoto\ComboNhom.jpg" />
+    <Content Include="wwwroot\ProductPhoto\ComboNuoc.png" />
+    <Content Include="wwwroot\ProductPhoto\HotDog.jpg" />
+    <Content Include="wwwroot\ProductPhoto\KhoaiTayChien.jpg" />
+    <Content Include="wwwroot\ProductPhoto\NuocNgot.png" />
+    <Content Include="wwwroot\ProductPhoto\NuocSuoi.jpg" />
+    <Content Include="wwwroot\ProductPhoto\Pizza.jpg" />
+    <Content Include="wwwroot\ProductPhoto\SnackMix.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -535,7 +549,6 @@
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Manager\Data\" />
     <Folder Include="Areas\Manager\Views\Tickets\" />
-    <Folder Include="wwwroot\ProductPhoto\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
