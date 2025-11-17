@@ -12,11 +12,7 @@
     <hr />
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <a href="@Url.Action("Create")" class="btn btn-success">
-                + Thêm phòng mới
-            </a>
-        </div>
+       
         <div>
             @using (Html.BeginForm("TimKiemTheoTen", "CinemaRoom", FormMethod.Get, new { @class = "d-flex" }))
             {
@@ -41,6 +37,11 @@
                     <h5 class="mb-0">Danh sách phòng chiếu</h5>
                 </div>
                 <div class="card-body">
+                    <div>
+                        <a href="@Url.Action("Create")" class="btn btn-success mb-2">
+                            + Thêm phòng mới
+                        </a>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered">
                             <thead class="thead-light text-center">
@@ -82,9 +83,11 @@
                     <h5 class="mb-0">Quản lý Loại Ghế</h5>
                 </div>
                 <div class="card-body">
-                    <p>
-                        @Html.ActionLink("Thêm loại ghế mới", "CreateSeatType", null, new { @class = "btn btn-success btn-sm btn-block" })
-                    </p>
+                    <div>
+                        <a href="@Url.Action("CreateSeatType")" class="btn btn-success mb-2">
+                            + Thêm ghế mới
+                        </a>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered">
                             <thead class="thead-light text-center">

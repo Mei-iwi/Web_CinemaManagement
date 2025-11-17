@@ -23,22 +23,17 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         }
 
 
-        // CẬP NHẬT ACTION INDEX
-
         public ActionResult CinemaRoomIndex()
         {
-            // 1. Lấy cả hai danh sách
             var rooms = db.PHONGCHIEUs.ToList();
             var seatTypes = db.GHEs.ToList(); 
 
-            // 2. Tạo ViewModel và gán dữ liệu
             var viewModel = new CinemaRoomIndexViewModel
             {
                 PhongChieus = rooms,
                 Ghes = seatTypes
             };
 
-            // 3. Trả về View với ViewModel
             return View(viewModel);
         }
 
@@ -73,7 +68,6 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         [HttpPost]
         public ActionResult CreateOnSubmit(PHONGCHIEU room)
         {
-            // ... (Code của bạn giữ nguyên)
             try
             {
                 if (ModelState.IsValid)
@@ -133,6 +127,31 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         public ActionResult Details(string id)
         {
             PHONGCHIEU room = db.PHONGCHIEUs.FirstOrDefault(x => x.MAPHONG == id);
+
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            int tongSoGhe = room.TONGSOGHE ?? 0; // Lấy tổng số ghế
+
+            if (tongSoGhe > 0)
+            {
+
+                int soGheMoiHang = (int)Math.Ceiling(Math.Sqrt(tongSoGhe));
+
+                int soHangGhe = (int)Math.Ceiling((double)tongSoGhe / soGheMoiHang);
+
+                ViewBag.SoHang = soHangGhe;
+                ViewBag.SoCot = soGheMoiHang;
+            }
+            else
+            {
+                ViewBag.SoHang = 0;
+                ViewBag.SoCot = 0;
+            }
+
             return View(room);
         }
 
