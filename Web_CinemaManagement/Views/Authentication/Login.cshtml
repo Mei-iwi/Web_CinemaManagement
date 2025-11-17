@@ -56,7 +56,7 @@
         grecaptcha.ready(function () {
             grecaptcha.execute('6LcTNgssAAAAAG52tZt9aaTnwHjSo72ruknoQqrz', { action: 'login' }).then(function (token) {
                 // Gửi token về server
-                console.log("Token nhận được:", token);
+               // console.log("Token nhận được:", token);
                 document.getElementById("recaptchaToken").value = token;
             });
         });
