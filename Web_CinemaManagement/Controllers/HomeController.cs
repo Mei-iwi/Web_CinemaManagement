@@ -34,6 +34,8 @@ namespace Web_CinemaManagement.Controllers
             int pageSize = 8;
             var pageList = p.ToPagedList(pageNumber, pageSize);
 
+         
+
             return View(pageList);
         }
 

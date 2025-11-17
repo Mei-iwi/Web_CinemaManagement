@@ -477,11 +477,6 @@
     <Content Include="Views\Shared\_LayoutPageCustomer.cshtml" />
     <Content Include="Areas\Employee\Views\Shared\_LayoutPageEmployee.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_LayoutPageManager.cshtml" />
-    <Content Include="Models\ModelLinq\CinemaManegementLinq.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CinemaManegementLinq.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
     <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
@@ -517,6 +512,11 @@
     <Content Include="Areas\Manager\Views\Reports\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Reports\PdfReport.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Models\ModelLinq\CinemaManegementLinq.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>CinemaManegementLinq.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
