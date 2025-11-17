@@ -328,6 +328,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\RoomSeat\CinemaRoomIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -356,6 +357,9 @@
     <Content Include="Areas\Manager\Views\CinemaRoom\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\CinemaRoom\Details.cshtml" />
     <Content Include="Areas\Manager\Views\CinemaRoom\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\CreateSeatType.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\EditSeatType.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\DeleteSeatType.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
@@ -384,6 +388,7 @@
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
     <Folder Include="Areas\Manager\Data\" />
+    <Folder Include="Areas\Manager\Views\Seat\" />
     <Folder Include="Data\" />
     <Folder Include="Models\ADO\" />
     <Folder Include="wwwroot\ProductPhoto\" />
