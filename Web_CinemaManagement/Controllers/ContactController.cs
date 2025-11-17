@@ -16,7 +16,7 @@ namespace Web_CinemaManagement.Controllers
             // Khởi tạo DataContext
             string connString = System.Configuration.ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
             db = new CinemaManegementLinqDataContext(connString);
-     
+
         }
 
         // GET: Contact
@@ -29,9 +29,9 @@ namespace Web_CinemaManagement.Controllers
             return View();
         }
 
-        public  ActionResult About()
+        public ActionResult About()
         {
-            return View(); 
+            return View();
         }
         public ActionResult AboutTwo()
         {
@@ -43,60 +43,57 @@ namespace Web_CinemaManagement.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-     
         public ActionResult Contact(string name, string email, string message)
         {
             try
             {
-                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(message))
-                {
-                    // --- Tạo MAND tự tăng ND01, ND02 ---
-                    var lastPhanHoi = db.NOIDUNG_PHANHOIs.OrderByDescending(p => p.MAND).FirstOrDefault();
-                    string newMAND = "ND01";
-                    if (lastPhanHoi != null)
-                    {
-                        int lastNumber = 0;
-                        if (int.TryParse(lastPhanHoi.MAND.Substring(2), out lastNumber))
-                        {
-                            newMAND = "ND" + (lastNumber + 1).ToString("D2");
-                        }
-                    }
-
-                    // --- Tạo mã yêu cầu mới cho bảng YEUCAUHOTRO ---
-                    string newMAYEUCAU = "YEUC" + DateTime.Now.Ticks.ToString().Substring(0, 6); // tạo mã duy nhất
-                    YEUCAUHOTRO yc = new YEUCAUHOTRO
-                    {
-                        MAYEUCAU = newMAYEUCAU,
-                        // Nếu có các trường bắt buộc khác trong YEUCAUHOTRO, gán ở đây
-                        // Ví dụ: NGAYYEUCAU = DateTime.Now
-                    };
-                    db.YEUCAUHOTROs.InsertOnSubmit(yc);
-                    db.SubmitChanges(); // Lưu mã yêu cầu mới
-
-                    // --- Tạo phản hồi mới ---
-                    NOIDUNG_PHANHOI phanhoi = new NOIDUNG_PHANHOI
-                    {
-                        MAND = newMAND,
-                        MAYEUCAU = newMAYEUCAU,
-                        MAKH = Session["User ID"]?.ToString(),
-                        MANV = null,
-                        NOIDUNG_PHANHOI1 = message,
-                        NGAYGUI_PHANHOI = DateTime.Now
-                    };
-
-                    db.NOIDUNG_PHANHOIs.InsertOnSubmit(phanhoi);
-                    db.SubmitChanges();
-
-                    TempData["Message"] = "Gửi phản hồi thành công!";
-                    return RedirectToAction("Contact");
-                }
-                else
+                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(message))
                 {
                     ViewBag.Message = "Vui lòng nhập đầy đủ thông tin.";
                     ViewData["name"] = name;
                     ViewData["email"] = email;
                     ViewData["message"] = message;
+                    return View();
                 }
+
+                // --- Tạo MAND tự tăng ND01, ND02 ---
+                var lastPhanHoi = db.NOIDUNG_PHANHOIs.OrderByDescending(p => p.MAND).FirstOrDefault();
+                string newMAND = "ND01";
+                if (lastPhanHoi != null)
+                {
+                    int lastNumber = 0;
+                    if (int.TryParse(lastPhanHoi.MAND.Substring(2), out lastNumber))
+                    {
+                        newMAND = "ND" + (lastNumber + 1).ToString("D2");
+                    }
+                }
+
+                // --- Tạo mã yêu cầu mới cho bảng YEUCAUHOTRO ---
+                string newMAYEUCAU = "YE" + DateTime.Now.Ticks.ToString().Substring(0, 6); // tối đa 10 ký tự
+                YEUCAUHOTRO yc = new YEUCAUHOTRO
+                {
+                    MAYEUCAU = newMAYEUCAU,
+                    // nếu có trường bắt buộc khác, gán ở đây
+                };
+                db.YEUCAUHOTROs.InsertOnSubmit(yc);
+                db.SubmitChanges();
+
+                // --- Tạo record NOIDUNG_PHANHOI ---
+                NOIDUNG_PHANHOI phanhoi = new NOIDUNG_PHANHOI
+                {
+                    MAND = newMAND,
+                    MAYEUCAU = newMAYEUCAU,
+                    MAKH = Session["User ID"]?.ToString(),
+                    MANV = null,
+                    NOIDUNG_PHANHOI1 = $"Họ tên: {name}\nEmail: {email}\nNội dung: {message}",
+                    NGAYGUI_PHANHOI = DateTime.Now
+                };
+
+                db.NOIDUNG_PHANHOIs.InsertOnSubmit(phanhoi);
+                db.SubmitChanges();
+
+                TempData["Message"] = "Gửi phản hồi thành công!";
+                return RedirectToAction("Contact");
             }
             catch (Exception ex)
             {
@@ -105,11 +102,8 @@ namespace Web_CinemaManagement.Controllers
                 ViewData["name"] = name;
                 ViewData["email"] = email;
                 ViewData["message"] = message;
+                return View();
             }
-
-            return View();
         }
-
-
     }
 }

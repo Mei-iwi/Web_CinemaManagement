@@ -26,39 +26,40 @@
             <h1>Liên hệ với chúng tôi</h1>
 
             <!-- Thông báo -->
-         
-                @if (TempData["Message"] != null)
-                {
-                    <div class="alert alert-success">@TempData["Message"]</div>
-                }
+            @* Thông báo thành công *@
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success">@TempData["Message"]</div>
+            }
 
-                <!-- Thông báo lỗi -->
-                @if (!string.IsNullOrEmpty(ViewBag.Message as string))
-                {
-                    <div class="alert alert-danger">@ViewBag.Message</div>
-                }
-            <!-- FORM LIÊN HỆ -->
+            @* Thông báo lỗi *@
+            @if (!string.IsNullOrEmpty(ViewBag.Message as string))
+            {
+                <div class="alert alert-danger">@ViewBag.Message</div>
+            }
+
             @using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-group mb-3">
-                    @Html.Label("Họ và tên", htmlAttributes: new { @for = "name" })
+                    @Html.Label("Họ và tên")
                     @Html.TextBox("name", ViewData["name"] ?? "", new { @class = "form-control", placeholder = "Nhập họ và tên", required = "required" })
                 </div>
 
                 <div class="form-group mb-3">
-                    @Html.Label("Email", htmlAttributes: new { @for = "email" })
+                    @Html.Label("Email")
                     @Html.TextBox("email", ViewData["email"] ?? "", new { @class = "form-control", placeholder = "Nhập email", type = "email", required = "required" })
                 </div>
 
                 <div class="form-group mb-3">
-                    @Html.Label("Nội dung", htmlAttributes: new { @for = "message" })
+                    @Html.Label("Nội dung")
                     @Html.TextArea("message", ViewData["message"] != null ? ViewData["message"].ToString() : "", 5, 50, new { @class = "form-control", placeholder = "Nhập nội dung", required = "required" })
                 </div>
 
                 <button type="submit" class="btn btn-primary">Gửi</button>
             }
+        </div>
 
             <!-- CONTACT INFO & MAP -->
             <div class="row mt-4">
@@ -73,8 +74,8 @@
                     <h2>Liên hệ quảng cáo</h2>
                     <p>Phòng kinh doanh: +84-36-36 59 59<br>Ext: 278 (MS.HUYNH)<br>Email: ToilaMei@gmail.com</p>
 
-                    <h2>Về các rạp</h2>
-                    <p>..................</p>
+                    @*<h2>Về các rạp</h2>
+                    <p>..................</p>*@
                 </div>
 
                 <!-- Google Map -->
