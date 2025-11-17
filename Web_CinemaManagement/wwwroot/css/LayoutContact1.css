@@ -1,6 +1,13 @@
-﻿/* ================= MENU LEFT ================= */
+﻿/* ================= BODY ================= */
+body {
+    background-color: #f8f9fa;
+    color: #000;
+    font-family: Arial, sans-serif;
+}
+
+/* ================= MENU LEFT ================= */
 .menu-left {
-    min-height: 100vh; /* full chiều cao cột menu */
+    min-height: 100vh;
     padding: 2rem 1rem;
     background-color: #f8f9fa;
     border-right: 1px solid #ddd;
@@ -8,33 +15,42 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    transition: all 0.3s ease;
+    border-radius: 0 10px 10px 0;
+    color: #333;
 }
 
-    /* Menu items */
     .menu-left .nav-link {
-        font-size: 1.4rem; /* chữ to hơn */
+        font-size: 1.4rem;
         font-weight: 600;
         color: #333;
         margin: 12px 0;
-        text-align: left; /* chữ căn trái */
-        padding-left: 15px; /* đẩy chữ vào trong */
-        padding-right: 15px; /* optional */
+        text-align: left;
+        padding: 0.5rem 1rem;
         border-radius: 6px;
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
     }
 
-        /* Hover */
         .menu-left .nav-link:hover {
             color: #007bff;
             background-color: #e9f2ff;
             transform: translateX(3px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Active link */
         .menu-left .nav-link.active {
             color: #fff;
             background-color: #007bff;
             font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .menu-left .nav-link i {
+            margin-right: 8px; /* icon cách chữ */
+            color: inherit;
+            font-size: 1.2rem;
         }
 
 /* Responsive menu */
@@ -46,6 +62,7 @@
         padding: 1rem;
         justify-content: space-around;
         align-items: center;
+        border-radius: 0;
     }
 
         .menu-left .nav-link {
@@ -53,64 +70,96 @@
             margin: 0 5px;
             text-align: center;
             transform: none;
+            box-shadow: none;
         }
 }
 
-/* ================= MAIN HEADING ================= */
-main h1 {
-    margin-top: 40px; /* đẩy xuống từ trên */
-    margin-bottom: 30px;
-    font-size: 2rem;
-    font-weight: bold;
+/* ================= MAIN ================= */
+main {
+    background-color: #fff;
+    color: #000;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-/* ================= CONTACT FORM ================= */
+/* ================= CONTACT DIVIDER / FORM ================= */
 .contact-divider {
-    border-left: 2px solid #ccc;
-    padding-left: 20px;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    color: #000;
+    padding: 20px;
+    border-radius: 8px;
 }
 
     .contact-divider form .form-group {
         margin-bottom: 15px;
     }
 
-    .contact-divider form .btn {
-        align-self: flex-start;
+        .contact-divider form .form-group label {
+            font-weight: 600;
+        }
+
+    .contact-divider form .form-control {
+        background-color: #fff !important;
+        color: #333 !important;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0.5rem;
     }
+
+    .contact-divider .btn {
+        background-color: #007bff !important;
+        color: #fff !important;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .contact-divider .btn:hover {
+            background-color: #0056b3 !important;
+        }
 
 /* ================= CONTACT INFO ================= */
-.contact-info h2 {
-    position: relative;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
-    font-weight: 600;
+.contact-info {
+    background-color: #fff;
+    color: #000;
+    padding: 15px;
+    border-radius: 8px;
 }
 
-    .contact-info h2::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 50px;
-        height: 3px;
-        background-color: #007bff;
+    .contact-info h2 {
+        position: relative;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+        font-weight: 600;
     }
 
-.contact-info p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
+        .contact-info h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #007bff;
+        }
 
-/* ================= RESPONSIVE COLUMNS ================= */
-.col-md-6 {
-    display: flex;
-    flex-direction: column;
-}
+    .contact-info p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
 
+/* ================= RESPONSIVE ================= */
 @media (max-width: 991px) {
+    main {
+        margin-top: 20px;
+    }
+
     .contact-divider {
         border-left: none;
         padding-left: 0;

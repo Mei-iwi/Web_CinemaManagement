@@ -355,6 +355,7 @@
     <Content Include="wwwroot\Bootstrap\js\bootstrap.min.js" />
     <Content Include="wwwroot\Bootstrap\js\jquery-3.3.1.min.js" />
     <Content Include="wwwroot\css\About.css" />
+    <Content Include="wwwroot\css\About2.css" />
     <Content Include="wwwroot\css\AboutThree.css" />
     <Content Include="wwwroot\css\DashboardCustomer.css" />
     <Content Include="wwwroot\css\ForgetPassword.css" />
