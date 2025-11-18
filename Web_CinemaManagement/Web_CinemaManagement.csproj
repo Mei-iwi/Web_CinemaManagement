@@ -22,6 +22,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
     </Reference>
@@ -299,6 +302,9 @@
     <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
@@ -426,10 +432,14 @@
     <Content Include="wwwroot\ProductPhoto\SnackMix.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Controllers\CinemaRoomController.cs" />
     <Compile Include="Areas\Manager\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Employee\Controllers\API_TicketsManagementController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
@@ -470,6 +480,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\RoomSeat\CinemaRoomIndexViewModel.cs" />
     <Compile Include="Models\Report\ReportViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -518,6 +529,18 @@
       <LastGenOutput>CinemaManegementLinq.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Employee\Views\web.config" />
+    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\CinemaRoomIndex.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\CreateSeatType.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\EditSeatType.cshtml" />
+    <Content Include="Areas\Manager\Views\CinemaRoom\DeleteSeatType.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
@@ -531,6 +554,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cart\DichVu.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Showtimes\ShowtimesIndex.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Contact\About.cshtml" />
@@ -548,6 +572,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
+    <Folder Include="Areas\Employee\Views\Shared\" />
+    <Folder Include="Areas\Manager\Data\" />
+    <Folder Include="Areas\Manager\Views\Seat\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\ADO\" />
+    <Folder Include="wwwroot\ProductPhoto\" />
     <Folder Include="Areas\Manager\Data\" />
     <Folder Include="Areas\Manager\Views\Tickets\" />
   </ItemGroup>

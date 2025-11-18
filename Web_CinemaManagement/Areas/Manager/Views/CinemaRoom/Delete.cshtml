@@ -1,0 +1,61 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.PHONGCHIEU
+
+@{
+    ViewBag.Title = "Xác Nhận Xóa Phòng";
+}
+
+<div class="container-fluid mt-4">
+    <h2>@ViewBag.Title</h2>
+
+    <div class="alert alert-danger" role="alert">
+        <h3>Bạn có chắc chắn muốn xóa phòng này không?</h3>
+        <p>Hành động này không thể hoàn tác.</p>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h5 class="mb-0">Thông tin phòng sẽ bị xóa</h5>
+        </div>
+        <div class="card-body">
+
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.MAPHONG)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.MAPHONG)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.TENPHONG)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TENPHONG)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.TONGSOGHE)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TONGSOGHE)
+                </dd>
+            </dl>
+
+            <hr />
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color mt-3">
+                    <input type="submit" value="Xác nhận Xóa" class="btn btn-danger" />
+
+                    @Html.ActionLink("Hủy (Quay lại danh sách)", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
+                </div>
+            }
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+</div>
