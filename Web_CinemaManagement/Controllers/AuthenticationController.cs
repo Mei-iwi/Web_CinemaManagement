@@ -83,13 +83,15 @@ namespace Web_CinemaManagement.Controllers
                     {
                         Session["User"] = em;
 
-                        return RedirectToAction("DashBoard", "Management");
+                        return RedirectToAction("Dashboard", "Home", new { area = "Employee" });
+
+
                     }
                     else if (position == 2)
                     {
                         Session["User"] = em;
+                        return RedirectToAction("Dashboard", "Home", new { area = "Manager" });
 
-                        return RedirectToAction("DashBoard", "Employee");
                     }
                     else
                     {
@@ -98,7 +100,7 @@ namespace Web_CinemaManagement.Controllers
                     }
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Dashboard", "Home");
             }
             else
             {
@@ -119,6 +121,9 @@ namespace Web_CinemaManagement.Controllers
 
         public ActionResult Logout()
         {
+
+            int position = (int)Session["Position"];
+
             Session["User"] = null;
 
             Session["UserID"] = "JustWatch";
@@ -127,8 +132,16 @@ namespace Web_CinemaManagement.Controllers
 
             Session["Position"] = -1;
 
+            if (position != 0)
+            {
+                return RedirectToAction("Dashboard", "Home", new { area = "" });
 
-            return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Dashboard", "Home");
+
+            }
         }
 
         public ActionResult ForgetPassword()
@@ -139,7 +152,7 @@ namespace Web_CinemaManagement.Controllers
         public JsonResult getCode(string username, string email)
         {
 
-            string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+            string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
 
             bool checkUser = DataAccess.DataProvider.TestConnection(str);
 
@@ -196,7 +209,7 @@ namespace Web_CinemaManagement.Controllers
         {
             try
             {
-                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
 
                 UpdatePassword update = new UpdatePassword();
                 int kq = update.changePassword(str, User, NewPass);
@@ -230,7 +243,7 @@ namespace Web_CinemaManagement.Controllers
             CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
 
             KHACHHANG kh = db.KHACHHANGs
-                       .OrderByDescending(t => t.MAHANG)
+                       .OrderByDescending(t => t.MAKH)
                        .FirstOrDefault();
 
             int newID = 1;
@@ -297,7 +310,7 @@ namespace Web_CinemaManagement.Controllers
                     if (avatar != null && avatar.ContentLength > 0)
                     {
                         avatar.SaveAs(path);
-                    } 
+                    }
 
                     CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
 
@@ -315,7 +328,7 @@ namespace Web_CinemaManagement.Controllers
                 }
 
 
-                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "123456789");
+                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
 
                 bool checkUser = DataAccess.DataProvider.TestConnection(str);
 

@@ -35,7 +35,7 @@ namespace Web_CinemaManagement.Models.ModelEF
             }
             else
             {
-                return ConnectionHelper.getLinqConnectionString("JustWatch", "Abc12345!");
+                return ConnectionHelper.getEFConnectionString("JustWatch", "Abc12345!");
             }
 
             // Nếu Session chưa có, có thể throw lỗi hoặc dùng mặc định

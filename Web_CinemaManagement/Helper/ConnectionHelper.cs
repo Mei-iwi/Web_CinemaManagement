@@ -22,18 +22,18 @@ namespace Web_CinemaManagement.Helper
         public static string getEFConnectionString(string UserID, string Password)
         {
             string providerConn = $"Data Source={DataSource};" +
-                                  $"Initial Catalog={InitialCatalog};" +
-                                  $"User ID={UserID};" +
-                                  $"Password={Password};" +
-                                  $"MultipleActiveResultSets=True;" +
-                                  $"TrustServerCertificate=True;" +
-                                  $"Application Name=EntityFramework";
+                           $"Initial Catalog={InitialCatalog};" +
+                           $"User ID={UserID};" +
+                           $"Password={Password};" +
+                           $"MultipleActiveResultSets=True;" +
+                           $"TrustServerCertificate=True;" +
+                           $"Application Name=EntityFramework";
 
-            // Chuỗi EF metadata (giữ nguyên tên model của bạn)
-            string efConn = $"metadata=res://*/Models.ModelEF.CinemaManagementEF.csdl|" +
-                            $"res://*/Models.ModelEF.CinemaManagementEF.ssdl|" +
-                            $"res://*/Models.ModelEF.CinemaManagementEF.msl;" +
-                            $"provider=System.Data.SqlClient;" +
+            // Dùng tên assembly Library là DatabaseEF
+            string efConn = $"metadata=res://DatabaseEF/Models.ModelEF.CinemaManagementEF.csdl|" +
+                            $"res://DatabaseEF/Models.ModelEF.CinemaManagementEF.ssdl|" +
+                            $"res://DatabaseEF/Models.ModelEF.CinemaManagementEF.msl;" +
+                            "provider=System.Data.SqlClient;" +
                             $"provider connection string=\"{providerConn}\"";
 
             return efConn;

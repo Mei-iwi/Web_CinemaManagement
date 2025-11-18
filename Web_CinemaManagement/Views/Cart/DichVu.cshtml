@@ -37,10 +37,10 @@
                         // Sửa lỗi HINH_ANH bị null
                         var hinhAnh = !string.IsNullOrEmpty(item.HINH_ANH)
                                         ? item.HINH_ANH
-                                        : "~/wwwroot/Images/logo.png";
+                                        : "/wwwroot/ProductPhoto/" + item.HINH_ANH;
                     }
 
-                    <img class="product-image" src="@Url.Content(hinhAnh)" alt="@item.TENSP" />
+                    <img class="product-image" src="@Url.Content("/wwwroot/ProductPhoto/" +item.HINH_ANH)" alt="@item.TENSP" />
 
                     <h3 class="product-name">@item.TENSP</h3>
                     <p class="product-price">@string.Format("{0:N0} VNĐ", item.DONGIA)</p>
