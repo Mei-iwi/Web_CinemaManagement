@@ -38,6 +38,59 @@ namespace Web_CinemaManagement.Controllers
         {
             return View();
         }
+        //[HttpPost]
+        //public ActionResult Contact(string LoaiVanDe, string TieuDe, string NoiDung)
+        //{
+        //    if (Session["User"] == null)
+        //        return RedirectToAction("Login", "Authentication");
+
+        //    if (string.IsNullOrEmpty(LoaiVanDe) || string.IsNullOrEmpty(TieuDe) || string.IsNullOrEmpty(NoiDung))
+        //    {
+        //        ViewBag.Message = "Vui lòng điền đầy đủ thông tin.";
+        //        return View();
+        //    }
+
+        //    try
+        //    {
+        //        string maKH = null;
+        //        string maNV = null;
+
+        //        // Kiểm tra user đang login là KH hay NV
+        //        if (Session["User"].GetType() == typeof(KHACHHANG))
+        //        {
+        //            var kh = (KHACHHANG)Session["User"];
+        //            maKH = kh.MAKH;
+        //        }
+        //        else if (Session["User"].GetType() == typeof(NHANVIEN))
+        //        {
+        //            var nv = (NHANVIEN)Session["User"];
+        //            maNV = nv.MANV;
+        //        }
+
+        //        CSKH ticket = new CSKH()
+        //        {
+        //            MaKH = maKH,
+        //            MaNV = maNV,
+        //            LoaiVanDe = LoaiVanDe,
+        //            TieuDe = TieuDe,
+        //            NoiDung = NoiDung,
+        //            TrangThai = "Chờ xử lý",
+        //            NgayTao = DateTime.Now
+        //        };
+
+        //        db.CSKHs.InsertOnSubmit(ticket);
+        //        db.SubmitChanges();
+
+        //        ViewBag.Message = "Gửi phản hồi thành công!";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.Message = "Lỗi khi lưu vào DB: " + ex.Message;
+        //    }
+
+        //    return View();
+        //}
+        //-----------------------------------------------------------------------------------------------//
         [HttpPost]
         public ActionResult Contact(string LoaiVanDe, string TieuDe, string NoiDung)
         {
@@ -55,19 +108,20 @@ namespace Web_CinemaManagement.Controllers
                 string maKH = null;
                 string maNV = null;
 
-                // Kiểm tra user đang login là KH hay NV
-                if (Session["User"].GetType() == typeof(KHACHHANG))
+                // Nếu là khách hàng, lấy MAKH trực tiếp từ UserName
+                if ((int)Session["Position"] == 0)
                 {
-                    var kh = (KHACHHANG)Session["User"];
-                    maKH = kh.MAKH;
+                    maKH = Session["UserID"]?.ToString();
                 }
-                else if (Session["User"].GetType() == typeof(NHANVIEN))
+                else
                 {
-                    var nv = (NHANVIEN)Session["User"];
-                    maNV = nv.MANV;
+                    // Nếu là nhân viên
+                    var nv = Session["User"] as NHANVIEN;
+                    if (nv != null)
+                        maNV = nv.MANV;
                 }
 
-                CSKH ticket = new CSKH()
+                CSKH ticket = new CSKH
                 {
                     MaKH = maKH,
                     MaNV = maNV,
