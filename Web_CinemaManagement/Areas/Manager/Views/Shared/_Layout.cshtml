@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/wwwroot/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/css/LayoutCustomer.css" rel="stylesheet" />
+    <link href="~/wwwroot/css/LayoutEmployee.css" rel="stylesheet" />
+
+    <title>@ViewBag.Title</title>
+    @{
+
+        var currentUser = Session["User"];
+    }
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark  text-light">
+            <img class="navbar-brand img-fluid mr-lg-5" width="120" height="100" src="@Url.Content("~/wwwroot/Images/logo.png")">
+
+            <form class="form-inline my-2 my-lg-0 w-50 minimum">
+                <p>TÔN TRỌNG TRẢI NGHIỆM KHÁCH HÀNG</p>
+            </form>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @if (currentUser == null)
+                {
+
+
+                    <ul class="navbar-nav mr-auto ">
+                        <li>
+                            @Html.ActionLink("Trang chủ quản trị", "", "", new { @class = "nav-link text-light" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Quản lý nhân viên", "", "", new { @class = "nav-link text-light" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quản lý phòng chiếu", "", "", new { @class = "nav-link text-light" })
+
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Lịch chiếu", "", "", new { @class = "nav-link text-light" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Quản lý khuyến mãi", "", "", new { @class = "nav-link text-light" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Cài đặt hệ thống", "", "", new { @class = "nav-link text-light" })
+                        </li>
+
+                    </ul>
+                }
+                else
+                {
+                    @Html.ActionLink("Đăng nhập tại đây để tiếp tục", "Login", "Authentication", null, new { @class = "nav-link text-light" })
+                }
+
+
+                <div style="cursor:pointer">
+
+                    @if (currentUser == null)
+                    {
+
+
+                        <div class="nav-item dropdown">
+                            <table>
+                                <tr>
+                                    <td rowspan="2">
+                                        <img src="@Url.Content("~/wwwroot/Images/user.png")" alt="Alternate Text" />
+                                    </td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/medal.png")" alt="Alternate Text" /> Mai Nhật Cường</td>
+
+                                </tr>
+                                <tr>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/positon.png")" alt="Alternate Text" /> Chức vụ: Nhân viên quản lý</td>
+                                </tr>
+
+                            </table>
+                            <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="#">Thay đổi mật khẩu</a>
+                                <a class="dropdown-item" href="#">Đăng xuất</a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Liên hệ, sự cố</a>
+                                <a class="dropdown-item" href="#">Chăm sóc khách hàng</a>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+    <footer class="footer-quanly text-light py-4">
+        <div class="container text-center">
+            <p>📧 Liên hệ kỹ thuật: <a href="mailto:support@huitcinema.com" class="text-info">support@huitcinema.com</a></p>
+            <p>📞 Hotline quản trị: 1900 5678</p>
+            <hr class="bg-light">
+            <p class="mb-0">&copy; 2025 HUIT Cinema Management System | Bản quyền thuộc HUIT Cinema</p>
+        </div>
+    </footer>
+
+</body>
+</html>

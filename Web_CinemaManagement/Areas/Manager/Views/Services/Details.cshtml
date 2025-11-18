@@ -1,0 +1,28 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.DICHVU
+
+@{
+    ViewBag.Title = "Chi tiết dịch vụ";
+}
+
+<link href="~/wwwroot/css/KhachHangManager.css" rel="stylesheet" />
+
+<div class="cinema-management-page">
+
+    <h2>Chi tiết dịch vụ</h2>
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.MASP)</dt>
+        <dd>@Html.DisplayFor(model => model.MASP)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.TENSP)</dt>
+        <dd>@Html.DisplayFor(model => model.TENSP)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.DONGIA)</dt>
+        <dd>@Html.DisplayFor(model => model.DONGIA)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.HINH_ANH)</dt>
+        <dd>@Html.DisplayFor(model => model.HINH_ANH)</dd>
+    </dl>
+
+    @Html.ActionLink("Quay lại", "Index")
+</div>

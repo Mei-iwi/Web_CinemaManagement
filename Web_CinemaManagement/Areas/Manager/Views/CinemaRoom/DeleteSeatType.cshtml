@@ -1,0 +1,50 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.GHE
+
+@{
+    ViewBag.Title = "Xác Nhận Xóa Loại Ghế";
+}
+
+<div class="container-fluid mt-4">
+    <div class="card shadow-sm" style="max-width: 800px; margin: auto;">
+        <div class="card-header">
+            <h4 class="mb-0">@ViewBag.Title</h4>
+        </div>
+        <div class="card-body">
+
+            <h5 class="text-danger">Bạn có chắc chắn muốn xóa loại ghế này?</h5>
+            <p>Hành động này không thể hoàn tác.</p>
+            <hr />
+
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MAGHE)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model. MAGHE)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LOAIGHE)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LOAIGHE)
+                    </dd>
+                </dl>
+
+                @using (Html.BeginForm("DeleteSeatType", "CinemaRoom", new { id = Model.MAGHE }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color mt-3">
+                        <input type="submit" value="Xác nhận Xóa" class="btn btn-danger" />
+                        @Html.ActionLink("Quay lại", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
+                    </div>
+
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger mt-3" })
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

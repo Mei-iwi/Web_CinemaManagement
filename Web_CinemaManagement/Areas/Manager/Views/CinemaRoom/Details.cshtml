@@ -1,0 +1,208 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.PHONGCHIEU
+
+@{
+    ViewBag.Title = "Chi Tiết Phòng Chiếu";
+}
+
+<style>
+
+    .screen-container {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        margin: 20px auto 10px auto;
+        max-width: 70%; 
+        position: relative; 
+    }
+
+    .screen {
+        width: 60%; 
+        padding: 5px;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 1;
+        font-size: 0.9em;
+    }
+
+    .exit-screen-label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 11px;
+        font-weight: bold;
+        padding: 6px 8px;
+        border-radius: 4px;
+        background-color: #dc3545;
+        color: white;
+        z-index: 0;
+    }
+
+    .exit-screen-left {
+        left: 0;
+        margin-left: -60px; 
+    }
+
+    .exit-screen-right {
+        right: 0;
+        margin-right: -60px; 
+    }
+
+    .seating-area-container {
+        text-align: center;
+    }
+
+    .grid-and-entrance-wrapper {
+        display: inline-block; 
+        text-align: left; 
+    }
+
+    .grid-container {
+        display: grid;
+        gap: 6px;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .entrance-bottom-left {
+        font-size: 12px;
+        font-weight: bold;
+        padding: 8px 12px;
+        border-radius: 5px;
+        background-color: #6c757d; 
+        color: white;
+        display: inline-block; 
+        margin-top: 15px; 
+    }
+
+    .seat {
+        width: 35px;
+        height: 35px;
+        background-color: #17a2b8; 
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: white;
+        font-weight: bold;
+        cursor: default;
+    }
+    .empty {
+        width: 35px;
+        height: 35px;
+        background-color: #f0f0f0; 
+        border-radius: 5px;
+    }
+
+    @@media (max-width: 768px) {
+        .exit-screen-label {
+            position: static;
+            transform: none;
+            margin: 5px 0;
+        }
+
+        .screen-container {
+            flex-direction: column;
+        }
+
+        .entrance-bottom-left {
+            display: block;
+            text-align: center;
+        }
+
+        .grid-and-entrance-wrapper {
+            display: block; 
+        }
+    }
+</style>
+
+<div class="container-fluid mt-4">
+    <div class="card shadow-sm" style="max-width: 900px; margin: auto;">
+        <div class="card-header">
+            <h4 class="mb-0">@ViewBag.Title: @Model.TENPHONG</h4>
+        </div>
+        <div class="card-body">
+
+            <h5 class="text-muted">Thông tin phòng</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.MAPHONG)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MAPHONG)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TENPHONG)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TENPHONG)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TONGSOGHE)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TONGSOGHE)
+                </dd>
+            </dl>
+
+            <h5 class="text-muted mt-5">Sơ đồ mô phỏng</h5>
+            <hr />
+
+            @if (Model.TONGSOGHE > 0)
+            {
+
+                int soHang = ViewBag.SoHang;
+                int soCot = ViewBag.SoCot;
+                int tongSoGhe = Model.TONGSOGHE ?? 0;
+                int dem = 0;
+
+                <div class="seating-area-container">
+
+                    <div class="screen-container">
+                        <div class="exit-screen-label exit-screen-left">THOÁT HIỂM</div>
+                        <div class="screen">MÀN HÌNH</div>
+                        <div class="exit-screen-label exit-screen-right">THOÁT HIỂM</div>
+                    </div>
+
+                    <div class="grid-and-entrance-wrapper">
+
+                        <div class="grid-container" style="grid-template-columns: repeat(@soCot, 35px);">
+                            @for (int i = 0; i < soHang; i++)
+                            {
+                                for (int j = 0; j < soCot; j++)
+                                { 
+                                    if (dem < tongSoGhe)
+                                    {
+                                        string seatName = $"{(char)('A' + i)}{j + 1}";
+                                        <div class="seat" title="@seatName">@seatName</div>
+                                        dem++;
+                                    }
+                                else
+                                    {
+                                    <div class="empty"></div>
+                                    }
+                                }
+                            }
+                        </div>
+
+                        <div class="entrance-bottom-left">LỐI VÀO</div>
+
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p class="text-center text-muted">Phòng này chưa có ghế nào.</p>
+            }
+
+            <div class="mt-4">
+                @Html.ActionLink("Quay lại Danh sách", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>

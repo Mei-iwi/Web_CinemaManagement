@@ -1,0 +1,179 @@
+﻿.about-title {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 40px;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ======================= */
+/*        Đoạn văn         */
+/* ======================= */
+.about-text {
+    max-width: 800px;
+    margin: 20px auto;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ======================= */
+/*      Gallery ngang      */
+/* ======================= */
+.about-gallery {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 20px;
+    justify-content: center;
+}
+
+    .about-gallery img {
+        height: 200px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .about-gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+/* ======================= */
+/*      Gallery item       */
+/* ======================= */
+.gallery-item {
+    text-align: center;
+    margin: 0 10px;
+}
+
+    .gallery-item img {
+        height: 200px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .gallery-item img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+/* ======================= */
+/*         Caption         */
+/* ======================= */
+.caption {
+    margin-top: 8px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+    .caption::after {
+        content: '';
+        display: block;
+        height: 2px;
+        width: 50%;
+        background-color: #4CAF50;
+        margin: 4px auto 0;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+
+.gallery-item:hover .caption {
+    color: #4CAF50;
+}
+
+    .gallery-item:hover .caption::after {
+        width: 80%;
+    }
+
+/* ======================= */
+/*      Menu chuyển trang  */
+/* ======================= */
+.page-links {
+    text-align: center;
+    margin: 30px 0;
+}
+
+    .page-links a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 5px;
+        background-color: #f0f0f0;
+        color: #333;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+        /* Hover */
+        .page-links a:hover {
+            background-color: #4CAF50;
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Active (trang hiện tại) */
+        .page-links a.active {
+            background-color: #4CAF50;
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+/* ======================= */
+/*        Carousel         */
+/* ======================= */
+.carousel-caption {
+    background: rgba(0,0,0,0.6);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+    .carousel-caption h5,
+    .carousel-caption p {
+        color: #fff;
+    }
+
+/* Thu nhỏ carousel */
+#cinemaCarousel {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+    /* Ẩn overlay mặc định */
+    #cinemaCarousel .carousel-caption {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Hiện overlay khi hover */
+    #cinemaCarousel .carousel-item:hover .carousel-caption {
+        opacity: 1;
+    }
+
+/* Nút điều khiển */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    padding: 10px;
+}

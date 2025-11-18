@@ -1,0 +1,83 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.VE
+@using Web_CinemaManagement.Models.ModelLinq;
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Employee/Views/Shared/_LayoutPageEmployee.cshtml";
+}
+
+<style>
+    .info tr td:nth-child(2n+1) {
+        font-size: 20px;
+        color: rgba(173, 255, 47, 1);
+        font-weight: bold;
+    }
+</style>
+
+<h2 class="text-warning text-center">THÔNG TIN CHI TIẾT VÉ KHÁCH HÀNG</h2>
+
+<div class="container text-light">
+    <p>
+        @Html.ActionLink("Quay lại danh sách vé", "TicketManagement", "TicketManagement")
+    </p>
+
+    <hr />
+    <table class="w-100 info">
+
+        <tr>
+            <td> Mã khách hàng:</td>
+            <td>
+                @Model.KHACHHANG.MAKH
+            </td>
+            <td>Tên khách hàng:</td>
+            <td>
+                @Model.KHACHHANG.HOTENKH
+            </td>
+            <td> Cấp độ, quyền lợi:</td>
+            <td>
+                @Model.KHACHHANG.HANGTHANHVIEN.TENHANG - @Model.KHACHHANG.HANGTHANHVIEN.UUDAI
+            </td>
+        </tr>
+
+        <tr>
+            <td> Mã vé:</td>
+            <td>
+                @Model.MAVE
+            </td>
+            <td>Loại vé:</td>
+            <td>
+                @Model.LOAIVE.TENLV
+            </td>
+            <td> Đơn giá:</td>
+            <td>
+                @Model.LOAIVE.DONGIA VNĐ
+            </td>
+        </tr>
+
+        <tr>
+            <td> Mã suất:</td>
+            <td>
+                @Model.SUATCHIEU.MASUAT
+            </td>
+            <td>Tên phòng:</td>
+            <td>
+                @Model.SUATCHIEU.PHONGCHIEU.TENPHONG
+            </td>
+            <td> Ngày chiếu:</td>
+            <td>
+                @Model.SUATCHIEU.NGAYCHIEU.Value.ToString("dd/MM/yyyy")
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <div class="text-center text-danger" style="font-size:20px;">
+        <strong>
+            Dịch vụ đã đăng ký
+        </strong>
+    </div>
+
+    @Html.Action("TicketServices", "TicketManagement", new { id = Model.MAVE, area = "Employee" })
+
+    
+
+</div>

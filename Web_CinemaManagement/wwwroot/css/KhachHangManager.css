@@ -1,0 +1,590 @@
+﻿/* CSS cho trang quản lý rạp phim */
+.cinema-management-page {
+    background-color: #f4f7f6; /* Nền xám nhạt cho toàn trang */
+    padding: 30px;
+    border-radius: 10px;
+    color: #333; /* Màu chữ chính */
+}
+
+    /* Tiêu đề trang */
+    .cinema-management-page h2 {
+        color: #1a3a5a; /* Màu xanh đậm của rạp phim */
+        font-weight: 700;
+        border-bottom: 3px solid #ffb800; /* Màu vàng gold/vé */
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+
+    /* Tiêu đề phụ của form */
+    .cinema-management-page h4 {
+        color: #2c5d8a;
+        margin-bottom: 15px;
+    }
+
+/* Toàn bộ form */
+.form-horizontal {
+    background-color: #ffffff; /* Nền trắng cho form (ĐÂY LÀ "KHUNG") */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Đổ bóng nhẹ */
+}
+
+/* Nhãn (label) của các trường */
+.control-label {
+    color: #333;
+    font-weight: 600;
+    text-align: left !important;
+}
+
+/* Ô nhập liệu */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa; /* Màu nền cho ô input */
+    color: #495057;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+    /* Khi click vào ô nhập liệu */
+    .form-control:focus {
+        border-color: #1a3a5a; /* Đổi màu viền khi focus */
+        box-shadow: 0 0 8px rgba(26, 58, 90, 0.2);
+        background-color: #fff;
+    }
+
+/* Nút bấm "Create" */
+.btn-default {
+    background-color: #1a3a5a; /* Màu xanh đậm */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+    .btn-default:hover {
+        background-color: #2c5d8a; /* Màu xanh nhạt hơn khi hover */
+        color: white;
+        transform: translateY(-2px); /* Hiệu ứng nhấc lên */
+    }
+
+/* Link "Back to List" */
+.back-link a {
+    color: #1a3a5a;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+    .back-link a:hover {
+        color: #ffb800; /* Đổi sang màu vàng khi hover */
+        text-decoration: underline;
+    }
+
+/* Thông báo lỗi validation */
+.text-danger {
+    color: #d9534f !important; /* Màu đỏ cho thông báo lỗi */
+    font-weight: 500;
+}
+
+/* CSS cho trang quản lý rạp phim */
+.cinema-management-page {
+    background-color: #f4f7f6; /* Nền xám nhạt cho toàn trang */
+    padding: 30px;
+    border-radius: 10px;
+    color: #333; /* Màu chữ chính */
+}
+
+    /* Tiêu đề trang */
+    .cinema-management-page h2 {
+        color: #1a3a5a; /* Màu xanh đậm của rạp phim */
+        font-weight: 700;
+        border-bottom: 3px solid #ffb800; /* Màu vàng gold/vé */
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+
+    /* Tiêu đề phụ của form */
+    .cinema-management-page h4 {
+        color: #2c5d8a;
+        margin-bottom: 15px;
+    }
+
+/* Toàn bộ form */
+.form-horizontal {
+    background-color: #ffffff; /* Nền trắng cho form (ĐÂY LÀ "KHUNG") */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Đổ bóng nhẹ */
+}
+
+/* Nhãn (label) của các trường */
+.control-label {
+    color: #333;
+    font-weight: 600;
+    text-align: left !important;
+}
+
+/* Ô nhập liệu */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa; /* Màu nền cho ô input */
+    color: #495057;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+    /* Khi click vào ô nhập liệu */
+    .form-control:focus {
+        border-color: #1a3a5a; /* Đổi màu viền khi focus */
+        box-shadow: 0 0 8px rgba(26, 58, 90, 0.2);
+        background-color: #fff;
+    }
+
+/* Nút bấm "Save" */
+.btn-default {
+    background-color: #1a3a5a; /* Màu xanh đậm */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+    .btn-default:hover {
+        background-color: #2c5d8a; /* Màu xanh nhạt hơn khi hover */
+        color: white;
+        transform: translateY(-2px); /* Hiệu ứng nhấc lên */
+    }
+
+/* Link "Back to List" */
+.back-link a {
+    color: #1a3a5a;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+    .back-link a:hover {
+        color: #ffb800; /* Đổi sang màu vàng khi hover */
+        text-decoration: underline;
+    }
+
+/* Thông báo lỗi validation */
+.text-danger {
+    color: #d9534f !important; /* Màu đỏ cho thông báo lỗi */
+    font-weight: 500;
+}
+/* Thêm class này vào khối <style> của bạn */
+.btn-secondary {
+    background-color: #f4f7f6; /* Màu xám nhạt */
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px; /* Thêm khoảng cách với nút bên trái */
+}
+
+    .btn-secondary:hover {
+        background-color: #e9ecef;
+        color: #333;
+    }
+
+/* CSS cho trang quản lý rạp phim */
+.cinema-management-page {
+    background-color: #f4f7f6; /* Nền xám nhạt */
+    padding: 30px;
+    border-radius: 10px;
+    color: #333;
+}
+
+    /* Tiêu đề trang */
+    .cinema-management-page h2 {
+        color: #1a3a5a;
+        font-weight: 700;
+        border-bottom: 3px solid #ffb800;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Dòng cảnh báo "Are you sure..." */
+    .cinema-management-page h3 {
+        color: #d9534f; /* Màu đỏ cảnh báo */
+        font-weight: 600;
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+/* "Khung" trắng chứa thông tin */
+.delete-details-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+    .delete-details-card h4 {
+        color: #2c5d8a;
+        margin-bottom: 15px;
+    }
+
+/* Định dạng danh sách thông tin (dl, dt, dd) */
+.dl-horizontal dt {
+    font-weight: 700; /* In đậm tiêu đề */
+    color: #333;
+    text-align: left;
+    padding-bottom: 12px;
+}
+
+.dl-horizontal dd {
+    margin-left: 180px; /* Căn lề cho nội dung */
+    color: #555;
+    padding-bottom: 12px;
+    font-size: 16px;
+}
+
+/* Khu vực chứa nút bấm */
+.form-actions {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Nút "Delete" - Phải là màu đỏ */
+.btn-danger-custom {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-danger-custom:hover {
+        background-color: #c9302c;
+        color: white;
+    }
+
+/* Link "Back to List" */
+.form-actions a {
+    color: #1a3a5a;
+    font-size: 16px;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: 600;
+}
+
+    .form-actions a:hover {
+        color: #ffb800;
+        text-decoration: underline;
+    }
+
+/* CSS cho trang quản lý rạp phim */
+.cinema-management-page {
+    background-color: #f4f7f6; /* Nền xám nhạt */
+    padding: 30px;
+    border-radius: 10px;
+    color: #333;
+}
+
+    /* Tiêu đề trang */
+    .cinema-management-page h2 {
+        color: #1a3a5a;
+        font-weight: 700;
+        border-bottom: 3px solid #ffb800;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+
+/* "Khung" trắng chứa thông tin */
+.details-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+    .details-card h4 {
+        color: #2c5d8a;
+        margin-bottom: 15px;
+    }
+
+/* Định dạng danh sách thông tin (dl, dt, dd) */
+.dl-horizontal dt {
+    font-weight: 700; /* In đậm tiêu đề */
+    color: #333;
+    text-align: left;
+    padding-bottom: 12px;
+    width: 160px; /* Đặt chiều rộng cố định cho nhãn */
+}
+
+.dl-horizontal dd {
+    margin-left: 180px; /* Căn lề cho nội dung */
+    color: #555;
+    padding-bottom: 12px;
+    font-size: 16px;
+}
+
+/* Khu vực link "Edit" và "Back to List" */
+.details-actions {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+    /* Nút "Edit" (kiểu nút chính) */
+    .details-actions .btn-primary-link {
+        background-color: #1a3a5a;
+        color: white;
+        padding: 10px 25px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
+
+        .details-actions .btn-primary-link:hover {
+            background-color: #2c5d8a;
+            color: white;
+            text-decoration: none;
+        }
+
+    /* Link "Back to List" (kiểu nút phụ) */
+    .details-actions .btn-secondary-link {
+        background-color: #f4f7f6;
+        color: #555;
+        border: 1px solid #ccc;
+        padding: 10px 25px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+        .details-actions .btn-secondary-link:hover {
+            background-color: #e9ecef;
+            color: #333;
+            text-decoration: none;
+        }
+
+/* CSS cho trang quản lý rạp phim */
+.cinema-management-page {
+    background-color: #f4f7f6; /* Nền xám nhạt */
+    padding: 30px;
+    border-radius: 10px;
+    color: #333;
+}
+
+    /* Tiêu đề trang */
+    .cinema-management-page h2 {
+        color: #1a3a5a;
+        font-weight: 700;
+        border-bottom: 3px solid #ffb800;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+
+/* "Khung" trắng chứa thông tin */
+.details-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+    .details-card h4 {
+        color: #2c5d8a;
+        margin-bottom: 15px;
+    }
+
+/* Định dạng danh sách thông tin (dl, dt, dd) */
+.dl-horizontal dt {
+    font-weight: 700; /* In đậm tiêu đề */
+    color: #333;
+    text-align: left;
+    padding-bottom: 12px;
+    width: 160px; /* Đặt chiều rộng cố định cho nhãn */
+}
+
+.dl-horizontal dd {
+    margin-left: 180px; /* Căn lề cho nội dung */
+    color: #555;
+    padding-bottom: 12px;
+    font-size: 16px;
+}
+
+/* Khu vực link "Edit" và "Back to List" */
+.details-actions {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+    /* Nút "Edit" (kiểu nút chính) */
+    .details-actions .btn-primary-link {
+        background-color: #1a3a5a;
+        color: white;
+        padding: 10px 25px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
+
+        .details-actions .btn-primary-link:hover {
+            background-color: #2c5d8a;
+            color: white;
+            text-decoration: none;
+        }
+
+    /* Link "Back to List" (kiểu nút phụ) */
+    .details-actions .btn-secondary-link {
+        background-color: #f4f7f6;
+        color: #555;
+        border: 1px solid #ccc;
+        padding: 10px 25px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+        .details-actions .btn-secondary-link:hover {
+            background-color: #e9ecef;
+            color: #333;
+            text-decoration: none;
+        }
+
+/* CSS cho trang quản lý rạp phim */
+.cinema-management-page {
+    background-color: #f4f7f6; /* Nền xám nhạt */
+    padding: 30px;
+    border-radius: 10px;
+    color: #333;
+}
+
+    /* Tiêu đề trang */
+    .cinema-management-page h2 {
+        color: #1a3a5a;
+        font-weight: 700;
+        border-bottom: 3px solid #ffb800;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+
+/* Nút "Create New" */
+.create-new-link {
+    display: inline-block;
+    background-color: #1a3a5a; /* Màu xanh đậm */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+    .create-new-link:hover {
+        background-color: #2c5d8a;
+        color: white;
+        text-decoration: none;
+    }
+
+/* "Khung" trắng chứa bảng */
+.table-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    overflow-x: auto; /* Giúp cuộn ngang nếu bảng quá rộng */
+}
+
+/* Bảng dữ liệu */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+    /* Tiêu đề bảng (th) */
+    .table th {
+        background-color: #2c5d8a; /* Màu xanh nhạt hơn */
+        color: #ffffff;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid #1a3a5a;
+    }
+
+    /* Nội dung ô (td) */
+    .table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        color: #555;
+    }
+
+    /* Các dòng chẵn (tạo hiệu ứng vằn) */
+    .table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    /* Hiệu ứng khi di chuột qua dòng */
+    .table tr:hover {
+        background-color: #e9ecef;
+    }
+
+    /* Cột cuối cùng chứa các link hành động */
+    .table td:last-child {
+        white-space: nowrap; /* Ngăn các link bị gãy dòng */
+        text-align: center;
+    }
+
+/* Các link hành động (Edit, Details, Delete) */
+.action-link {
+    font-weight: 600;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin: 0 3px;
+}
+
+    .action-link.edit {
+        color: #1a3a5a;
+    }
+
+    .action-link.details {
+        color: #555;
+    }
+
+    .action-link.delete {
+        color: #d9534f;
+    }
+
+    .action-link:hover {
+        text-decoration: underline;
+    }
