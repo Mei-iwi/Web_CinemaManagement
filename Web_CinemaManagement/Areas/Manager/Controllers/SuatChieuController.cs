@@ -17,11 +17,18 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
 
         public SuatChieuController()
         {
-            connString = ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
-            db = new CinemaManegementLinqDataContext(connString);
+            //connString = ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
+            db = new CinemaManegementLinqDataContext();
         }
         public ActionResult SuatChieuIndex()
-        { 
+        {
+            var postion = (int)Session["Position"];
+
+            if (Session["User"] == null || postion == -1 || postion == 0 || postion == 1)
+            {
+                return RedirectToAction("Login", "Authentication", new { area = "" });
+            }
+
             return View(db.SUATCHIEUs.ToList());
         }
 
