@@ -356,6 +356,7 @@
     <Content Include="wwwroot\Bootstrap\js\jquery-3.3.1.min.js" />
     <Content Include="wwwroot\css\About.css" />
     <Content Include="wwwroot\css\AboutThree.css" />
+    <Content Include="wwwroot\css\AboutTwo.css" />
     <Content Include="wwwroot\css\DashboardCustomer.css" />
     <Content Include="wwwroot\css\ForgetPassword.css" />
     <Content Include="wwwroot\css\KhachHangManager.css" />
