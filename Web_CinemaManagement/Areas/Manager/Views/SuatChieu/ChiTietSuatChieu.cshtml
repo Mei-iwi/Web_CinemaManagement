@@ -1,0 +1,50 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.SUATCHIEU
+
+@{
+    ViewBag.Title = "Chi Tiết Suất Chiếu";
+    Layout = "~/Views/Shared/_LayoutPageManager.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">🎬 Chi Tiết Suất Chiếu</h2>
+
+    <div class="card shadow-sm rounded-3">
+        <div class="card-header bg-dark text-white">
+            Thông tin suất chiếu
+        </div>
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Tên phòng:</div>
+                <div class="col-md-9">@Model.PHONGCHIEU.TENPHONG</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Tên phim:</div>
+                <div class="col-md-9">@Model.PHIM.TENPHIM</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Giờ bắt đầu:</div>
+                <div class="col-md-9">@Model.GIOBATDAU.ToString(@"hh\:mm")</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Giờ kết thúc:</div>
+                <div class="col-md-9">@Model.GIOKETTHUC</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Ngày chiếu:</div>
+                <div class="col-md-9">@Model.NGAYCHIEU</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Số lượng ghế:</div>
+                <div class="col-md-9">@Model.SOLUONG </div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <a href="@Url.Action("SuaSuatChieu", "SuatChieu", new { id = Model.MASUAT })" class="btn btn-warning me-2">
+                <i class="bi bi-pencil-square"></i> Sửa
+            </a>
+            <a href="@Url.Action("SuatChieuIndex", "SuatChieu")" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </div>
+    </div>
+</div>

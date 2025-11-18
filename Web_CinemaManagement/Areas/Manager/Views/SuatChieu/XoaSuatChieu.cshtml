@@ -1,0 +1,51 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.SUATCHIEU
+
+@{
+    ViewBag.Title = "Xóa Suất Chiếu";
+    Layout = "~/Views/Shared/_LayoutPageManager.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">Xóa Suất Chiếu</h2>
+    <p class="lead">Bạn có chắc chắn muốn xóa suất chiếu này không?</p>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <strong>Thông tin suất chiếu</strong>
+        </div>
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Phòng</dt>
+                <dd class="col-sm-9">@ViewBag.TenPhong</dd>
+
+                <dt class="col-sm-3">Phim</dt>
+                <dd class="col-sm-9">@ViewBag.TenPhim</dd>
+
+                <dt class="col-sm-3">Giờ bắt đầu</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.GIOBATDAU)</dd>
+
+                <dt class="col-sm-3">Giờ kết thúc</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.GIOKETTHUC)</dd>
+
+                <dt class="col-sm-3">Ngày chiếu</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.NGAYCHIEU)</dd>
+
+                <dt class="col-sm-3">Số lượng</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.SOLUONG)</dd>
+            </dl>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("XoaSuatChieuCOMMIT", "SuatChieu", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.MASUAT)
+
+        <div class="d-flex gap-2">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Quay lại danh sách", "SuatChieuIndex", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+
+</div>
+
