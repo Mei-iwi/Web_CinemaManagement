@@ -18,15 +18,23 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
 
         public CinemaRoomController()
         {
-            connString = ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
-            db = new CinemaManegementLinqDataContext(connString);
+            //connString = ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
+            db = new CinemaManegementLinqDataContext();
         }
 
 
         public ActionResult CinemaRoomIndex()
         {
+
+            var postion = (int)Session["Position"];
+
+            if (Session["User"] == null || postion == -1 || postion == 0 || postion == 1)
+            {
+                return RedirectToAction("Login", "Authentication", new { area = "" });
+            }
+
             var rooms = db.PHONGCHIEUs.ToList();
-            var seatTypes = db.GHEs.ToList(); 
+            var seatTypes = db.GHEs.ToList();
 
             var viewModel = new CinemaRoomIndexViewModel
             {
@@ -223,7 +231,7 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         }
 
         // GET: /CinemaRoom/EditSeatType/
-        public ActionResult EditSeatType(string id) 
+        public ActionResult EditSeatType(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
