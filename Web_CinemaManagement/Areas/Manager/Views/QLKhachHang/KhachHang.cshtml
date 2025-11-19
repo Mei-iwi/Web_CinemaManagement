@@ -12,6 +12,24 @@
     <p>
         @Html.ActionLink("Thêm khách hàng", "Create")
     </p>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+            @using (Html.BeginForm("TimKiem", "QLKhachHang", FormMethod.Get, new { @class = "d-flex" }))
+            {
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control"
+                           placeholder="Tìm theo tên Khách hàng..."
+                           value="@ViewBag.CurrentFilter" />
+                    <div class="input-group-append ">
+                        <button type="submit" class="btn btn-outline-info">
+                            🔍 Tìm
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
     <table class="table">
         <tr>
             <th>

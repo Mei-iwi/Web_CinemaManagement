@@ -1,9 +1,11 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.EMMA;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web_CinemaManagement.Models.ModelLinq;
+using Web_CinemaManagement.Models.RoomSeat;
 
 namespace Web_CinemaManagement.Areas.Manager.Controllers
 {
@@ -64,7 +66,21 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
             return View(kh);
         }
 
-        [HttpPost]
+        public ActionResult TimKiem(string keyword)
+        {
+            IQueryable<KHACHHANG> kh = db.KHACHHANGs;
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                kh = kh.Where(p => p.HOTENKH.ToUpper().Contains(keyword.ToUpper()));
+            }
+
+            kh = kh.OrderBy(p => p.HOTENKH);
+            return View("KhachHang", kh);
+        }
+
+        
+
+                [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(KHACHHANG kh)
         {
