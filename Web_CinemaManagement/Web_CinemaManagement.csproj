@@ -373,6 +373,7 @@
     <Content Include="wwwroot\css\AboutThree.css" />
     <Content Include="wwwroot\css\AboutTwo.css" />
     <Content Include="wwwroot\css\DashboardCustomer.css" />
+    <Content Include="wwwroot\css\Detail.css" />
     <Content Include="wwwroot\css\ForgetPassword.css" />
     <Content Include="wwwroot\css\KhachHangManager.css" />
     <Content Include="wwwroot\css\LayoutContact1.css" />
@@ -490,6 +491,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Phim\PhimDetailViewModel.cs" />
     <Compile Include="Models\RoomSeat\CinemaRoomIndexViewModel.cs" />
     <Compile Include="Models\Report\ReportViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -577,6 +579,7 @@
     <Content Include="Views\Contact\AboutThree.cshtml" />
     <Content Include="Views\Tickets\BookingHistory.cshtml" />
     <Content Include="Views\Tickets\Details.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
