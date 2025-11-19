@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+<link href="~/wwwroot/css/TipsCSS.css" rel="stylesheet" />
+<div class="tips-container">
+    <h1 class="tip-title" style="font-size:100px;font-weight:50">Bí Kíp Xem Phim Hay</h1>
+
+    <div id="tipsGrid" class="tips-grid">
+        <!-- API sẽ tự render tips -->
+    </div>
+</div>
+
+<script>
+    async function loadTips() {
+        try {
+            // Gọi đúng API của bạn: /Tips/GetTips
+            let response = await fetch("/Tips/GetTips");
+            let data = await response.json();
+
+            let container = document.getElementById("tipsGrid");
+            container.innerHTML = "";
+
+            data.forEach(tip => {
+                let card = `
+                    <div class="tip-card">
+                        <img class="tip-img" src="${tip.Image}" alt="Tip Image">
+                        <div class="tip-body">
+                            <h3>${tip.Title}</h3>
+                            <p>${tip.Content}</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+
+        } catch (err) {
+            console.error("Lỗi tải API:", err);
+        }
+    }
+
+    // Load API khi mở trang
+    loadTips();
+</script>

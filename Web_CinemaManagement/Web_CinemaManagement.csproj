@@ -378,9 +378,14 @@
     <Content Include="wwwroot\css\LayoutContact1.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
+    <Content Include="wwwroot\css\TipsCSS.css" />
+    <Content Include="wwwroot\Images\choose-seat.jpg" />
     <Content Include="wwwroot\Images\Error.png" />
+    <Content Include="wwwroot\Images\morning-show.jpg" />
+    <Content Include="wwwroot\Images\no-spoil.jpg" />
     <Content Include="wwwroot\Images\Protect.png" />
     <Content Include="wwwroot\Images\ProtectLogin.png" />
+    <Content Include="wwwroot\Images\save-money.jpg" />
     <Content Include="wwwroot\js\Movies.js" />
     <Content Include="wwwroot\css\Registration.css" />
     <Content Include="wwwroot\css\style_DichVu.css" />
@@ -442,6 +447,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\RouteConfig2.cs" />
@@ -465,6 +471,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Controllers\TipsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -577,6 +584,7 @@
     <Content Include="Views\Contact\AboutThree.cshtml" />
     <Content Include="Views\Tickets\BookingHistory.cshtml" />
     <Content Include="Views\Tickets\Details.cshtml" />
+    <Content Include="Views\Tips\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
