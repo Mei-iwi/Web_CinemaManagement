@@ -448,6 +448,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Controllers\EmployeeManagementController.cs" />
     <Compile Include="Areas\Manager\Controllers\SuatChieuController.cs" />
     <Compile Include="Areas\Manager\Controllers\CinemaRoomController.cs" />
     <Compile Include="Areas\Manager\Controllers\MoviesController.cs" />
@@ -556,6 +557,11 @@
     <Content Include="Areas\Manager\Views\CinemaRoom\CreateSeatType.cshtml" />
     <Content Include="Areas\Manager\Views\CinemaRoom\EditSeatType.cshtml" />
     <Content Include="Areas\Manager\Views\CinemaRoom\DeleteSeatType.cshtml" />
+    <Content Include="Areas\Manager\Views\EmployeeManagement\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\EmployeeManagement\AddEmployee.cshtml" />
+    <Content Include="Areas\Manager\Views\EmployeeManagement\DetailEmployee.cshtml" />
+    <Content Include="Areas\Manager\Views\EmployeeManagement\UpdateEmployee.cshtml" />
+    <Content Include="Areas\Manager\Views\EmployeeManagement\DeleteEmployee.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>

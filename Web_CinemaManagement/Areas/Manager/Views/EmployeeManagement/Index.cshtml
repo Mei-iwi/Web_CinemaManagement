@@ -1,0 +1,233 @@
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.NHANVIEN>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutPageManager.cshtml";
+
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int TotalPages = ViewBag.TotalPages ?? 1;
+    string currentKeyword = ViewBag.CurrentKeyword ?? "";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa !important;
+    }
+
+    .container {
+        min-width: 1500px;
+    }
+
+    .page-navigate {
+        width: 40px;
+        height: 40px;
+        color: black;
+        border-radius: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .disable {
+        width: 40px;
+        height: 40px;
+        color: black;
+        border-radius: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page-navigate a {
+        text-decoration: none;
+        padding: 0px;
+        margin: 0px;
+        color: black;
+        font-weight: bold;
+    }
+
+    .page-active {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+    }
+
+        .page-active a {
+            color: white;
+        }
+
+    .page-navigate:hover {
+        background-color: #e6f0ff;
+        border: none;
+    }
+
+        .page-navigate:hover a {
+            color: #0d6efd;
+        }
+</style>
+
+<div class="container mt-4 mb-3" id="employee-index">
+    <h2 class="text-center text-primary mb-4">
+        🧑‍💻 Quản lý nhân viên
+    </h2>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a href="/Manager/EmployeeManagement/AddEmployee" class="btn btn-success d-flex align-items-center">
+            <i class="bi bi-plus-circle me-2"></i> Thêm nhân viên mới
+        </a>
+
+        <form id="employeeFilterForm" class="d-flex" method="get" action="@Url.Action("Index", "EmployeeManagement")" style="width: 400px;">
+            <div class="input-group">
+                <input type="text"
+                       name="keyword"
+                       id="SearchInput"
+                       class="form-control"
+                       placeholder="Tìm theo tên, SĐT, hoặc email..."
+                       value="@ViewBag.CurrentKeyword" />
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-striped align-middle shadow-sm rounded-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã NV</th>
+                <th>Họ Tên</th>
+                <th>Giới tính</th>
+                <th>SĐT</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+                <th>Chức vụ</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MANV</td>
+                        <td>@item.HOTENNV</td>
+                        <td>@item.PHAI</td>
+                        <td>@item.SDT</td>
+                        <td>@item.EMAIL</td>
+                        <td>@item.DIACHI</td>
+                        <td>@item.CHUCVU</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("UpdateEmployee", "EmployeeManagement", new { id=item.MANV })" class="btn btn-primary me-1">
+                                Sửa <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="@Url.Action("DetailEmployee", "EmployeeManagement", new { id=item.MANV })" class="btn btn-light me-1 text-dark">
+                                Chi Tiết <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="@Url.Action("DeleteEmployee", "EmployeeManagement", new { id=item.MANV })" class="btn btn-danger">
+                                Xóa <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (TotalPages > 1)
+    {
+        <div class="w-100 d-flex justify-content-center pt-3 mt-4" id="page-navigate">
+            <ul class="d-flex justify-content-center align-items-center gap-2" style="list-style-type:none">
+                
+                @* Nút Previous *@
+                @if (currentPage > 1)
+                {
+                    <li class="page-navigate">
+                        <a href="@Url.Action("Index", "EmployeeManagement", new { page = currentPage - 1, keyword = currentKeyword })">Prev</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="disable">Prev</li>
+                }
+
+                @* Hiển thị các trang *@
+                @for (int i = 1; i <= TotalPages; i++)
+                {
+                    if (i == currentPage)
+                    {
+                        <li class="page-navigate page-active">
+                            <a href="@Url.Action("Index", "EmployeeManagement", new { page = i, keyword = currentKeyword })">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        if (i == 1 || i == TotalPages || (i >= currentPage - 2 && i <= currentPage + 2))
+                        {
+                            <li class="page-navigate">
+                                <a href="@Url.Action("Index", "EmployeeManagement", new { page = i, keyword = currentKeyword })">@i</a>
+                            </li>
+                        }
+                        else if (i == currentPage - 3 || i == currentPage + 3)
+                        {
+                            <li class="disable">...</li>
+                        }
+                    }
+                }
+
+                @* Nút Next *@
+                @if (currentPage < TotalPages)
+                {
+                    <li class="page-navigate">
+                        <a href="@Url.Action("Index", "EmployeeManagement", new { page = currentPage + 1, keyword = currentKeyword })">Next</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="disable">Next</li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('employeeFilterForm');
+            const searchInput = document.getElementById('SearchInput');
+
+            if (!form) return;
+
+            // Giữ lại focus và đặt con trỏ ở cuối text sau khi trang được tải lại
+            if (searchInput && searchInput.value) {
+                searchInput.focus();
+                // Đặt con trỏ về cuối văn bản để tiện gõ tiếp
+                const len = searchInput.value.length;
+                if (searchInput.setSelectionRange) {
+                    searchInput.setSelectionRange(len, len);
+                }
+            }
+
+            if (searchInput) {
+                let timer = null;
+                const DELAY = 750; // Tự submit form sau 750ms không gõ
+
+                // Tự động submit sau một khoảng delay khi người dùng gõ
+                searchInput.addEventListener('input', function () {
+                    clearTimeout(timer);
+                    timer = setTimeout(() => form.submit(), DELAY);
+                });
+
+                // Submit ngay lập tức khi nhấn Enter
+                searchInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        // Ngăn chặn sự kiện Enter mặc định của Form (tải lại trang 2 lần)
+                        e.preventDefault();
+                        clearTimeout(timer);
+                        form.submit();
+                    }
+                });
+            }
+        });
+    </script>
+}
