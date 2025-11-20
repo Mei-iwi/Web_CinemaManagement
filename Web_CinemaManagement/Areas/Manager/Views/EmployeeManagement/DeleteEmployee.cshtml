@@ -1,0 +1,59 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.NHANVIEN
+@{
+    ViewBag.Title = "DeleteEmployee";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutPageManager.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa !important;
+    }
+</style>
+
+<div class="container mt-4 mb-3">
+    <h2 class="text-danger">Xóa Nhân Viên</h2>
+    <p class="lead">Bạn có chắc chắn muốn xóa nhân viên "@Model.HOTENNV" không?</p>
+    <p>Lưu ý: Thao tác này có thể ảnh hưởng đến các bản ghi liên quan (vé, CSKH).</p>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <strong>Thông tin chi tiết</strong>
+        </div>
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Mã NV</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.MANV)</dd>
+
+                <dt class="col-sm-3">Họ Tên</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.HOTENNV)</dd>
+
+                <dt class="col-sm-3">Giới tính</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PHAI)</dd>
+
+                <dt class="col-sm-3">Chức vụ</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.CHUCVU)</dd>
+
+                <dt class="col-sm-3">SĐT</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.SDT)</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.EMAIL)</dd>
+
+                <dt class="col-sm-3">Người Q.Lý</dt>
+                <dd class="col-sm-9">@(ViewBag.TenQuanLy ?? "Không có")</dd>
+            </dl>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("DeleteEmployeeCommit", "EmployeeManagement", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.MANV)
+
+        <div class="d-flex">
+            <input type="submit" value="Xác nhận xóa" class="btn btn-danger mr-2" />
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+
+</div>

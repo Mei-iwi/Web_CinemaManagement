@@ -1,0 +1,118 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.NHANVIEN
+@{
+    ViewBag.Title = "UpdateEmployee";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutPageManager.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa !important;
+    }
+</style>
+
+<div class="container mt-4 mb-3">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white text-center fs-4 fw-bold rounded-top-4">
+            ✏️ Sửa Thông Tin Nhân Viên
+        </div>
+
+        @using (Html.BeginForm("UpdateEmployee", "EmployeeManagement", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card p-4 shadow-sm">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+                @Html.HiddenFor(model => model.MANV)
+
+                <p class="text-info">Mã nhân viên: <strong>@Model.MANV</strong></p>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.HOTENNV, "Họ Tên", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.HOTENNV, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.HOTENNV, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.PHAI, "Giới tính", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(
+                            m => m.PHAI,
+                            new SelectList(new List<string> { "NAM", "NỮ" }, Model.PHAI),
+                            "Chọn giới tính",
+                            new { @class = "form-control" }
+                        )
+                        @Html.ValidationMessageFor(m => m.PHAI, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.NGAYSINH, "Ngày Sinh", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.NGAYSINH, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(model => model.NGAYSINH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.SDT, "SĐT", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", type = "tel" })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.EMAIL, "Email", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", type = "email" })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.DIACHI, "Địa Chỉ", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.DIACHI, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.CHUCVU, "Chức Vụ", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.CHUCVU, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CHUCVU, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.MA_NQL, "Người Q.Lý", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(
+                            model => model.MA_NQL,
+                            ViewBag.ListQuanLy as SelectList,
+                            "- Chọn người quản lý -",
+                            new { @class = "form-control" }
+                        )
+                        @Html.ValidationMessageFor(model => model.MA_NQL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    @Html.LabelFor(model => model.LUONG, "Lương (VNĐ)", new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.LUONG, new { @class = "form-control", type = "number", min = "0" })
+                        @Html.ValidationMessageFor(model => model.LUONG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-between mt-4">
+                    <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+                    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+                </div>
+            </div>}
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@model Web_CinemaManagement.Models.ModelLinq.NHANVIEN
+@{
+    ViewBag.Title = "DetailEmployee";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutPageManager.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa !important;
+    }
+</style>
+
+<div class="container mt-4 mb-3">
+    <h2 class="text-center text-primary mb-4">🧑‍💻 Chi Tiết Nhân Viên</h2>
+
+    <div class="card shadow-sm rounded-3">
+        <div class="card-header bg-dark text-white">
+            Thông tin cá nhân
+        </div>
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Mã nhân viên:</div>
+                <div class="col-md-9">@Model.MANV</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Họ Tên:</div>
+                <div class="col-md-9">@Model.HOTENNV</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Giới tính:</div>
+                <div class="col-md-9">@Model.PHAI</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Ngày sinh:</div>
+                <div class="col-md-9">@(Model.NGAYSINH.HasValue ? Model.NGAYSINH.Value.ToString("dd/MM/yyyy") : "N/A")</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Số điện thoại:</div>
+                <div class="col-md-9">@Model.SDT</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Email:</div>
+                <div class="col-md-9">@Model.EMAIL</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Địa chỉ:</div>
+                <div class="col-md-9">@Model.DIACHI</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Chức vụ:</div>
+                <div class="col-md-9">@Model.CHUCVU</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Lương:</div>
+                <div class="col-md-9">@(Model.LUONG.HasValue ? Model.LUONG.Value.ToString("N0") + " VNĐ" : "N/A")</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 fw-bold">Người quản lý:</div>
+                <div class="col-md-9">@(ViewBag.TenQuanLy ?? "Không có")</div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <a href="@Url.Action("UpdateEmployee", "EmployeeManagement", new { id = Model.MANV })" class="btn btn-primary me-2">
+                <i class="bi bi-pencil-square"></i> Sửa
+            </a>
+            <a href="@Url.Action("Index", "EmployeeManagement")" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </div>
+    </div>
+</div>
