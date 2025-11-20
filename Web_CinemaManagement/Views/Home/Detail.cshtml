@@ -1,0 +1,126 @@
+﻿@model Web_CinemaManagement.Models.Phim.PhimDetailViewModel
+
+@{
+    ViewBag.Title = Model.TenPhim;
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-8">
+            <div class="row g-4">
+                
+                <div class="col-md-4">
+                    <div class="position-relative shadow rounded overflow-hidden">
+                        <img src="@Url.Content("~/Content/PhotoOfTheFilm/" + Model.HinhAnh)"
+                             class="img-fluid w-100"
+                             alt="@Model.TenPhim"
+                             onerror="this.src='https://via.placeholder.com/300x450?text=Poster'" />
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+
+                    <h1 class="fw-bold text-uppercase text-dark mb-0" style="line-height: 1.2;">
+                        @Model.TenPhim
+
+                    </h1>
+                    <span class="age-badge-large text-success">@Model.GioiHanTuoi</span>
+
+                    <div class="text-muted mb-3">
+                        <i class="fa fa-clock-o text-galaxy me-1"></i> @Model.ThoiLuong.TotalMinutes phút
+                        <span class="mx-2">|</span>
+                        <i class="fa fa-calendar text-galaxy me-1"></i> @Model.NgayKhoiChieu.ToString("dd/MM/yyyy")
+                    </div>
+
+                    <dl class="row mb-0">
+                        <dt class="col-sm-3 text-secondary fw-normal">Quốc gia:</dt>
+                        <dd class="col-sm-9 fw-bold">@Model.QuocGia</dd>
+
+                        <dt class="col-sm-3 text-secondary fw-normal">Nhà sản xuất:</dt>
+                        <dd class="col-sm-9">@Model.NhaSX</dd>
+
+                        <dt class="col-sm-3 text-secondary fw-normal">Thể loại:</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge bg-light text-dark border">@Model.TenTheLoai</span>
+                        </dd>
+
+                        <dt class="col-sm-3 text-secondary fw-normal">Đạo diễn:</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge bg-light text-dark border">@Model.DaoDien</span>
+                        </dd>
+
+                        <dt class="col-sm-3 text-secondary fw-normal">Diễn viên:</dt>
+                        <dd class="col-sm-9">
+                            @foreach (var actor in Model.DienVien.Split(','))
+                            {
+                                <span class="badge rounded-pill bg-light text-dark border me-1 mb-1 fw-normal">
+                                    @actor.Trim()
+                                </span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h4 class="text-uppercase fw-bold border-start border-4 border-primary ps-3 mb-3 text-secondary">
+                    Nội Dung Phim
+                </h4>
+                <p class="text-secondary lh-lg text-justify">
+                    @if (!string.IsNullOrEmpty(Model.NoiDung))
+                    {
+                        @Model.NoiDung
+                    }
+                    else
+                    {
+                        <span class="fst-italic text-muted">Đang cập nhật...</span>
+                    }
+                </p>
+
+                <div class="alert alert-light border text-muted d-flex align-items-center mt-3" role="alert">
+                    <i class="fa fa-info-circle text-galaxy me-2 fs-5"></i>
+                    <div>
+                        Phim <strong>@Model.TenPhim</strong> đang chiếu tại rạp. Đặt vé ngay để có vị trí tốt nhất!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+            <h5 class="fw-bold text-uppercase border-start border-4 border-primary ps-2 mb-4 text-secondary">
+                Phim Đang Chiếu
+            </h5>
+
+            <div class="d-flex flex-column gap-4">
+                @foreach (var phim in Model.PhimDeCu)
+                {
+                    <div class="card border-0 movie-card-hover cursor-pointer"
+                         onclick="location.href='@Url.Action("Detail", "Home", new { id = phim.MaPhim })'"
+                         style="cursor: pointer;">
+
+                        <div class="position-relative rounded overflow-hidden">
+                            <img src="@Url.Content("~/Content/PhotoOfTheFilm/" + phim.HinhAnh)"
+                                 class="card-img-top"
+                                 alt="@phim.TenPhim"
+                                 style="height: 180px; object-fit: cover;"
+                                 onerror="this.src='https://via.placeholder.com/300x200?text=Poster'" />                        
+                        </div>
+
+                        <div class="card-body p-2">
+                            <h6 class="card-title fw-bold text-dark text-truncate mb-0" title="@phim.TenPhim">
+                                @phim.TenPhim
+                            </h6>
+                      
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@Url.Action("Dashboard", "Home")" class="btn btn-outline-warning w-100 fw-bold text-uppercase">
+                    Xem thêm <i class="fa fa-angle-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

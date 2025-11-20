@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="/Cinema/Details/@item.MAPHIM"><em>Chi tiết phim</em></a>
+                <a href="@Url.Action("Detail","Home",new { id = item.MAPHIM })"><em>Chi tiết phim</em></a>
                 <br />
                 <a href="/Tickets/BuyTickets/@item.MAPHIM" class="btn w-50 font-weight-bold">Mua vé</a>
             </div>
