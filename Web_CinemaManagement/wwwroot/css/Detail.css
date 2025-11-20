@@ -1,0 +1,32 @@
+﻿.text-galaxy {
+    color: #f39c12 !important;
+}
+
+.bg-galaxy {
+    background-color: #f39c12 !important;
+    color: white;
+}
+
+.border-galaxy {
+    border-color: #f39c12 !important;
+}
+
+.btn-galaxy {
+    background-color: #f39c12;
+    border-color: #f39c12;
+    color: white;
+    font-weight: bold;
+}
+
+    .btn-galaxy:hover {
+        background-color: #d35400;
+        border-color: #d35400;
+        color: white;
+    }
+
+
+.movie-card-hover:hover {
+    transform: translateY(-3px);
+    transition: transform 0.2s;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
