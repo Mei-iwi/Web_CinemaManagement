@@ -382,6 +382,7 @@
     <Content Include="wwwroot\Images\Error.png" />
     <Content Include="wwwroot\Images\Protect.png" />
     <Content Include="wwwroot\Images\ProtectLogin.png" />
+    <Content Include="wwwroot\js\Cinemas.js" />
     <Content Include="wwwroot\js\Movies.js" />
     <Content Include="wwwroot\css\Registration.css" />
     <Content Include="wwwroot\css\style_DichVu.css" />
@@ -462,6 +463,7 @@
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CinemaCornerController.cs" />
+    <Compile Include="Controllers\CinemasController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -586,6 +588,7 @@
     <Content Include="Views\Tickets\BookingHistory.cshtml" />
     <Content Include="Views\Tickets\Details.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Cinemas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

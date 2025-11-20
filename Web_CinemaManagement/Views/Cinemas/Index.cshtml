@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Hệ thống rạp chiếu";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="text-center mb-4 fw-bold text-primary">Danh sách các Rạp</h2>
+            <p class="text-center text-light mb-5">Chọn rạp gần bạn nhất để xem lịch chiếu và đặt vé</p>
+
+            <div id="cinema-list-container">
+                <div class="text-center p-5 bg-white rounded shadow-sm">
+                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+                    <p class="mt-3 fw-bold text-secondary">Đang tải dữ liệu rạp...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+<script src="~/wwwroot/js/Cinemas.js"></script>
