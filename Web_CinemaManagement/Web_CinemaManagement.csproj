@@ -602,6 +602,7 @@
     <Content Include="Views\Cinemas\Index.cshtml" />
     <Content Include="Views\DirectorAndActor\Credits.cshtml" />
     <Content Include="Views\Seat\SelectSeat.cshtml" />
+    <Content Include="Views\Authentication\ChangePassWordUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

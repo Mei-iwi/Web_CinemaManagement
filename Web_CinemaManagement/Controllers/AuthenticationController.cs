@@ -370,5 +370,88 @@ namespace Web_CinemaManagement.Controllers
 
             return View();
         }
+        public ActionResult ChangePassWordUser()
+        {
+            int pos = Session["Position"] != null ? (int)Session["Position"] : -1;
+            ViewBag.Pos = pos;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassWordUser(string PassOld, string NewPass)
+        {
+            
+
+            try
+            {
+                int pos = (int)Session["Position"];
+                ViewBag.Pos = pos;
+
+                bool check = false;
+
+                string User = null;
+
+                if (pos == 0)
+                {
+                    Customer cus = Session["User"] as Customer;
+                    User = cus.MAKH;
+                    check = Helper.DataAccess.DataProvider.TestConnection(ConnectionHelper.getConnectionString(cus.MAKH, PassOld));
+
+                }
+                else if(pos == 1 || pos == 2)
+                {
+                    Employee em = Session["User"] as Employee;
+                    User = em.MANV;
+                    check = Helper.DataAccess.DataProvider.TestConnection(ConnectionHelper.getConnectionString(em.MANV, PassOld));
+
+                }
+                else
+                {
+                    ViewBag.err = "Không xác thực được người dùng";
+                    return View();
+
+                }
+
+                if (!check)
+                {
+                    ViewBag.err = "Mật khẩu trước đây không chính xác";
+                    return View();
+
+
+                }
+
+                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
+
+                string sql = "PROC_DOI_MK_SQLLOGIN";
+
+                using (SqlConnection con = new SqlConnection(str))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@UserName", User);
+                        cmd.Parameters.AddWithValue("@OldPassword", PassOld);
+                        cmd.Parameters.AddWithValue("@NewPassword", NewPass);
+
+                        con.Open();
+
+                        cmd.ExecuteNonQuery();
+
+                        ViewBag.mess = "Cập nhật mật khẩu thành công!";
+                        Session["UserID"] = User;
+                        Session["Password"] = NewPass;
+                        Session["Position"] = pos;
+                    }
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                ViewBag.err = "Cập nhật mật khẩu thất bại!, mật khẩu phải tối thiểu 8 kí tự và có chứa kí tự đặc biệt";
+            }
+            return View();
+        }
     }
 }
