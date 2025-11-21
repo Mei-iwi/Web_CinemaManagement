@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "SelectSeat";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+<link href="~/wwwroot/css/SelectSeat.css" rel="stylesheet" />
+
+<div id="cinemaContainer" style="position: relative; width: 1000px; height: 500px; margin: auto; background-color: #222;">
+    <!-- Màn hình -->
+    <div id="screen" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+        width: 60%; height: 20px; background: silver; border-radius: 10px; text-align:center; line-height:20px; color:black;">
+        MÀN HÌNH
+    </div>
+
+    <!-- Ghế sẽ được render ở đây -->
+    <div id="cinema" style="position: absolute; top: 50px; width: 95%; height: 400px;"></div>
+</div>
+
+<!-- Hiển thị ghế đang chọn -->
+<div class="text-center">
+    <p class="text-warning">Ghế đang chọn: <span id="selectedSeat">None</span></p>
+
+    <p id="time"></p>
+
+    <select id="chose" class="">
+       <option value="0">Chọn khung giờ</option>
+    </select>
+    <div>
+       <label class="control-label text-light">Loại vé</label>
+        <select id="lv">
+        </select>
+    </div>
+    <div class="p-3">
+        <button  class="btn btn-danger h-100">Thoát</button>
+
+        <button style="width:200px;" class="btn btn-success">Đặt vé</button>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/wwwroot/js/SelectSeat.js"></script>
+}

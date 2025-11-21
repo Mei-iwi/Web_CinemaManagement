@@ -1,0 +1,49 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#cinemaContainer {
+    background-color: #222; /* nền rạp phim tối */
+    border: 2px solid #555;
+    border-radius: 10px;
+    position: relative;
+}
+
+#screen {
+    background: silver;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+
+.seat {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .seat.vip {
+        background-color: gold;
+    }
+
+    .seat.couple {
+        background-color: lightpink;
+    }
+
+    .seat.booked {
+        background-color: blue;
+        user-select: none;
+        cursor: not-allowed;
+    }
+
+    .seat.selected {
+        background-color: gray;
+    }
+

@@ -379,6 +379,7 @@
     <Content Include="wwwroot\css\LayoutContact1.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
+    <Content Include="wwwroot\css\SelectSeat.css" />
     <Content Include="wwwroot\Images\Error.png" />
     <Content Include="wwwroot\Images\Protect.png" />
     <Content Include="wwwroot\Images\ProtectLogin.png" />
@@ -406,6 +407,7 @@
     <Content Include="wwwroot\js\Layout.js" />
     <Content Include="wwwroot\js\Login.js" />
     <Content Include="wwwroot\js\Registration.js" />
+    <Content Include="wwwroot\js\SelectSeat.js" />
     <Content Include="wwwroot\js\TicketManagement.js" />
     <Content Include="wwwroot\PhotoOfPerson\KH01.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\KH02.jpg" />
@@ -461,6 +463,7 @@
     <Compile Include="Areas\Manager\Controllers\ReportsController.cs" />
     <Compile Include="Areas\Manager\Controllers\ServicesController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Controllers\APISeatController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CinemaCornerController.cs" />
     <Compile Include="Controllers\CinemasController.cs" />
@@ -468,6 +471,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DirectorAndActorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -485,12 +489,14 @@
     <Compile Include="Helper\VerifyViaEmail.cs" />
     <Compile Include="Models\ADO\Cast.cs" />
     <Compile Include="Models\ADO\Crew.cs" />
+    <Compile Include="Models\ADO\DangKyModel.cs" />
     <Compile Include="Models\ADO\getInfoTickets.cs" />
     <Compile Include="Models\ADO\InfoTickets_Model.cs" />
     <Compile Include="Models\ADO\MovieCredits.cs" />
     <Compile Include="Models\ADO\MovieViewModel.cs" />
     <Compile Include="Models\ADO\ShowtimeDetailViewModel.cs" />
     <Compile Include="Models\ADO\ShowtimeViewModel.cs" />
+    <Compile Include="Models\ADO\TicketModel.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\ModelLinq\CinemaManegementLinq.designer.cs">
@@ -595,6 +601,7 @@
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Cinemas\Index.cshtml" />
     <Content Include="Views\DirectorAndActor\Credits.cshtml" />
+    <Content Include="Views\Seat\SelectSeat.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
