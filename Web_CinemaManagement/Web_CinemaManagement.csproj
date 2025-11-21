@@ -466,6 +466,7 @@
     <Compile Include="Controllers\CinemasController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\DirectorAndActorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
@@ -482,8 +483,11 @@
     <Compile Include="Helper\User.cs" />
     <Compile Include="Helper\VerifyCaptcha.cs" />
     <Compile Include="Helper\VerifyViaEmail.cs" />
+    <Compile Include="Models\ADO\Cast.cs" />
+    <Compile Include="Models\ADO\Crew.cs" />
     <Compile Include="Models\ADO\getInfoTickets.cs" />
     <Compile Include="Models\ADO\InfoTickets_Model.cs" />
+    <Compile Include="Models\ADO\MovieCredits.cs" />
     <Compile Include="Models\ADO\MovieViewModel.cs" />
     <Compile Include="Models\ADO\ShowtimeDetailViewModel.cs" />
     <Compile Include="Models\ADO\ShowtimeViewModel.cs" />
@@ -498,6 +502,7 @@
     <Compile Include="Models\RoomSeat\CinemaRoomIndexViewModel.cs" />
     <Compile Include="Models\Report\ReportViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TmdbService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -589,6 +594,7 @@
     <Content Include="Views\Tickets\Details.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Cinemas\Index.cshtml" />
+    <Content Include="Views\DirectorAndActor\Credits.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,41 @@
+﻿@model Web_CinemaManagement.Models.ADO.MovieCredits
+
+@{
+    ViewData["Title"] = "Diễn viên đạo diễn";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+
+
+<h2 class="text-light text-center">Cast (Diễn viên)</h2>
+<table class="table text-light">
+    <thead>
+        <tr>
+            <th>Ảnh</th>
+            <th>Tên</th>
+            <th>Vai diễn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var actor in Model.Cast)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(actor.ProfilePath))
+                    {
+                        <img src="@($"https://image.tmdb.org/t/p/w200{actor.ProfilePath}")" width="80" />
+                    }
+                </td>
+                <td>@actor.Name</td>
+                <td>@actor.Character</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2 class="text-center text-light">Director (Đạo diễn)</h2>
+<ul>
+    @foreach (var person in Model.Crew.Where(c => c.Job == "Director"))
+    {
+        <li>@person.Name</li>
+    }
+</ul>
