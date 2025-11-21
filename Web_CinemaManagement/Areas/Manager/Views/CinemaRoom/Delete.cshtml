@@ -5,7 +5,7 @@
 }
 
 <div class="container-fluid mt-4">
-    <h2>@ViewBag.Title</h2>
+    <h2 class="text-white">@ViewBag.Title</h2>
 
     <div class="alert alert-danger" role="alert">
         <h3>Bạn có chắc chắn muốn xóa phòng này không?</h3>
@@ -50,7 +50,7 @@
                 <div class="form-actions no-color mt-3">
                     <input type="submit" value="Xác nhận Xóa" class="btn btn-danger" />
 
-                    @Html.ActionLink("Hủy (Quay lại danh sách)", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
+                    @Html.ActionLink("Hủy", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
                 </div>
             }
 

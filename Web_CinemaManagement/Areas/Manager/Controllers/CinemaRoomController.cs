@@ -67,6 +67,50 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
             return View("CinemaRoomIndex", viewModel);
         }
 
+        private string GenerateNewMaPH()
+        {
+            string maxMaPH = db.PHONGCHIEUs
+                                .OrderByDescending(p => p.MAPHONG)
+                                .Select(p => p.MAPHONG)
+                                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(maxMaPH) || maxMaPH.Length < 10)
+            {
+                return "PC00000001";
+            }
+            string prefix = maxMaPH.Substring(0, 2);
+            string numericPart = maxMaPH.Substring(2);
+
+            if (int.TryParse(numericPart, out int number))
+            {
+                number++;
+                return prefix + number.ToString("D8");
+            }
+            return "PC00000001";
+        }
+
+        private string GenerateNewMaGhe()
+        {
+            string maxMaGhe = db.GHEs
+                                .OrderByDescending(g => g.MAGHE)
+                                .Select(g => g.MAGHE)
+                                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(maxMaGhe) || maxMaGhe.Length < 9)
+            {
+                return "G00000001";
+            }
+
+            string prefix = maxMaGhe.Substring(0, 1); 
+            string numericPart = maxMaGhe.Substring(1); 
+
+            if (int.TryParse(numericPart, out int number))
+            {
+                number++;
+                return prefix + number.ToString("D8");
+            }
+            return "G00000001";
+        }
 
         public ActionResult Create()
         {
@@ -80,6 +124,7 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    room.MAPHONG = GenerateNewMaPH();
                     db.PHONGCHIEUs.InsertOnSubmit(room);
                     db.SubmitChanges();
                     return RedirectToAction("CinemaRoomIndex");
@@ -217,6 +262,7 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    seatType.MAGHE = GenerateNewMaGhe();
                     db.GHEs.InsertOnSubmit(seatType);
                     db.SubmitChanges();
                     return RedirectToAction("CinemaRoomIndex");

@@ -15,35 +15,29 @@
             {
                 @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">
-                    <h5 class="text-muted">Thông tin loại ghế</h5>
-                    <hr />
+            <div class="form-horizontal">
+                <h5 class="text-muted">Thông tin loại ghế</h5>
+                <hr />
 
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    <div class="form-group row mb-3">
-                        @Html.LabelFor(model => model.MAGHE, "Mã Loại Ghế", htmlAttributes: new { @class = "col-md-3 col-form-label" })
-                        <div class="col-md-9">
-                            @Html.EditorFor(model => model.MAGHE, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.MAGHE, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                @Html.HiddenFor(model => model.MAGHE)
 
-                    <div class="form-group row mb-3">
-                        @Html.LabelFor(model => model.LOAIGHE, "Tên Loại Ghế", htmlAttributes: new { @class = "col-md-3 col-form-label" })
-                        <div class="col-md-9">
-                            @Html.EditorFor(model => model.LOAIGHE, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.LOAIGHE, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row mt-4">
-                        <div class="col-md-9 offset-md-3">
-                            <input type="submit" value="Tạo mới" class="btn btn-success" />
-                            @Html.ActionLink("Quay lại", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
-                        </div>
+                <div class="form-group row mb-3">
+                    @Html.LabelFor(model => model.LOAIGHE, "Tên Loại Ghế", htmlAttributes: new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.LOAIGHE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LOAIGHE, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+                <div class="form-group row mt-4">
+                    <div class="col-md-9 offset-md-3">
+                        <input type="submit" value="Tạo mới" class="btn btn-success" />
+                        @Html.ActionLink("Quay lại", "CinemaRoomIndex", null, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
             }
 
         </div>
