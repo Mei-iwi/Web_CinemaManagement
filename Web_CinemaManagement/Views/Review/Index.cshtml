@@ -1,0 +1,171 @@
+﻿@using Web_CinemaManagement.Models.API
+@model List<PhimReviewViewModel>
+
+@{
+    ViewBag.Title = "Góc Bình Luận Phim";
+    Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+
+<style>
+    .review-bg {
+        background-color: #121212;
+        color: #e0e0e0;
+        min-height: 100vh;
+        padding: 40px 0;
+        font-family: sans-serif;
+    }
+    /* Thanh lọc */
+    .filter-bar {
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #333;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-control-dark {
+        background-color: #333;
+        border: 1px solid #555;
+        color: #fff;
+        border-radius: 5px;
+        padding: 8px;
+        min-width: 300px;
+    }
+    /* Khung phim */
+    .movie-section {
+        background-color: #1e1e1e;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 50px;
+        border: 1px solid #333;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .movie-header {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #f39c12;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
+
+    .movie-poster {
+        width: 70px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 20px;
+        border: 1px solid #fff;
+    }
+
+    .movie-title {
+        color: #f39c12;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin: 0;
+    }
+    /* Card Review */
+    .review-card {
+        background-color: #2c2c2c;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid #27ae60;
+    }
+
+    .author-name {
+        color: #fff;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    .rating-badge {
+        background: #27ae60;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        float: right;
+    }
+
+    .no-rating {
+        background: #555;
+        color: #ccc;
+    }
+</style>
+
+<div class="review-bg">
+    <div class="container">
+        <h1 class="text-center mb-4" style="color: #f39c12; font-weight: bold;">🔥 GÓC BÌNH LUẬN PHIM 🔥</h1>
+
+        <div class="filter-bar">
+            @using (Html.BeginForm("Index", "Review", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                <label class="mr-3" style="font-weight:bold;">Chọn phim:</label>
+                @Html.DropDownList("searchName", ViewBag.ListPhim as SelectList, "--- Xem tất cả phim trong rạp ---",
+                new { @class = "form-control form-control-dark mr-2", @onchange = "this.form.submit()" })
+            }
+        </div>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var phim in Model)
+            {
+                <div class="movie-section">
+                    <div class="movie-header">
+                        <img src="~/wwwroot/PhotoOfTheFilm/@phim.HinhAnh" class="movie-poster" onerror="this.src='https://via.placeholder.com/70x100'" />
+                        <h2 class="movie-title">@phim.TenPhim</h2>
+                    </div>
+
+                    <div class="row">
+                        @if (phim.Reviews != null && phim.Reviews.Count > 0)
+                        {
+                            foreach (var rv in phim.Reviews)
+                            {
+                                var score = rv.author_details.rating.HasValue ? rv.author_details.rating + "/10" : "N/A";
+                                var scoreClass = rv.author_details.rating.HasValue ? "rating-badge" : "rating-badge no-rating";
+
+                                <div class="col-md-12">
+                                    <div class="review-card">
+                                        <div class="clearfix mb-2">
+                                            <span class="author-name">@rv.author</span>
+                                            <span class="text-muted ml-2" style="font-size: 0.8rem">@DateTime.Parse(rv.created_at).ToString("dd/MM")</span>
+                                            <span class="@scoreClass">★ @score</span>
+                                        </div>
+                                        <p style="color: #ccc; font-size: 0.95rem; margin: 0;">
+                                            @if (rv.content.Length > 300)
+                                            {
+                                                @Html.Raw(rv.content.Substring(0, 300)) <span>...</span>
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw(rv.content)
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-md-12">
+                                <div class="alert alert-dark text-center" style="background: #252525; border: 1px dashed #555; color: #888;">
+                                    <i class="glyphicon glyphicon-info-sign"></i>
+                                    Phim này hiện chưa có bài đánh giá nào trên hệ thống quốc tế (Hoặc tên phim chưa khớp).
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-warning text-center">Không có dữ liệu phim nào để hiển thị.</div>
+        }
+    </div>
+</div>

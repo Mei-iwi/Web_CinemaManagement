@@ -448,6 +448,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\RouteConfig2.cs" />
@@ -473,6 +474,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DirectorAndActorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
@@ -500,6 +502,7 @@
     <Compile Include="Models\ADO\ShowtimeDetailViewModel.cs" />
     <Compile Include="Models\ADO\ShowtimeViewModel.cs" />
     <Compile Include="Models\ADO\TicketModel.cs" />
+    <Compile Include="Models\API\ReviewPhimModel.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\ModelLinq\CinemaManegementLinq.designer.cs">
@@ -607,6 +610,7 @@
     <Content Include="Views\Seat\SelectSeat.cshtml" />
     <Content Include="Views\Authentication\ChangePassWordUser.cshtml" />
     <Content Include="Views\Tips\Index.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
