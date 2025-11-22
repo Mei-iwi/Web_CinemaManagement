@@ -1,0 +1,51 @@
+﻿/* Ép toàn bộ nền trang web thành màu trắng */
+body, .container-fluid, .content-wrapper {
+    background-color: #ffffff !important;
+    color: #000 !important;
+}
+
+/* Cấu hình thẻ Card */
+.movie-tip-card {
+    transition: all 0.3s ease;
+    background: #222; /* Nền của cái thẻ vẫn giữ màu đen cho ngầu */
+    border: 1px solid #333;
+}
+
+    /* --- HIỆU ỨNG HOVER MÀU XANH LỤC --- */
+
+    /* Khi rê chuột vào card: Viền xanh */
+    .movie-tip-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(40, 167, 69, 0.4) !important; /* Bóng đổ xanh */
+        border-color: #28a745 !important; /* Viền xanh */
+    }
+
+        /* Khi rê chuột vào card: Tiêu đề hóa xanh */
+        .movie-tip-card:hover .tip-title-link {
+            color: #28a745 !important; /* Chữ tiêu đề xanh lục */
+            text-decoration: none;
+        }
+
+        /* Khi rê chuột vào card: Ảnh sáng lên */
+        .movie-tip-card:hover .card-img-top {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+/* --- MÀU CHỮ --- */
+.tip-title-link {
+    color: #fff; /* Mặc định tiêu đề trắng */
+    font-weight: bold;
+}
+
+/* Nút bấm: Chuyển sang style Xanh Lục */
+.btn-custom-green {
+    color: #28a745;
+    border-color: #28a745;
+    background: transparent;
+}
+
+    .btn-custom-green:hover {
+        background-color: #28a745;
+        color: #fff;
+    }

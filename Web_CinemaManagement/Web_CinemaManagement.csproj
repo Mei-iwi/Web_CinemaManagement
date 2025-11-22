@@ -380,6 +380,7 @@
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
     <Content Include="wwwroot\css\SelectSeat.css" />
+    <Content Include="wwwroot\css\Tips.css" />
     <Content Include="wwwroot\Images\Error.png" />
     <Content Include="wwwroot\Images\Protect.png" />
     <Content Include="wwwroot\Images\ProtectLogin.png" />
@@ -409,6 +410,7 @@
     <Content Include="wwwroot\js\Registration.js" />
     <Content Include="wwwroot\js\SelectSeat.js" />
     <Content Include="wwwroot\js\TicketManagement.js" />
+    <Content Include="wwwroot\js\Tips.js" />
     <Content Include="wwwroot\PhotoOfPerson\KH01.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\KH02.jpg" />
     <Content Include="wwwroot\PhotoOfPerson\NV01.JPG" />
@@ -474,6 +476,7 @@
     <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Controllers\TipsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -603,6 +606,7 @@
     <Content Include="Views\DirectorAndActor\Credits.cshtml" />
     <Content Include="Views\Seat\SelectSeat.cshtml" />
     <Content Include="Views\Authentication\ChangePassWordUser.cshtml" />
+    <Content Include="Views\Tips\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
