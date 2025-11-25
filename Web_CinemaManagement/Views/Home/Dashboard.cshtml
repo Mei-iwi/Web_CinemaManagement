@@ -3,7 +3,6 @@
 @model PagedList.IPagedList<Web_CinemaManagement.Models.ModelLinq.PHIM>
 @helper Truncate(string input, int length)
 {
-
     if (input.Length < length)
     {
         @input
@@ -12,7 +11,6 @@
     {
         @input.Substring(0, length) <text>...</text>
     }
-
 }
 
 @{
@@ -22,8 +20,6 @@
 
 <link href="~/wwwroot/css/DashboardCustomer.css" rel="stylesheet" />
 <h1 class="text-center text">DANH SÁCH PHIM NỔI BẬT NHẤT</h1>
-
-
 
 <div class="row">
     @foreach (var item in Model)
@@ -43,19 +39,24 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="@Url.Action("Detail","Home",new { id = item.MAPHIM })"><em>Chi tiết phim</em></a>
+                <a href="/Cinema/Details/@item.MAPHIM"><em>Chi tiết phim</em></a>
                 <br />
-                <a href="/Seat/SelectSeat?id=@item.MAPHIM" class="btn w-50 font-weight-bold">Mua vé</a>
+
+                <a href="@Url.Action("Index", "Review", new { searchName = item.TENPHIM })"
+                   class="btn btn-warning w-50 font-weight-bold mt-2 mb-2"
+                   style="color: #fff;">
+                    ⭐ Xem Review
+                </a>
+                <br />
+
+                <a href="/Tickets/BuyTickets/@item.MAPHIM" class="btn w-50 font-weight-bold">Mua vé</a>
             </div>
 
         </div>
     }
-
 </div>
 
 <div class="page-item d-flex justify-content-center">
     @Html.PagedListPager(Model, page => Url.Action("Dashboard", "Home", new { page, area = "" }),
- PagedListRenderOptions.ClassicPlusFirstAndLast)
-
+    PagedListRenderOptions.ClassicPlusFirstAndLast)
 </div>
-
