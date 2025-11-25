@@ -152,7 +152,7 @@ namespace Web_CinemaManagement.Controllers
         public JsonResult getCode(string username, string email)
         {
 
-            string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
+            string str = Helper.ConnectionHelper.getConnectionString(FullAccount.UserID, FullAccount.Password);
 
             bool checkUser = DataAccess.DataProvider.TestConnection(str);
 
@@ -328,7 +328,7 @@ namespace Web_CinemaManagement.Controllers
                 }
 
 
-                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
+                string str = Helper.ConnectionHelper.getConnectionString(FullAccount.UserID, FullAccount.Password);
 
                 bool checkUser = DataAccess.DataProvider.TestConnection(str);
 
@@ -421,7 +421,7 @@ namespace Web_CinemaManagement.Controllers
 
                 }
 
-                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
+                string str = Helper.ConnectionHelper.getConnectionString(FullAccount.UserID, FullAccount.Password);
 
                 string sql = "PROC_DOI_MK_SQLLOGIN";
 

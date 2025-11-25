@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Configuration;
+using System.Data;
 
 namespace Web_CinemaManagement.Helper
 {
     public static class ConnectionHelper
     {
 
-        private static string DataSource = "34.133.93.201";
+        private static string DataSource = "MEI\\SQLEXPRESS";
 
         private static string InitialCatalog = "QL_RAP_PHIM";
 
 
         public static string getConnectionString(string UserID, string Password)
         {
+           
+
             return $"Data Source={DataSource};Initial Catalog={InitialCatalog};User ID={UserID};Password={Password}";
         }
 
@@ -59,5 +62,7 @@ namespace Web_CinemaManagement.Helper
         {
             return ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
         }
+
+
     }
 }
