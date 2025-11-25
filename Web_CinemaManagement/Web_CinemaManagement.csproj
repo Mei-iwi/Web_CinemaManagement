@@ -483,6 +483,8 @@
     <Compile Include="Helper\Customer.cs" />
     <Compile Include="Helper\DataAccess.cs" />
     <Compile Include="Helper\Employee.cs" />
+    <Compile Include="Helper\FullAccount.cs" />
+    <Compile Include="Helper\GetDataSource_Auto.cs" />
     <Compile Include="Helper\UpdatePassword.cs" />
     <Compile Include="Helper\User.cs" />
     <Compile Include="Helper\VerifyCaptcha.cs" />

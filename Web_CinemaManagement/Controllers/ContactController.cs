@@ -13,8 +13,8 @@ namespace Web_CinemaManagement.Controllers
 
         public ContactController()
         {
-            string connString = System.Configuration.ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
-            db = new CinemaManegementLinqDataContext(connString);
+            //string connString = System.Configuration.ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
+            db = new CinemaManegementLinqDataContext();
         }
 
         // GET: Contact
