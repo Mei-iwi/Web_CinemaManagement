@@ -61,6 +61,7 @@ namespace Web_CinemaManagement.Controllers
 
                 Session["Position"] = position;
 
+
                 if (position == 0)
                 {
 
@@ -70,6 +71,9 @@ namespace Web_CinemaManagement.Controllers
 
                     Session["User"] = cus;
 
+                    CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+                    Session["Hang"] = db.HANGTHANHVIENs.FirstOrDefault(t => t.MAHANG == cus.Mahang).TENHANG;
 
                 }
                 else

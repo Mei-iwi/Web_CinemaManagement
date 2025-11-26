@@ -88,7 +88,15 @@ namespace Web_CinemaManagement.Controllers
                         ghe.TRANGTHAI = "true";
                     }
 
+                    KHACHHANG kh = db.KHACHHANGs.Where(t => t.MAKH == user.MAKH).FirstOrDefault();
+
+                    kh.DIEMTICHLUY = kh.DIEMTICHLUY + 50;
+
                     db.SubmitChanges();
+
+
+                    Session["Hang"] = db.HANGTHANHVIENs.FirstOrDefault(t => t.MAHANG == user.Mahang).TENHANG;
+
 
                     return Json(new { success = true, message = "Mua vé thành công!", mave = mave });
                 }

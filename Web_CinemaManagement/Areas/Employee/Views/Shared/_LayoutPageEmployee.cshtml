@@ -33,7 +33,7 @@
 
                     <ul class="navbar-nav mr-auto ">
                         <li>
-                            @Html.ActionLink("Trang chủ", "Dashboard", "Home", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Trang chủ", "Dashboard", "Home", null, new { @class = "nav-link text-light" })
                         </li>
 
                         <li>
@@ -43,7 +43,7 @@
                             @Html.ActionLink("Quản lý vé", "TicketManagement", "TicketManagement", null, new { @class = "nav-link text-light" })
                         </li>
                         <li>
-                            @Html.ActionLink("Dịch vụ", "DichVu", "Cart", new { @class = "nav-link text-light" })
+                            @Html.ActionLink("Dịch vụ", "Sell", "SellServices", null, new { @class = "nav-link text-light" })
 
                         </li>
                        
@@ -86,7 +86,7 @@
 
                             </table>
                             <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="/Profile/ProfileUser">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="/Authentication/ChangePassWordUser">Thay đổi mật khẩu</a>
                                 <a class="dropdown-item" id="logout">Đăng xuất</a>
 
@@ -105,7 +105,7 @@
     </div>
 
     <footer class="footer-nhanvien text-light py-4">
-        <div class="container text-center">
+        <div class="container text-center" style="background-color:black">
             <p>📍 <strong>Rạp Phim HUIT Cinema</strong></p>
             <p>Hotline hỗ trợ kỹ thuật: <a href="tel:19001234" class="text-warning">1900 1234</a></p>
             <p>Giờ làm việc: 08:00 - 22:00 | Chính sách nhân viên được cập nhật nội bộ</p>

@@ -7,7 +7,7 @@
     int index = 1;
 }
 
-<h2 class="text-center text-warning">CHI TIẾT VÉ  @Model.First().MAVE</h2>
+<h2 class="text-center text-warning">CHI TIẾT VÉ  @*@Model.First().MAVE*@</h2>
 
 <p>
     @Html.ActionLink("Quay lại lịch sử đặt vé", "BookingHistory", "Tickets", new { area = "" }, null)

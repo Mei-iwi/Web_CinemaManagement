@@ -379,8 +379,11 @@
     <Content Include="wwwroot\css\LayoutContact1.css" />
     <Content Include="wwwroot\css\LayoutEmployee.css" />
     <Content Include="wwwroot\css\Login.css" />
+    <Content Include="wwwroot\css\ProfileUser.css" />
     <Content Include="wwwroot\css\SelectSeat.css" />
+    <Content Include="wwwroot\css\sell.css" />
     <Content Include="wwwroot\css\Tips.css" />
+    <Content Include="wwwroot\css\UpdateProfile.css" />
     <Content Include="wwwroot\Images\Error.png" />
     <Content Include="wwwroot\Images\Protect.png" />
     <Content Include="wwwroot\Images\ProtectLogin.png" />
@@ -454,6 +457,7 @@
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Employee\Controllers\SellServicesController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Manager\Controllers\EmployeeManagementController.cs" />
     <Compile Include="Areas\Manager\Controllers\SuatChieuController.cs" />
@@ -474,6 +478,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DirectorAndActorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
@@ -501,6 +506,7 @@
     <Compile Include="Models\ADO\InfoTickets_Model.cs" />
     <Compile Include="Models\ADO\MovieCredits.cs" />
     <Compile Include="Models\ADO\MovieViewModel.cs" />
+    <Compile Include="Models\ADO\ProductVM.cs" />
     <Compile Include="Models\ADO\ShowtimeDetailViewModel.cs" />
     <Compile Include="Models\ADO\ShowtimeViewModel.cs" />
     <Compile Include="Models\ADO\TicketModel.cs" />
@@ -585,6 +591,7 @@
     <Content Include="Areas\Manager\Views\EmployeeManagement\DetailEmployee.cshtml" />
     <Content Include="Areas\Manager\Views\EmployeeManagement\UpdateEmployee.cshtml" />
     <Content Include="Areas\Manager\Views\EmployeeManagement\DeleteEmployee.cshtml" />
+    <Content Include="Areas\Employee\Views\SellServices\Sell.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
@@ -613,6 +620,8 @@
     <Content Include="Views\Authentication\ChangePassWordUser.cshtml" />
     <Content Include="Views\Tips\Index.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Profile\ProfileUser.cshtml" />
+    <Content Include="Views\Profile\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

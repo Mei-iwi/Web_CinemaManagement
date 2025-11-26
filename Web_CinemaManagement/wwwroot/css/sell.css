@@ -1,0 +1,126 @@
+﻿/* ================== Khu vực chọn sản phẩm ================== */
+.product-selection {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+    .product-selection input[type="text"],
+    .product-selection input[type="number"] {
+        padding: 6px 10px;
+        font-size: 14px;
+        width: 180px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .product-selection button {
+        padding: 6px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .product-selection button:hover {
+            background-color: deepskyblue;
+        }
+
+/* ================== Bảng sản phẩm ================== */
+#tblProducts {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+    #tblProducts th,
+    #tblProducts td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #tblProducts th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+
+    #tblProducts tr.product-row:hover {
+        background-color: deepskyblue;
+        cursor: pointer;
+    }
+
+    #tblProducts img {
+        max-width: 80px;
+        border-radius: 4px;
+    }
+
+/* ================== Bảng hóa đơn ================== */
+#tblInvoice {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+    #tblInvoice th,
+    #tblInvoice td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #tblInvoice th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+
+    #tblInvoice .btnDelete {
+        padding: 4px 8px;
+        color: white;
+        background-color: #f44336;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.3s;
+    }
+
+        #tblInvoice .btnDelete:hover {
+            background-color: #d32f2f;
+        }
+
+/* ================== Tổng tiền ================== */
+.grand-total {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ================== Responsive ================== */
+@media screen and (max-width: 768px) {
+    .product-selection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .product-selection input[type="text"],
+        .product-selection input[type="number"] {
+            width: 100%;
+        }
+
+        .product-selection button {
+            width: 100%;
+        }
+
+    #tblProducts img,
+    #tblInvoice img {
+        max-width: 60px;
+    }
+}
