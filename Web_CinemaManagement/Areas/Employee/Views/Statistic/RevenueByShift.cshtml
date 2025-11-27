@@ -1,0 +1,175 @@
+﻿@using System.Linq
+@using Web_CinemaManagement.Models
+@model IEnumerable<RevenueViewModel>
+@{
+    ViewBag.Title = "RevenueByShift";
+    Layout = "~/Areas/Employee/Views/Shared/_LayoutPageEmployee.cshtml";
+    decimal tongDoanhThu = Model != null ? Model.Sum(x => x.TongDoanhThu) : 0;
+    int tongSoVe = Model != null ? Model.Sum(x => x.TongSoVe) : 0;
+    var caHotNhat = Model != null && Model.Any()
+                    ? Model.OrderByDescending(x => x.TongDoanhThu).FirstOrDefault().CaTruc
+                    : "N/A";
+}
+<link href="~/wwwroot/css/DoanhThu.css" rel="stylesheet" />
+<div class="container-fluid mt-4">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-white font-weight-bold">📊 Báo Cáo Doanh Thu Theo Ca</h1>
+        <a href="#" onclick="window.print()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> In Báo Cáo
+        </a>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card card-dashboard bg-gradient-primary text-white h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1 text-white-80">Tổng Doanh Thu</div>
+                            <div class="h3 mb-0 font-weight-bold">@string.Format("{0:N0}", tongDoanhThu) đ</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-white-80"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card card-dashboard bg-gradient-success text-white h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1 text-white-80">Tổng Vé Đã Bán</div>
+                            <div class="h3 mb-0 font-weight-bold">@tongSoVe <span style="font-size:1rem">vé</span></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-ticket-alt fa-2x text-white-80"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card card-dashboard bg-gradient-warning text-white h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1 text-white-80">Ca Doanh Thu Cao Nhất</div>
+                            <div class="h3 mb-0 font-weight-bold">@caHotNhat</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-trophy fa-2x text-white-80"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-7">
+            <div class="card card-dashboard shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
+                    <h6 class="m-0 font-weight-bold text-primary">Biểu Đồ Xu Hướng Doanh Thu</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myAreaChart" style="height: 320px; width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card card-dashboard shadow mb-4">
+                <div class="card-header py-3 bg-white">
+                    <h6 class="m-0 font-weight-bold text-primary">Chi Tiết Từng Ca</h6>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                        <table class="table table-modern table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Ngày</th>
+                                    <th>Ca</th>
+                                    <th class="text-right">Tiền (VNĐ)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td style="vertical-align: middle;">@item.NgayBan.ToString("dd/MM")</td>
+                                            <td style="vertical-align: middle;">
+                                                <span class="badge badge-primary px-2 py-1">@item.CaTruc</span>
+                                            </td>
+                                            <td class="text-right font-weight-bold text-success" style="vertical-align: middle;">
+                                                @string.Format("{0:N0}", item.TongDoanhThu)
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr><td colspan="3" class="text-center">Chưa có dữ liệu</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    var labels = @Html.Raw(Json.Encode(Model.Select(x => x.NgayBan.ToString("dd/MM") + " (" + x.CaTruc + ")").Take(10).Reverse()));
+    var dataRevenue = @Html.Raw(Json.Encode(Model.Select(x => x.TongDoanhThu).Take(10).Reverse()));
+
+    var ctx = document.getElementById("myAreaChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Doanh thu (VNĐ)',
+                data: dataRevenue,
+                backgroundColor: 'rgba(78, 115, 223, 0.7)',
+                borderColor: 'rgba(78, 115, 223, 1)',
+                borderWidth: 1,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.raw.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
