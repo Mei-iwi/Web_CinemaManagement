@@ -626,6 +626,7 @@
     <Content Include="Views\Review\Index.cshtml" />
     <Content Include="Views\Profile\ProfileUser.cshtml" />
     <Content Include="Views\Profile\Update.cshtml" />
+    <Content Include="Views\Home\DashboardSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

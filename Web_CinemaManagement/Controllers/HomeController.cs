@@ -36,10 +36,67 @@ namespace Web_CinemaManagement.Controllers
             int pageSize = 8;
             var pageList = p.ToPagedList(pageNumber, pageSize);
 
-         
+
 
             return View(pageList);
         }
+
+
+        public ActionResult DashboardSearch(int? id)
+        {
+            int position = Session["Position"] != null ? (int)Session["Position"] : -1;
+
+            CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+            if (position == -1)
+            {
+                Session["UserID"] = "JustWatch";
+                Session["Password"] = "Abc12345!";
+                Session["Position"] = -1;
+            }
+
+            List<PHIM> p;
+
+            if (id == 1)
+            {
+                p = db.PHIMs.Where(t => t.MATHELOAI == "TL00000001").ToList();
+            }
+            else if (id == 2)
+            {
+                p = db.PHIMs.Where(t => t.MATHELOAI == "TL00000004").ToList();
+
+            }
+            else if (id == 3)
+            {
+                p = db.PHIMs.Where(t => t.MATHELOAI == "TL00000005").ToList();
+
+            }
+            else
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
+            return View(p);
+        }
+
+        [HttpPost]
+        public ActionResult DashboardSearch(string Search)
+        {
+            int position = Session["Position"] != null ? (int)Session["Position"] : -1;
+
+            CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+            List<PHIM> p = db.PHIMs.Where(t => t.TENPHIM.Contains(Search)).ToList();
+
+            if (position == -1)
+            {
+                Session["UserID"] = "JustWatch";
+                Session["Password"] = "Abc12345!";
+                Session["Position"] = -1;
+            }
+
+            return View(p);
+        }
+
         public ActionResult Detail(string id)
         {
 
@@ -67,19 +124,19 @@ namespace Web_CinemaManagement.Controllers
                         {
                             if (reader.Read())
                             {
-                             
+
                                 phim.MaPhim = reader["MAPHIM"].ToString();
                                 phim.TenPhim = reader["TENPHIM"].ToString();
                                 phim.HinhAnh = reader["HINH_ANH"].ToString();
 
-                              
+
                                 phim.ThoiLuong = reader["THOILUONG"] != DBNull.Value ? (TimeSpan)reader["THOILUONG"] : TimeSpan.Zero;
                                 phim.NgayKhoiChieu = reader["NGAYKHOICHIEU"] != DBNull.Value ? (DateTime)reader["NGAYKHOICHIEU"] : DateTime.Now;
 
                                 phim.NhaSX = reader["NHASX"].ToString();
                                 phim.TenTheLoai = reader["TENTHELOAI"].ToString();
 
-                                
+
                                 phim.NoiDung = reader["NOIDUNG"].ToString();
                                 phim.DaoDien = reader["DAODIEN"].ToString();
                                 phim.DienVien = reader["DIENVIEN"].ToString();
@@ -101,7 +158,7 @@ namespace Web_CinemaManagement.Controllers
                 string sqlSidebar = @"SELECT TOP 3 MAPHIM, TENPHIM, HINH_ANH, GIOIHAN_TUOI 
                                       FROM PHIM 
                                       WHERE MAPHIM <> @CurrentId 
-                                      ORDER BY NEWID()"; 
+                                      ORDER BY NEWID()";
 
                 using (SqlCommand cmd = new SqlCommand(sqlSidebar, conn))
                 {
