@@ -1,0 +1,36 @@
+﻿.card-dashboard {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+    .card-dashboard:hover {
+        transform: translateY(-5px);
+    }
+
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #4e73df, #224abe);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(45deg, #1cc88a, #13855c);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(45deg, #f6c23e, #dda20a);
+}
+
+.text-white-80 {
+    color: rgba(255,255,255,0.8);
+}
+
+.table-modern thead th {
+    background-color: #f8f9fc;
+    border-top: none;
+    border-bottom: 2px solid #e3e6f0;
+    color: #4e73df;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}

@@ -374,6 +374,7 @@
     <Content Include="wwwroot\css\AboutTwo.css" />
     <Content Include="wwwroot\css\DashboardCustomer.css" />
     <Content Include="wwwroot\css\Detail.css" />
+    <Content Include="wwwroot\css\DoanhThu.css" />
     <Content Include="wwwroot\css\ForgetPassword.css" />
     <Content Include="wwwroot\css\KhachHangManager.css" />
     <Content Include="wwwroot\css\LayoutContact1.css" />
@@ -458,6 +459,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\Controllers\SellServicesController.cs" />
+    <Compile Include="Areas\Employee\Controllers\StatisticController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Manager\Controllers\EmployeeManagementController.cs" />
     <Compile Include="Areas\Manager\Controllers\SuatChieuController.cs" />
@@ -519,6 +521,7 @@
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\Phim\PhimDetailViewModel.cs" />
+    <Compile Include="Models\RevenueView\RevenueViewModel.cs" />
     <Compile Include="Models\RoomSeat\CinemaRoomIndexViewModel.cs" />
     <Compile Include="Models\Report\ReportViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -592,6 +595,7 @@
     <Content Include="Areas\Manager\Views\EmployeeManagement\UpdateEmployee.cshtml" />
     <Content Include="Areas\Manager\Views\EmployeeManagement\DeleteEmployee.cshtml" />
     <Content Include="Areas\Employee\Views\SellServices\Sell.cshtml" />
+    <Content Include="Areas\Employee\Views\Statistic\RevenueByShift.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
       <DependentUpon>CinemaManegementLinq.dbml</DependentUpon>
     </None>
