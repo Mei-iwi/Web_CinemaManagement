@@ -1,0 +1,71 @@
+﻿.card-dark {
+    background-color: #343a40;
+    color: #fff;
+    border: 1px solid #454d55;
+}
+
+.table-dark-custom {
+    background-color: #23272b;
+    color: #fff;
+}
+
+    .table-dark-custom th {
+        border-top: none;
+        color: #ffc107;
+    }
+
+.text-highlight {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.service-item {
+    border-bottom: 1px solid #555;
+    padding: 8px 0;
+}
+
+.service-qty {
+    width: 70px;
+    text-align: center;
+    background: #555;
+    color: white;
+    border: 1px solid #777;
+}
+
+.bill-box {
+    background-color: #d4edda;
+    color: #155724;
+    border: 2px dashed #28a745;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* --- CẤU HÌNH IN ẤN (PRINT) --- */
+@@media print {
+    body * {
+        visibility: hidden;
+    }
+    /* Ẩn tất cả */
+    .bill-box, .bill-box * {
+        visibility: visible;
+    }
+    /* Chỉ hiện hóa đơn */
+    .bill-box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border: 2px solid #000;
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+    /* Ẩn nút bấm khi in */
+}
+

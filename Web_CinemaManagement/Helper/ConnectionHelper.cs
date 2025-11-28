@@ -10,7 +10,7 @@ namespace Web_CinemaManagement.Helper
     public static class ConnectionHelper
     {
 
-        private static string DataSource = "MEI\\SQLEXPRESS";
+        private static string DataSource = "WIN-LML4B3VMKIT";
 
         private static string InitialCatalog = "QL_RAP_PHIM";
 
