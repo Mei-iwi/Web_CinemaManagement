@@ -15,8 +15,8 @@ namespace Web_CinemaManagement.Areas.Employee.Controllers
         public TicketSalesController()
         {
             // Lấy chuỗi kết nối
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
-            db = new CinemaManegementLinqDataContext(conn);
+            //string conn = System.Configuration.ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
+            db = new CinemaManegementLinqDataContext();
         }
 
         // 1. TRANG CHỦ
