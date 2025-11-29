@@ -1,0 +1,251 @@
+﻿@model List<Web_CinemaManagement.Models.ADO.ProductVM>
+@{
+    ViewBag.Title = "Bán vé & dịch vụ";
+    Layout = "~/Areas/Employee/Views/Shared/_LayoutPageEmployee.cshtml";
+}
+
+<link href="~/wwwroot/css/sell.css" rel="stylesheet" />
+
+<div class="container-fluid py-4">
+    <h2 class="text-center text-light mb-4">BÁN VÉ & SẢN PHẨM</h2>
+
+    <!-- Khu vực chọn sản phẩm -->
+    <div class="card mb-4">
+        <div class="card-body bg-dark text-light">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label">Mã sản phẩm / vé</label>
+                    <input type="text" id="txtMaSP" class="form-control" placeholder="Nhập hoặc click từ bảng bên dưới" autocomplete="off" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Mã vé (nếu có)</label>
+                    <input type="text" id="txtMaVe" class="form-control" placeholder="Để trống nếu không dùng" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Số lượng</label>
+                    <input type="number" id="txtSoLuong" class="form-control" min="1" value="1" />
+                </div>
+                <div class="col-md-3">
+                    <button type="button" id="btnAdd" class="btn btn-success w-100">Thêm vào hóa đơn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Danh sách sản phẩm -->
+        <div class="col-lg-7 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Danh sách sản phẩm / vé</h5>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-hover table-striped" id="tblProducts">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Mã SP</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Hình ảnh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var p in Model)
+                            {
+                                <tr class="product-row cursor-pointer"
+                                    data-masp="@p.MASP"
+                                    data-ten="@p.TENSP"
+                                    data-price="@p.DONGIA">
+                                    <td><strong>@p.MASP</strong></td>
+                                    <td>@p.TENSP</td>
+                                    <td class="text-end fw-bold text-danger">@p.DONGIA.ToString("N0") ₫</td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(p.HINH_ANH))
+                                        {
+                                            <img src="~/wwwroot/images/@p.HINH_ANH" width="80" class="rounded" />
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Không có ảnh</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hóa đơn tạm -->
+        <div class="col-lg-5">
+            <div class="card border-primary shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">HÓA ĐƠN TẠM</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm" id="tblInvoice">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Mã SP</th>
+                                    <th>Tên</th>
+                                    <th>Mã vé</th>
+                                    <th>SL</th>
+                                    <th class="text-end">Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dòng sẽ được thêm bằng JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="text-danger mb-0">TỔNG TIỀN:</h4>
+                        <h3 class="text-primary mb-0" id="grandTotal">0 ₫</h3>
+                    </div>
+
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // Định dạng tiền Việt Nam
+            function formatVND(number) {
+                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
+            }
+
+            // Cập nhật tổng tiền
+            function updateGrandTotal() {
+                let total = 0;
+                $('#tblInvoice tbody tr').each(function () {
+                    const amount = parseFloat($(this).data('total') || 0);
+                    total += amount;
+                });
+                $('#grandTotal').text(formatVND(total));
+            }
+
+            // Click vào dòng sản phẩm → tự động điền mã
+            $('#tblProducts').on('click', '.product-row', function () {
+                const maSP = $(this).data('masp');
+                $('#txtMaSP').val(maSP);
+                $('#txtSoLuong').val(1).focus().select();
+                $('#txtMaVe').focus(); // Cho nhập mã vé nhanh
+            });
+
+            // Thêm vào hóa đơn
+            $('#btnAdd').click(function () {
+                const maSP = $('#txtMaSP').val().trim();
+                const maVe = $('#txtMaVe').val().trim();
+                const soLuong = parseInt($('#txtSoLuong').val()) || 0;
+
+                if (!maSP) {
+                    alert('Vui lòng nhập hoặc chọn mã sản phẩm!');
+                    $('#txtMaSP').focus();
+                    return;
+                }
+                if (soLuong <= 0) {
+                    alert('Số lượng phải lớn hơn 0!');
+                    $('#txtSoLuong').focus();
+                    return;
+                }
+
+                // Kiểm tra sản phẩm có tồn tại trong danh sách không (tăng độ an toàn)
+                const productRow = $(`#tblProducts .product-row[data-masp="${maSP}"]`);
+                if (productRow.length === 0) {
+                    alert('Sản phẩm không tồn tại hoặc không được phép bán!');
+                    return;
+                }
+
+                // Gửi AJAX thêm vào DB
+                $.ajax({
+                    url: '/Employee/SellServices/AddToDangKy', // Đổi đúng Area nếu cần
+                    type: 'POST',
+                    data: { maSP: maSP, maVe: maVe || null, soLuong: soLuong },
+                    beforeSend: function () {
+                        $('#btnAdd').prop('disabled', true).text('Đang thêm...');
+                    },
+                    success: function (res) {
+                        if (res.success) {
+                            // Nếu đã có dòng (cùng MASP + MAVE) → xóa cũ, thêm mới (để tránh trùng key)
+                            const key = maSP + '|' + (maVe || '');
+                            $(`#tblInvoice tbody tr[data-key="${key}"]`).remove();
+
+                            // Thêm dòng mới từ server
+                            $('#tblInvoice tbody').append(res.htmlRow);
+                            updateGrandTotal();
+
+                            // Reset form
+                            $('#txtMaVe').val('');
+                            $('#txtSoLuong').val(1);
+                            $('#txtMaSP').focus();
+
+                            // Thông báo đẹp (tùy chọn dùng SweetAlert2)
+                            // Swal.fire('Thành công!', 'Đã thêm vào hóa đơn', 'success');
+                            alert('Đã thêm vào hóa đơn!');
+                        } else {
+                            alert(res.message || 'Thêm thất bại!');
+                        }
+                    },
+                    error: function () {
+                        alert('Lỗi kết nối server!');
+                    },
+                    complete: function () {
+                        $('#btnAdd').prop('disabled', false).html('Thêm vào hóa đơn');
+                    }
+                });
+            });
+
+            // Xóa sản phẩm khỏi hóa đơn
+            $(document).on('click', '.btnDelete', function () {
+                if (!confirm('Xóa sản phẩm này khỏi hóa đơn?')) return;
+
+                const row = $(this).closest('tr');
+                const maSP = row.find('.masp').text().trim();
+                const maVe = row.find('.mave').text().trim();
+                if (maVe === '-') maVe = '';
+
+                $.ajax({
+                    url: '/Employee/SellServices/DeleteFromDangKy',
+                    type: 'POST',
+                    data: { maSP: maSP, maVe: maVe },
+                    success: function (res) {
+                        if (res.success) {
+                            row.remove();
+                            updateGrandTotal();
+                            // Swal.fire('Đã xóa!', '', 'info');
+                        } else {
+                            alert(res.message || 'Xóa thất bại!');
+                        }
+                    },
+                    error: function () {
+                        alert('Lỗi server khi xóa!');
+                    }
+                });
+            });
+
+            // Nhấn Enter ở các ô → tự động thêm
+            $('#txtMaSP, #txtMaVe, #txtSoLuong').on('keypress', function (e) {
+                if (e.which === 13) { // Enter
+                    if ($(this).attr('id') === 'txtSoLuong') {
+                        $('#btnAdd').click();
+                    } else {
+                        $(this).closest('.col-md-4, .col-md-3').next().find('input').focus();
+                    }
+                }
+            });
+
+            // Focus vào ô mã sản phẩm khi load trang
+            $('#txtMaSP').focus();
+        });
+    </script>
+}

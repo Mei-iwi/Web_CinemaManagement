@@ -1,18 +1,4 @@
-﻿@using Web_CinemaManagement.Models.ModelLinq;
-@using PagedList.Mvc
-@model PagedList.IPagedList<Web_CinemaManagement.Models.ModelLinq.PHIM>
-@helper Truncate(string input, int length)
-{
-    if (input.Length < length)
-    {
-        @input
-    }
-    else
-    {
-        @input.Substring(0, length) <text>...</text>
-    }
-}
-
+﻿@model IEnumerable<Web_CinemaManagement.Models.ModelLinq.PHIM>
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
@@ -56,7 +42,6 @@
     }
 </div>
 
-<div class="page-item d-flex justify-content-center">
-    @Html.PagedListPager(Model, page => Url.Action("Dashboard", "Home", new { page, area = "" }),
-    PagedListRenderOptions.ClassicPlusFirstAndLast)
-</div>
+
+
+

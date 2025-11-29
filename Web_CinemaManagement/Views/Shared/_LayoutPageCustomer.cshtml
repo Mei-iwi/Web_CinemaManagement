@@ -45,9 +45,9 @@
                             SẢN PHẨM
                         </a>
                         <div class="dropdown-content" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">PHIM HÀNH ĐỘNG</a>
-                            <a class="dropdown-item" href="#">PHIM KINH DỊ</a>
-                            <a class="dropdown-item" href="#">PHIM HOẠT HÌNH</a>
+                            <a class="dropdown-item" href="/Home/DashboardSearch?id=1">PHIM HÀNH ĐỘNG</a>
+                            <a class="dropdown-item" href="/Home/DashboardSearch?id=2">PHIM KINH DỊ</a>
+                            <a class="dropdown-item" href="/Home/DashboardSearch?id=3">PHIM HOẠT HÌNH</a>
                             <a class="dropdown-item" href="/Showtimes/ShowtimesIndex">LỊCH CHIẾU PHIM</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/Cart/DichVu">DỊCH VỤ ĐI KÈM</a>
@@ -62,7 +62,7 @@
                         <div class="dropdown-content" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/CinemaCorner/CinemaNews">TIN TỨC ĐIỆN ẢNH</a>
                             <a class="dropdown-item" href="/DirectorAndActor/Credits/550">DIỄN VIÊN & ĐẠO DIỄN</a>
-                            <a class="dropdown-item" href="#">BÍ KÍP XEM PHIM</a>
+                            <a class="dropdown-item" href="/Tips/Index">BÍ KÍP XEM PHIM</a>
                             <a class="dropdown-item" href="@Url.Action("Index", "Review")">REVIEW PHIM</a>
 
                         </div>
@@ -73,7 +73,6 @@
                         </a>
                         <div class="dropdown-content" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/Cinemas/Index">DANH SÁCH RẠP</a>
-                            <a class="dropdown-item" href="#">GIÁ VÉ</a>
                             <a class="dropdown-item" href="/Tickets/BookingHistory">TRA CỨU LỊCH SỬ ĐẶT VÉ</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">KHUYẾN MÃI</a>
@@ -90,10 +89,12 @@
                     </li>
 
                 </ul>
-                <form class="form-inline my-2 my-lg-0 w-25 maximum">
+                @using (Html.BeginForm("DashboardSearch", "Home", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0 w-25 maximum" }))
+                {
                     @Html.TextBox("Search", null, new { @class = "form-control w-75", placeholder = "Bạn yêu thích phim gì?" })
                     <button class="btn btn-outline-light my-2 my-sm-0 search" type="submit"><img src="@Url.Content("~/wwwroot/Images/Search.png")" alt="Alternate Text" /></button>
-                </form>
+                }
+
                 <div style="cursor:pointer">
 
                     @if (currentUser != null)
@@ -110,12 +111,12 @@
 
                                 </tr>
                                 <tr>
-                                    <td><img src="@Url.Content("~/wwwroot/Images/star.png")" alt="Alternate Text" />Cập độ 0</td>
+                                    <td><img src="@Url.Content("~/wwwroot/Images/star.png")" alt="Alternate Text" />Cập độ: @Session["Hang"]</td>
                                 </tr>
 
                             </table>
                             <div style="min-width:160px;top:55px" class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="/Profile/ProfileUser">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="/Authentication/ChangePassWordUser">Thay đổi mật khẩu</a>
                                 <a class="dropdown-item" id="logout">Đăng xuất</a>
 

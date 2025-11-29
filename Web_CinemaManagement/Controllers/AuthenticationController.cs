@@ -61,6 +61,7 @@ namespace Web_CinemaManagement.Controllers
 
                 Session["Position"] = position;
 
+
                 if (position == 0)
                 {
 
@@ -70,6 +71,9 @@ namespace Web_CinemaManagement.Controllers
 
                     Session["User"] = cus;
 
+                    CinemaManegementLinqDataContext db = new CinemaManegementLinqDataContext();
+
+                    Session["Hang"] = db.HANGTHANHVIENs.FirstOrDefault(t => t.MAHANG == cus.Mahang).TENHANG;
 
                 }
                 else
@@ -209,7 +213,7 @@ namespace Web_CinemaManagement.Controllers
         {
             try
             {
-                string str = Helper.ConnectionHelper.getConnectionString("sqlserver", "Aa@123456789");
+                string str = Helper.ConnectionHelper.getConnectionString(Helper.FullAccount.UserID, Helper.FullAccount.Password);
 
                 UpdatePassword update = new UpdatePassword();
                 int kq = update.changePassword(str, User, NewPass);

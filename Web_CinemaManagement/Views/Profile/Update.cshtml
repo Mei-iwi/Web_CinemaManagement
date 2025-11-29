@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "UpdateProfile";
+
+    if (ViewBag.position == 0)
+    {
+        Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+    }
+    else if (ViewBag.position == 1)
+    {
+        Layout = "~/Areas/Employee/Views/Shared/_LayoutPageEmployee.cshtml";
+    }
+    else
+    {
+        Layout = "~/Areas/Manager/Views/Shared/_LayoutPageManager.cshtml";
+    }
+}
+<link href="~/wwwroot/css/ProfileUser.css" rel="stylesheet" />
+<link href="~/wwwroot/css/UpdateProfile.css" rel="stylesheet" />
+
+<div class="main">
+    @if (ViewBag.position == 0)
+    {
+        <!-- Cột trái giữ nguyên phần cấp độ -->
+        @*<div class="left-col">
+            <div class="level-box">
+                <div class="circle-progress">
+                    <div class="circle-inner">Cấp độ 1</div>
+                </div>
+                <div class="stars">
+                    <span>★</span><span>★</span><span>★</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width:66%;"></div></div>
+                <div class="progress-labels">
+                    <span>0</span><span>1</span><span>2</span><span>3</span>
+                </div>
+            </div>
+        </div>*@
+    }
+
+    <!-- Cột phải: Form cập nhật -->
+    <div class="right-col">
+        <div class="update-form">
+            <h2>CẬP NHẬT THÔNG TIN CÁ NHÂN</h2>
+            <form id="updateProfileForm" enctype="multipart/form-data">
+                <!-- Avatar -->
+                <div class="avatar-upload">
+                    <img src="~/wwwroot/PhotoOfPerson/@ViewBag.user.HINH_ANH" alt="Avatar" class="avatar-preview" id="avatarPreview">
+                    <br>
+                    <input type="file" id="avatarInput" name="HINH_ANH" accept="image/*" style="display:none;">
+                    <button type="button" class="upload-btn" onclick="document.getElementById('avatarInput').click();">
+                        Thay đổi ảnh đại diện
+                    </button>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Họ và tên *</label>
+                        <input type="text" name="HOTEN" value="@(ViewBag.position == 0 ? ViewBag.user.HOTENKH : ViewBag.user.HOTENNV)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại *</label>
+                        <input type="text" name="SDT" value="@ViewBag.user.SDT" required>
+                    </div>
+
+                    @if (ViewBag.position != 0)
+                    {
+                        <div class="form-group">
+                            <label>Chức vụ</label>
+                            <input type="text" value="@ViewBag.user.CHUCVU" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Mã người quản lý</label>
+                            <input type="text" value="@(ViewBag.user.MA_NQL ?? "Không có")" disabled>
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label>Ngày sinh</label>
+                        <input type="date" name="NGAYSINH"
+                               value="@(ViewBag.user?.NGAYSINH != null ? ((DateTime)ViewBag.user.NGAYSINH).ToString("yyyy-MM-dd") : "")" />
+                    </div>
+                    <div class="form-group">
+                        <label>Giới tính</label>
+                        <select name="PHAI">
+                            <option value="Nam" @(ViewBag.Phai == "Nam" ? "selected" : "")>Nam</option>
+                            <option value="Nữ" @(ViewBag.Phai == "Nữ" ? "selected" : "")>Nữ</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column:1/-1;">
+                        <label>Địa chỉ</label>
+                        <input type="text" name="DIACHI" value="@ViewBag.user.DIACHI">
+                    </div>
+                    <div class="form-group" style="grid-column:1/-1;">
+                        <label>Email (không thể thay đổi)</label>
+                        <input type="email" value="@ViewBag.user.EMAIL" disabled style="background:#eee;">
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="button" class="btn btn-cancel" onclick="location.href='/Profile/ProfileUser'">Hủy bỏ</button>
+                    <button type="submit" class="btn btn-save">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+    // Xem trước ảnh khi chọn
+    document.getElementById('avatarInput').addEventListener('change', function(e){
+        if(e.target.files[0]){
+            const reader = new FileReader();
+            reader.onload = function(ev){
+                document.getElementById('avatarPreview').src = ev.target.result;
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    // AJAX gửi form
+    $('#updateProfileForm').submit(function(e){
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '@Url.Action("Update","Profile")',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res){
+                alert('Cập nhật thành công!');
+                location.reload();
+            },
+            error: function(err){
+                console.log(err);
+                alert('Có lỗi xảy ra!');
+            }
+        });
+    });
+    </script>
+}

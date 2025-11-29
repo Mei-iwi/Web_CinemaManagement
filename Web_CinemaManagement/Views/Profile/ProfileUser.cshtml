@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "ProfileUser";
+
+    if (ViewBag.position == 0)
+    {
+        Layout = "~/Views/Shared/_LayoutPageCustomer.cshtml";
+    }
+    else if (ViewBag.position == 1)
+    {
+        Layout = "~/Areas/Employee/Views/Shared/_LayoutPageEmployee.cshtml";
+    }
+    else
+    {
+        Layout = "~/Areas/Manager/Views/Shared/_LayoutPageManager.cshtml";
+    }
+
+}
+
+@{
+    var currentHang = ViewBag.CurrentHang as Web_CinemaManagement.Models.ModelLinq.HANGTHANHVIEN;
+    int diemTL = ViewBag.DiemTichLuy != null ? (int)ViewBag.DiemTichLuy : 0;
+    int diemMax = ViewBag.DiemMax != null ? (int)ViewBag.DiemMax : 100;
+    double percent = ViewBag.Percent != null ? (double)ViewBag.Percent : 0;
+
+    int stars = 1;
+    if (percent > 66)
+    {
+        stars = 3;
+    }
+    else if (percent > 33)
+    {
+        stars = 2;
+    }
+}
+
+<link href="~/wwwroot/css/ProfileUser.css" rel="stylesheet" />
+@if (ViewBag.position == 0)
+{
+    <!-- Main Content -->
+    <div class="main container">
+        <div class="level-box">
+            <div class="circle-progress">
+                <div class="circle-inner">
+                    @(currentHang != null ? currentHang.TENHANG : "Chưa có hạng")
+                </div>
+
+                <svg width="160" height="160">
+                    <circle class="bg-circle" cx="80" cy="80" r="70" />
+                    <circle class="progress-circle" cx="80" cy="80" r="70" stroke-dasharray="0 999" />
+                </svg>
+            </div>
+
+            <div class="stars">
+                @for (int i = 0; i < stars; i++)
+                {
+                    <span>★</span>
+                }
+            </div>
+
+            <div class="points">
+                Điểm tích lũy: @diemTL / @diemMax
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:0%;"></div>
+            </div>
+            <div class="progress-labels">
+                <span>0</span>
+                <span>@diemMax</span>
+            </div>
+        </div>
+
+
+        <!-- Cột phải -->
+        <div class="right-col">
+            <div class="info-card">
+                <h3>THÔNG TIN CƠ BẢN</h3>
+                <img src="~/wwwroot/PhotoOfPerson/@ViewBag.user.HINH_ANH"
+                     alt="Avatar"
+                     class="avatar" />
+                <!-- Thay ảnh cỏ 4 lá nếu muốn -->
+                <div style="overflow: hidden">
+                    <div class="info-grid">
+                        <strong>Mã thành viên:</strong> <span>@ViewBag.user.MAKH</span>
+                        <strong>Họ và tên:</strong> <span>@ViewBag.user.HOTENKH</span>
+                        <strong>Số điện thoại:</strong> <span>@ViewBag.user.SDT</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card" style="margin-top: 20px">
+                <h3>THÔNG TIN CHI TIẾT</h3>
+                <div class="info-grid">
+                    <strong>Email:</strong> <span>@ViewBag.user.EMAIL</span>
+                    <strong>Quốc gia:</strong> <span>Việt Nam</span>
+                    <strong>Ngày sinh:</strong> <span>@ViewBag.user.NGAYSINH.ToString("dd/MM/yyyy")</span>
+                    <strong>Ngôn ngữ:</strong> <span>Tiếng Việt</span>
+                    <strong>Giới tính:</strong> <span>@ViewBag.user.PHAI</span>
+                    <strong>Địa chỉ:</strong>
+                    <span>@ViewBag.user.DIACHI</span>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-vip">Gói VIP</button>
+                <a href="/Profile/Update?id=@ViewBag.user.MAKH" class="btn btn-update">Cập nhật</a>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <!-- Main Content -->
+    <div class="main container">
+
+
+        <!-- Cột phải -->
+        <div class="right-col">
+            <div class="info-card">
+                <h3>THÔNG TIN CƠ BẢN</h3>
+                <img src="~/wwwroot/PhotoOfPerson/@ViewBag.user.HINH_ANH"
+                     alt="Avatar"
+                     class="avatar" />
+                <!-- Thay ảnh cỏ 4 lá nếu muốn -->
+                <div style="overflow: hidden">
+                    <div class="info-grid">
+                        <strong>Mã thành viên:</strong> <span>@ViewBag.user.MANV</span>
+                        <strong>Họ và tên:</strong> <span>@ViewBag.user.HOTENNV</span>
+                        <strong>Số điện thoại:</strong> <span>@ViewBag.user.SDT</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card" style="margin-top: 20px">
+                <h3>THÔNG TIN CHI TIẾT</h3>
+                <div class="info-grid">
+                    <strong>Email:</strong> <span>@ViewBag.user.EMAIL</span>
+                    <strong>Quốc gia:</strong> <span>Việt Nam</span>
+                    <strong>Ngày sinh:</strong> <span>@ViewBag.user.NGAYSINH.ToString("dd/MM/yyyy")</span>
+                    <strong>Ngôn ngữ:</strong> <span>Tiếng Việt</span>
+                    <strong>Giới tính:</strong> <span>@ViewBag.user.PHAI</span>
+                    <strong>Mã người quản lý:</strong> <span>@(@ViewBag.user.MA_NQL != null ? @ViewBag.user.MA_NQL : "Không có") </span>
+                    <strong>Chức vụ:</strong> <span>@ViewBag.user.CHUCVU</span>
+                    <strong>Địa chỉ:</strong>
+                    <span>@ViewBag.user.DIACHI</span>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-vip">Gói VIP</button>
+                <a href="/Profile/Update?id=@ViewBag.user.MANV" class="btn btn-update">Cập nhật</a>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts{
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var percent = @percent;
+
+        // Vòng tròn
+        var circle = document.querySelector('.progress-circle');
+        var radius = circle.r.baseVal.value;
+        var circumference = 2 * Math.PI * radius;
+        var dash = (circumference * percent / 100) + " " + circumference;
+        circle.setAttribute("stroke-dasharray", dash);
+
+        // Thanh progress bar
+        var fill = document.querySelector('.progress-fill');
+        fill.style.width = percent + "%";
+    });
+    </script>
+
+}
