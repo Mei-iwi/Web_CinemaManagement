@@ -1,0 +1,35 @@
+﻿
+.card-dark {
+    background-color: #343a40;
+    color: #fff;
+    border: 1px solid #454d55;
+}
+
+.table-dark-custom {
+    background-color: #23272b;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+    .table-dark-custom th {
+        border-top: none;
+        color: #ffc107;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+
+    .table-dark-custom td {
+        vertical-align: middle;
+        border-color: #454d55;
+    }
+
+/* Hiệu ứng hover dòng */
+.table-hover tbody tr:hover {
+    background-color: #3e444a;
+    color: #ffc107;
+}
+
+.btn-chon {
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

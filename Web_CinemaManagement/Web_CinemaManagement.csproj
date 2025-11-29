@@ -372,6 +372,8 @@
     <Content Include="wwwroot\css\About.css" />
     <Content Include="wwwroot\css\AboutThree.css" />
     <Content Include="wwwroot\css\AboutTwo.css" />
+    <Content Include="wwwroot\css\BanVe.css" />
+    <Content Include="wwwroot\css\BanVeindex.css" />
     <Content Include="wwwroot\css\DashboardCustomer.css" />
     <Content Include="wwwroot\css\Detail.css" />
     <Content Include="wwwroot\css\DoanhThu.css" />
@@ -388,6 +390,7 @@
     <Content Include="wwwroot\Images\Error.png" />
     <Content Include="wwwroot\Images\Protect.png" />
     <Content Include="wwwroot\Images\ProtectLogin.png" />
+    <Content Include="wwwroot\js\BanVe.js" />
     <Content Include="wwwroot\js\Cinemas.js" />
     <Content Include="wwwroot\js\Movies.js" />
     <Content Include="wwwroot\css\Registration.css" />
@@ -458,6 +461,7 @@
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Employee\Controllers\TicketSalesController.cs" />
     <Compile Include="Areas\Employee\Controllers\SellServicesController.cs" />
     <Compile Include="Areas\Employee\Controllers\StatisticController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
@@ -505,6 +509,7 @@
     <Compile Include="Models\ADO\Crew.cs" />
     <Compile Include="Models\ADO\DangKyModel.cs" />
     <Compile Include="Models\ADO\getInfoTickets.cs" />
+    <Compile Include="Models\ADO\HoaDonViewModel.cs" />
     <Compile Include="Models\ADO\InfoTickets_Model.cs" />
     <Compile Include="Models\ADO\MovieCredits.cs" />
     <Compile Include="Models\ADO\MovieViewModel.cs" />
@@ -594,6 +599,8 @@
     <Content Include="Areas\Manager\Views\EmployeeManagement\DetailEmployee.cshtml" />
     <Content Include="Areas\Manager\Views\EmployeeManagement\UpdateEmployee.cshtml" />
     <Content Include="Areas\Manager\Views\EmployeeManagement\DeleteEmployee.cshtml" />
+    <Content Include="Areas\Employee\Views\TicketSales\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\TicketSales\BanVe.cshtml" />
     <Content Include="Areas\Employee\Views\SellServices\Sell.cshtml" />
     <Content Include="Areas\Employee\Views\Statistic\RevenueByShift.cshtml" />
     <None Include="Models\ModelLinq\CinemaManegementLinq.dbml.layout">
