@@ -1,0 +1,95 @@
+﻿@using Web_CinemaManagement.Models.ModelLinq
+@model List<KHACHHANG>
+
+@{
+    ViewBag.Title = "Member Search";
+    Layout = "~/Areas/Employee/Views/Shared/_LayoutPageEmployee.cshtml";
+}
+
+<div class="container" style="margin-top: 50px; color: white; min-height: 600px;">
+    <h2 class="text-center text-warning" style="text-transform: uppercase; font-weight: bold; margin-bottom: 30px;">
+        <i class="fa fa-search"></i> TRA CỨU KHÁCH HÀNG
+    </h2>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Index", "MemberSearch", new { area = "Employee" }, FormMethod.Get))
+            {
+                <div class="input-group">
+                    <input type="text" name="searchString" class="form-control" placeholder="Nhập Số điện thoại hoặc Tên..." required style="height: 45px;" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-warning font-weight-bold" style="min-width: 100px;">
+                            <i class="fa fa-search"></i> TÌM
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+                <tr class="text-warning text-center">
+                    <th>MÃ KH</th>
+                    <th>THÔNG TIN KHÁCH HÀNG</th>
+                    <th>HẠNG & ƯU ĐÃI</th>
+                    <th style="width: 150px;">THAO TÁC</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="4" class="text-center" style="padding: 20px;">
+                            <em>Không tìm thấy kết quả nào.</em>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        // Logic kiểm tra sinh nhật trong tháng này
+                        bool isBirthdayMonth = item.NGAYSINH.HasValue && item.NGAYSINH.Value.Month == DateTime.Now.Month;
+
+                        <tr>
+                            <td class="text-center align-middle">@item.MAKH</td>
+
+                            <td class="align-middle">
+                                <div style="font-weight: bold; font-size: 1.1em;">
+                                    @item.HOTENKH
+                                    @if (isBirthdayMonth)
+                                    {
+                                        <span class="badge badge-danger ml-2" title="Khách có sinh nhật tháng này!">
+                                            🎂 Happy Birthday
+                                        </span>
+                                    }
+                                </div>
+                                <div style="color: #ccc; font-size: 0.9em;">
+                                    <i class="fa fa-phone"></i> @item.SDT
+                                </div>
+                            </td>
+
+                            <td class="text-center align-middle">
+                                <span style="color: gold; font-weight: bold; display:block;">
+                                    @(item.HANGTHANHVIEN != null ? item.HANGTHANHVIEN.TENHANG : "Chưa xếp hạng")
+                                </span>
+                                <span class="badge badge-success mt-1">
+                                    @(item.HANGTHANHVIEN != null ? item.HANGTHANHVIEN.UUDAI : "Không có")
+                                </span>
+                            </td>
+
+                            <td class="text-center align-middle">
+                                <a href="@Url.Action("Index", "TicketSales", new { area = "Employee", userId = item.MAKH })"
+                                   class="btn btn-warning btn-sm font-weight-bold w-100">
+                                    <i class="fa fa-ticket"></i> Bán Vé Ngay
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

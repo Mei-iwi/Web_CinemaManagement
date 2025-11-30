@@ -9,25 +9,24 @@ namespace Web_CinemaManagement.Helper
 {
     public static class ConnectionHelper
     {
-
-        private static string DataSource = "MEI\\SQLEXPRESS";
+        // 1. Đã đổi tên Server về localhost
+        private static string DataSource = "localhost";
 
         private static string InitialCatalog = "QL_RAP_PHIM";
 
-
         public static string getConnectionString(string UserID, string Password)
         {
-           
-
-            return $"Data Source={DataSource};Initial Catalog={InitialCatalog};User ID={UserID};Password={Password}";
+            // 2. Đã sửa sang chế độ Windows Authentication (Integrated Security=True)
+            // Bỏ qua UserID và Password truyền vào để tránh lỗi đăng nhập
+            return $"Data Source={DataSource};Initial Catalog={InitialCatalog};Integrated Security=True;TrustServerCertificate=True";
         }
 
         public static string getEFConnectionString(string UserID, string Password)
         {
+            // Cấu hình lại chuỗi kết nối cho Entity Framework dùng Windows Auth
             string providerConn = $"Data Source={DataSource};" +
                            $"Initial Catalog={InitialCatalog};" +
-                           $"User ID={UserID};" +
-                           $"Password={Password};" +
+                           $"Integrated Security=True;" + // Dùng quyền Windows
                            $"MultipleActiveResultSets=True;" +
                            $"TrustServerCertificate=True;" +
                            $"Application Name=EntityFramework";
@@ -44,11 +43,11 @@ namespace Web_CinemaManagement.Helper
 
         public static string getLinqConnectionString(string UserID, string Password)
         {
+            // Cấu hình lại cho LINQ dùng Windows Auth
             return $"Data Source={DataSource};" +
                   $"Initial Catalog={InitialCatalog};" +
-                  $"User ID={UserID};" +
-                  $"Password={Password};" +
-                  $"MultipleActiveResultSets=True;" +  // chú ý: không dấu cách
+                  $"Integrated Security=True;" + // Dùng quyền Windows
+                  $"MultipleActiveResultSets=True;" +
                   $"TrustServerCertificate=True;" +
                   $"Application Name=EntityFramework";
         }
@@ -62,7 +61,5 @@ namespace Web_CinemaManagement.Helper
         {
             return ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString"].ConnectionString;
         }
-
-
     }
 }
