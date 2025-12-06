@@ -36,7 +36,7 @@
                     <div class="col-sm-9 col-9">
                         <div id="info">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.HOTENKH, htmlAttributes: new { @class = "control-label col-md-3" })
+                                @Html.Label("Họ và tên", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(model => model.HOTENKH, new { @class = "form-control w-75" })
                                     @Html.ValidationMessageFor(model => model.HOTENKH, "", new { @class = "text-danger" })
@@ -45,7 +45,7 @@
 
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.NGAYSINH, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.Label("Ngày sinh", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(model => model.NGAYSINH, new { @class = "form-control w-50", type = "date" })
                                     @Html.ValidationMessageFor(model => model.NGAYSINH, "", new { @class = "text-danger" })
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.PHAI, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.Label("Giới tính", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(model => model.PHAI, new List<SelectListItem>()
                                {
@@ -70,7 +70,7 @@
 
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-3" })
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", type = "email" })
                                             @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
@@ -79,14 +79,14 @@
 
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        @Html.Label("Số điện thoại", htmlAttributes: new { @class = "control-label col-md-3" })
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", type = "tel" })
                                             @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.DIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.Label("Địa chỉ", htmlAttributes: new { @class = "control-label col-md-3" })
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(model => model.DIACHI, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })

@@ -20,39 +20,16 @@ namespace Web_CinemaManagement.Models.ModelLinq
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using System.Web;
-    using Web_CinemaManagement.Helper;
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QL_RAP_PHIM")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QL_RAP_PHIM")]
 	public partial class CinemaManegementLinqDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
-
-		public CinemaManegementLinqDataContext()
-		  : base(GetConnectionStringFromSession(), mappingSource)
-		{
-		}
-
-		private static string GetConnectionStringFromSession()
-		{
-			if (HttpContext.Current.Session["UserID"] != null &&
-				HttpContext.Current.Session["Password"] != null)
-			{
-				string user = HttpContext.Current.Session["UserID"].ToString();
-				string pass = HttpContext.Current.Session["Password"].ToString();
-				return ConnectionHelper.getLinqConnectionString(user, pass);
-			}
-			else
-			{
-				return ConnectionHelper.getLinqConnectionString("JustWatch", "Abc12345!");
-			}
-
-			throw new Exception("User not logged in. Session information missing.");
-		}
-
-		#region Extensibility Method Definitions
-		partial void OnCreated();
+		
+    #region Extensibility Method Definitions
+    partial void OnCreated();
     partial void InsertCSKH(CSKH instance);
     partial void UpdateCSKH(CSKH instance);
     partial void DeleteCSKH(CSKH instance);
@@ -68,9 +45,6 @@ namespace Web_CinemaManagement.Models.ModelLinq
     partial void InsertDANGPHIM(DANGPHIM instance);
     partial void UpdateDANGPHIM(DANGPHIM instance);
     partial void DeleteDANGPHIM(DANGPHIM instance);
-    partial void InsertDICHVU(DICHVU instance);
-    partial void UpdateDICHVU(DICHVU instance);
-    partial void DeleteDICHVU(DICHVU instance);
     partial void InsertGHE(GHE instance);
     partial void UpdateGHE(GHE instance);
     partial void DeleteGHE(GHE instance);
@@ -98,13 +72,16 @@ namespace Web_CinemaManagement.Models.ModelLinq
     partial void InsertTHELOAIPHIM(THELOAIPHIM instance);
     partial void UpdateTHELOAIPHIM(THELOAIPHIM instance);
     partial void DeleteTHELOAIPHIM(THELOAIPHIM instance);
+    partial void InsertDICHVU(DICHVU instance);
+    partial void UpdateDICHVU(DICHVU instance);
+    partial void DeleteDICHVU(DICHVU instance);
     #endregion
 		
-		//public CinemaManegementLinqDataContext() : 
-		//		base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString1"].ConnectionString, mappingSource)
-		//{
-		//	OnCreated();
-		//}
+		public CinemaManegementLinqDataContext() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QL_RAP_PHIMConnectionString1"].ConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public CinemaManegementLinqDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -167,14 +144,6 @@ namespace Web_CinemaManagement.Models.ModelLinq
 			get
 			{
 				return this.GetTable<DANGPHIM>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DICHVU> DICHVUs
-		{
-			get
-			{
-				return this.GetTable<DICHVU>();
 			}
 		}
 		
@@ -247,6 +216,14 @@ namespace Web_CinemaManagement.Models.ModelLinq
 			get
 			{
 				return this.GetTable<THELOAIPHIM>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DICHVU> DICHVUs
+		{
+			get
+			{
+				return this.GetTable<DICHVU>();
 			}
 		}
 	}
@@ -1569,168 +1546,6 @@ namespace Web_CinemaManagement.Models.ModelLinq
 		{
 			this.SendPropertyChanging();
 			entity.DANGPHIM = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DICHVU")]
-	public partial class DICHVU : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _MASP;
-		
-		private string _TENSP;
-		
-		private decimal _DONGIA;
-		
-		private string _HINH_ANH;
-		
-		private EntitySet<DANGKY> _DANGKies;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMASPChanging(string value);
-    partial void OnMASPChanged();
-    partial void OnTENSPChanging(string value);
-    partial void OnTENSPChanged();
-    partial void OnDONGIAChanging(decimal value);
-    partial void OnDONGIAChanged();
-    partial void OnHINH_ANHChanging(string value);
-    partial void OnHINH_ANHChanged();
-    #endregion
-		
-		public DICHVU()
-		{
-			this._DANGKies = new EntitySet<DANGKY>(new Action<DANGKY>(this.attach_DANGKies), new Action<DANGKY>(this.detach_DANGKies));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MASP", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MASP
-		{
-			get
-			{
-				return this._MASP;
-			}
-			set
-			{
-				if ((this._MASP != value))
-				{
-					this.OnMASPChanging(value);
-					this.SendPropertyChanging();
-					this._MASP = value;
-					this.SendPropertyChanged("MASP");
-					this.OnMASPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENSP", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
-		public string TENSP
-		{
-			get
-			{
-				return this._TENSP;
-			}
-			set
-			{
-				if ((this._TENSP != value))
-				{
-					this.OnTENSPChanging(value);
-					this.SendPropertyChanging();
-					this._TENSP = value;
-					this.SendPropertyChanged("TENSP");
-					this.OnTENSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DONGIA", DbType="Decimal(10,2) NOT NULL")]
-		public decimal DONGIA
-		{
-			get
-			{
-				return this._DONGIA;
-			}
-			set
-			{
-				if ((this._DONGIA != value))
-				{
-					this.OnDONGIAChanging(value);
-					this.SendPropertyChanging();
-					this._DONGIA = value;
-					this.SendPropertyChanged("DONGIA");
-					this.OnDONGIAChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HINH_ANH", DbType="VarChar(500)")]
-		public string HINH_ANH
-		{
-			get
-			{
-				return this._HINH_ANH;
-			}
-			set
-			{
-				if ((this._HINH_ANH != value))
-				{
-					this.OnHINH_ANHChanging(value);
-					this.SendPropertyChanging();
-					this._HINH_ANH = value;
-					this.SendPropertyChanged("HINH_ANH");
-					this.OnHINH_ANHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DICHVU_DANGKY", Storage="_DANGKies", ThisKey="MASP", OtherKey="MASP")]
-		public EntitySet<DANGKY> DANGKies
-		{
-			get
-			{
-				return this._DANGKies;
-			}
-			set
-			{
-				this._DANGKies.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DANGKies(DANGKY entity)
-		{
-			this.SendPropertyChanging();
-			entity.DICHVU = this;
-		}
-		
-		private void detach_DANGKies(DANGKY entity)
-		{
-			this.SendPropertyChanging();
-			entity.DICHVU = null;
 		}
 	}
 	
@@ -3938,6 +3753,168 @@ namespace Web_CinemaManagement.Models.ModelLinq
 		{
 			this.SendPropertyChanging();
 			entity.THELOAIPHIM = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DICHVU")]
+	public partial class DICHVU : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MASP;
+		
+		private string _TENSP;
+		
+		private decimal _DONGIA;
+		
+		private string _HINH_ANH;
+		
+		private EntitySet<DANGKY> _DANGKies;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMASPChanging(string value);
+    partial void OnMASPChanged();
+    partial void OnTENSPChanging(string value);
+    partial void OnTENSPChanged();
+    partial void OnDONGIAChanging(decimal value);
+    partial void OnDONGIAChanged();
+    partial void OnHINH_ANHChanging(string value);
+    partial void OnHINH_ANHChanged();
+    #endregion
+		
+		public DICHVU()
+		{
+			this._DANGKies = new EntitySet<DANGKY>(new Action<DANGKY>(this.attach_DANGKies), new Action<DANGKY>(this.detach_DANGKies));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MASP", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MASP
+		{
+			get
+			{
+				return this._MASP;
+			}
+			set
+			{
+				if ((this._MASP != value))
+				{
+					this.OnMASPChanging(value);
+					this.SendPropertyChanging();
+					this._MASP = value;
+					this.SendPropertyChanged("MASP");
+					this.OnMASPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENSP", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string TENSP
+		{
+			get
+			{
+				return this._TENSP;
+			}
+			set
+			{
+				if ((this._TENSP != value))
+				{
+					this.OnTENSPChanging(value);
+					this.SendPropertyChanging();
+					this._TENSP = value;
+					this.SendPropertyChanged("TENSP");
+					this.OnTENSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DONGIA", DbType="Decimal(10,2) NOT NULL")]
+		public decimal DONGIA
+		{
+			get
+			{
+				return this._DONGIA;
+			}
+			set
+			{
+				if ((this._DONGIA != value))
+				{
+					this.OnDONGIAChanging(value);
+					this.SendPropertyChanging();
+					this._DONGIA = value;
+					this.SendPropertyChanged("DONGIA");
+					this.OnDONGIAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HINH_ANH", DbType="VarChar(500)")]
+		public string HINH_ANH
+		{
+			get
+			{
+				return this._HINH_ANH;
+			}
+			set
+			{
+				if ((this._HINH_ANH != value))
+				{
+					this.OnHINH_ANHChanging(value);
+					this.SendPropertyChanging();
+					this._HINH_ANH = value;
+					this.SendPropertyChanged("HINH_ANH");
+					this.OnHINH_ANHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DICHVU_DANGKY", Storage="_DANGKies", ThisKey="MASP", OtherKey="MASP")]
+		public EntitySet<DANGKY> DANGKies
+		{
+			get
+			{
+				return this._DANGKies;
+			}
+			set
+			{
+				this._DANGKies.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DANGKies(DANGKY entity)
+		{
+			this.SendPropertyChanging();
+			entity.DICHVU = this;
+		}
+		
+		private void detach_DANGKies(DANGKY entity)
+		{
+			this.SendPropertyChanging();
+			entity.DICHVU = null;
 		}
 	}
 }

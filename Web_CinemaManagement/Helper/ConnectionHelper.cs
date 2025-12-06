@@ -10,7 +10,7 @@ namespace Web_CinemaManagement.Helper
     public static class ConnectionHelper
     {
         // 1. Đã đổi tên Server về localhost
-        private static string DataSource = "localhost";
+        private static string DataSource = "MEI\\SQLEXPRESS";
 
         private static string InitialCatalog = "QL_RAP_PHIM";
 
