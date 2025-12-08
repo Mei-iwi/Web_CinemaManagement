@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Web_CinemaManagement.Models.ModelLinq;
 using System.Net;
 using PagedList;
+using System.Text.RegularExpressions;
 
 namespace Web_CinemaManagement.Areas.Manager.Controllers
 {
@@ -79,6 +80,61 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddEmployee(NHANVIEN nhanvien)
         {
+            // Kiểm tra đủ 18 tuổi
+            if (nhanvien.NGAYSINH.HasValue)
+            {
+                var today = DateTime.Today;
+                var age = today.Year - nhanvien.NGAYSINH.Value.Year;
+                if (nhanvien.NGAYSINH.Value.Date > today.AddYears(-age))
+                {
+                    age--;
+                }
+
+                if (age < 18)
+                {
+                    ModelState.AddModelError("NGAYSINH", "Nhân viên phải đủ 18 tuổi.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("NGAYSINH", "Ngày sinh không được để trống.");
+            }
+
+            // Kiểm tra Trùng lặp Email
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!string.IsNullOrWhiteSpace(nhanvien.EMAIL) && !Regex.IsMatch(nhanvien.EMAIL, emailPattern))
+            {
+                ModelState.AddModelError("EMAIL", "Email không hợp lệ (ví dụ: ten@domain.com).");
+            }
+            else if (db.NHANVIENs.Any(nv => nv.EMAIL == nhanvien.EMAIL))
+            {
+                ModelState.AddModelError("EMAIL", "Email này đã được sử dụng cho một nhân viên khác.");
+            }
+
+            // Kiểm tra Tên không để trống
+            if (string.IsNullOrWhiteSpace(nhanvien.HOTENNV))
+            {
+                ModelState.AddModelError("HOTENNV", "Họ tên nhân viên không được để trống.");
+            }
+
+            // Kiểm tra lương không âm và ko null
+            if (nhanvien.LUONG.HasValue && nhanvien.LUONG.Value < 0)
+            {
+                ModelState.AddModelError("LUONG", "Lương của nhân viên không được là giá trị âm.");
+            }
+            else if (!nhanvien.LUONG.HasValue)
+            {
+                ModelState.AddModelError("LUONG", "Lương không được để trống.");
+            }
+
+            // Kiểm tra Định dạng Số điện thoại
+            // Regex: ^\d{10}$ (bắt đầu bằng 10 chữ số và kết thúc)
+            string phonePattern = @"^\d{10}$";
+            if (!string.IsNullOrWhiteSpace(nhanvien.SDT) && !Regex.IsMatch(nhanvien.SDT, phonePattern))
+            {
+                ModelState.AddModelError("SDT", "Số điện thoại phải là số có 10 chữ số.");
+            }
+
             var lastEmployee = db.NHANVIENs
                                  .OrderByDescending(nv => nv.MANV)
                                  .FirstOrDefault();
@@ -153,7 +209,62 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
         {
             var nhanvienCanSua = db.NHANVIENs.FirstOrDefault(n => n.MANV == nv.MANV);
 
-            if (nhanvienCanSua != null)
+            // Kiểm tra đủ 18 tuổi
+            if (nv.NGAYSINH.HasValue)
+            {
+                var today = DateTime.Today;
+                var age = today.Year - nv.NGAYSINH.Value.Year;
+                if (nv.NGAYSINH.Value.Date > today.AddYears(-age))
+                {
+                    age--;
+                }
+
+                if (age < 18)
+                {
+                    ModelState.AddModelError("NGAYSINH", "Nhân viên phải đủ 18 tuổi.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("NGAYSINH", "Ngày sinh không được để trống.");
+            }
+
+            // 2. Kiểm tra Định dạng và Trùng lặp Email
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!string.IsNullOrWhiteSpace(nv.EMAIL) && !Regex.IsMatch(nv.EMAIL, emailPattern))
+            {
+                ModelState.AddModelError("EMAIL", "Email không hợp lệ (ví dụ: ten@domain.com).");
+            }
+            // Chỉ kiểm tra trùng lặp nếu Email hợp lệ và đã có giá trị
+            else if (!string.IsNullOrWhiteSpace(nv.EMAIL) && db.NHANVIENs.Any(n => n.EMAIL == nv.EMAIL && n.MANV != nv.MANV))
+            {
+                ModelState.AddModelError("EMAIL", "Email này đã được sử dụng cho một nhân viên khác.");
+            }
+
+            // Kiểm tra Tên không để trống
+            if (string.IsNullOrWhiteSpace(nv.HOTENNV))
+            {
+                ModelState.AddModelError("HOTENNV", "Họ tên nhân viên không được để trống.");
+            }
+
+            // Kiểm tra lương không âm và ko null
+            if (nv.LUONG.HasValue && nv.LUONG.Value < 0)
+            {
+                ModelState.AddModelError("LUONG", "Lương của nhân viên không được là giá trị âm.");
+            }
+            else if (!nv.LUONG.HasValue)
+            {
+                ModelState.AddModelError("LUONG", "Lương không được để trống.");
+            }
+
+            // Kiểm tra Định dạng Số điện thoại (10 chữ số)
+            string phonePattern = @"^\d{10}$";
+            if (!string.IsNullOrWhiteSpace(nv.SDT) && !Regex.IsMatch(nv.SDT, phonePattern))
+            {
+                ModelState.AddModelError("SDT", "Số điện thoại phải là số có 10 chữ số.");
+            }
+
+            if (ModelState.IsValid)
             {
                 // Cập nhật các trường
                 nhanvienCanSua.HOTENNV = nv.HOTENNV;
@@ -169,8 +280,16 @@ namespace Web_CinemaManagement.Areas.Manager.Controllers
                 nhanvienCanSua.HINH_ANH = nv.HINH_ANH;
 
                 db.SubmitChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+
+            // Nếu validation thất bại (ModelState.IsValid == false), phải tải lại dữ liệu cần thiết cho View
+            var listQuanLy = db.NHANVIENs
+                               .Where(n => n.MANV != nv.MANV)
+                               .ToList();
+
+            ViewBag.ListQuanLy = new SelectList(listQuanLy, "MANV", "HOTENNV", nv.MA_NQL);
+            return View("UpdateEmployee", nv);
         }
 
         public ActionResult DeleteEmployee(string id)
